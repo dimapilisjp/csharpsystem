@@ -1,0 +1,93 @@
+﻿@page
+@model votingsystem.Pages.Shared.DashboardModel
+@{
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Voting System Admin Dashboard</title>
+    <link rel="stylesheet" href="/css/Dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="wrapper">
+        <nav class="sidebar">
+            <ul>
+                <li>
+                    <form method="post" asp-page-handler="RedirectToDashboard">
+                        <button type="submit" class="sidebar-button">
+                            <i class="fas fa-tachometer-alt"></i> Dashboard
+                        </button>
+                    </form>
+                </li>
+                <li>
+                    <form method="post" asp-page-handler="RedirectToManageElections">
+                        <button type="submit" class="sidebar-button">
+                            <i class="fas fa-vote-yea"></i> Manage Elections
+                        </button>
+                    </form>
+                </li>
+                <li>
+                    <form method="post" asp-page-handler="RedirectToManageVoters">
+                        <button type="submit" class="sidebar-button">
+                            <i class="fas fa-users"></i> Manage Voters
+                        </button>
+                    </form>
+                </li>
+                <li>
+                    <form method="post" asp-page-handler="RedirectToResults">
+                        <button type="submit" class="sidebar-button">
+                            <i class="fas fa-chart-bar"></i> Results
+                        </button>
+                    </form>
+                </li>
+            </ul>
+            <div class="bottom-icons">
+                <a href="#"><i class="fas fa-cog"></i></a>
+                <a href="#"><i class="fas fa-bell"></i></a>
+                <a href="#"><i class="fas fa-user"></i></a>
+            </div>
+        </nav>
+
+ 
+        <div class="main-content">
+            <header>
+                <h1>Admin Dashboard</h1>
+            </header>
+
+            <section class="summary-cards">
+                <div class="card">
+                    <h2>Total Elections</h2>
+                    <p>0</p>
+                    <i class="fas fa-bullhorn"></i>
+                </div>
+                <div class="card">
+                    <h2>Total Voters</h2>
+                    <p>0</p>
+                    <i class="fas fa-users"></i>
+                </div>
+                <div class="card">
+                    <h2>Total Votes</h2>
+                    <p>0</p>
+                    <i class="fas fa-chart-bar"></i>
+                </div>
+                <div class="card">
+                    <h2>Pending Registrations</h2>
+                    <p>0</p>
+                    <i class="fas fa-clock"></i>
+                </div>
+            </section>
+
+            <section class="charts-and-todo">
+                <div class="chart">
+                    <h2>Daily Voting Chart</h2>
+                </div>
+                <div class="todo-list">
+                    <h2>Admin Tasks</h2>
+                </div>
+            </section>
+        </div>
+    </div>
+</body>
+</html>

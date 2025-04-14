@@ -1,0 +1,116 @@
+﻿@page
+@model votingsystem.Pages.Shared.ADManageVotersModel
+@{
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Manage Voters</title>
+    <link rel="stylesheet" href="/css/ADManageVoters.css">
+    <script defer src="/js/ADManageVoters.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="wrapper">
+       
+        <nav class="sidebar">
+            <ul>
+                <li>
+                    <form method="post" asp-page-handler="RedirectToDashboard">
+                        <button type="submit" class="sidebar-button">
+                            <i class="fas fa-tachometer-alt"></i> Dashboard
+                        </button>
+                    </form>
+                </li>
+                <li>
+                    <form method="post" asp-page-handler="RedirectToManageElections">
+                        <button type="submit" class="sidebar-button">
+                            <i class="fas fa-vote-yea"></i> Manage Elections
+                        </button>
+                    </form>
+                </li>
+                <li>
+                    <form method="post" asp-page-handler="RedirectToManageVoters">
+                        <button type="submit" class="sidebar-button">
+                            <i class="fas fa-users"></i> Manage Voters
+                        </button>
+                    </form>
+                </li>
+                <li>
+                    <form method="post" asp-page-handler="RedirectToResults">
+                        <button type="submit" class="sidebar-button">
+                            <i class="fas fa-chart-bar"></i> Results
+                        </button>
+                    </form>
+                </li>
+            </ul>
+            <div class="bottom-icons">
+                <a href="#"><i class="fas fa-cog"></i></a>
+                <a href="#"><i class="fas fa-bell"></i></a>
+                <a href="#"><i class="fas fa-user"></i></a>
+            </div>
+        </nav>
+
+       
+        <div class="main-content">
+
+            <header>
+                <h1>Manage Voters</h1>
+                <input type="text" id="search-voters" placeholder="Search voters..." />
+            </header>
+
+
+           
+            <section class="voter-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Email</th>
+                            <th>Address</th>
+                            <th>Password</th>
+                            <th>Month</th>
+                            <th>Day</th>
+                            <th>Year</th>
+                            <th>Username</th>
+                            <th>Age</th>
+                            <th>Role</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                       
+                        @foreach (var voter in Model.Voters)
+                        {
+                                <tr>
+                                    <td>@voter.Id</td>
+                                    <td>@voter.FirstName</td>
+                                    <td>@voter.LastName</td>
+                                    <td>@voter.Email</td>
+                                    <td>@voter.Address</td>
+                                    <td>@voter.PasswordHash</td>
+                                    <td>@voter.Month</td>
+                                    <td>@voter.Day</td>
+                                    <td>@voter.Year</td>
+                                    <td>@voter.UserName</td>
+                                    <td>@voter.Age</td>
+                                    <td>@voter.Role</td>
+                                    <td>
+                                        <form method="post" asp-page-handler="DeleteVoter" asp-route-id="@voter.Id">
+                                            <button type="submit" class="delete-button">Delete</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                        }
+                    </tbody>
+                </table>
+            </section>
+        </div>
+    </div>
+</body>
+</html>
+
