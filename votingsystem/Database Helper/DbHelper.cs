@@ -80,7 +80,7 @@ namespace votingsystem.Database_Helper
         {
             using (var con = GetConnection())
             {
-                // retrieve the hashed password for the given username
+                
                 string query = "SELECT PasswordHash FROM Users WHERE UserName = @username";
 
                 using (var cmd = new MySqlCommand(query, con))
@@ -105,7 +105,7 @@ namespace votingsystem.Database_Helper
                         bool isPasswordValid = BCrypt.Net.BCrypt.Verify(Password, storedPasswordHash);
                         Console.WriteLine($"Password verification result: {isPasswordValid}");
 
-                        return isPasswordValid; // true if password matches
+                        return isPasswordValid; 
                     }
                     catch (MySqlException ex)
                     {
@@ -120,21 +120,57 @@ namespace votingsystem.Database_Helper
                 }
             }
         }
+        public static bool CreateCandidate(Candidate candidate)
+        {
+            using (var con = GetConnection())
+            {
+                string query = @"INSERT INTO Candidates (Name, Age, Address, Position)
+                         VALUES (@Name, @Age, @Address, @Position)";
+
+                using (var cmd = new MySqlCommand(query, con))
+                {
+                    cmd.Parameters.AddWithValue("@Name", candidate.Name);
+                    cmd.Parameters.AddWithValue("@Age", candidate.Age);
+                    cmd.Parameters.AddWithValue("@Address", candidate.Address);
+                    cmd.Parameters.AddWithValue("@Position", candidate.Position);
+
+                    try
+                    {
+                        con.Open();
+                        Console.WriteLine("Database connection opened.");
+                        cmd.ExecuteNonQuery();
+                        Console.WriteLine("SQL query executed successfully.");
+                        return true; // success
+                    }
+                    catch (MySqlException ex)
+                    {
+                        Console.WriteLine($"MySQL Error: {ex.Message}");
+                        return false; // fail
+                    }
+                    finally
+                    {
+                        con.Close();
+                        Console.WriteLine("Database connection closed.");
+                    }
+                }
+            }
+        }
 
         public static List<Candidate> GetCandidates()
         {
-            var candidates = new List<Candidate>();
-            using (var con = new MySqlConnection(GetConnectionString()))
+            var Candidates = new List<Candidate>();
+
+            using (var con = GetConnection())
             {
                 con.Open();
-                string query = "SELECT Id, Name, Age, Address, Position FROM candidates";
+                string query = "SELECT DISTINCT Id, Name, Age, Address, Position FROM candidates";
                 using (var cmd = new MySqlCommand(query, con))
                 {
                     using (var reader = cmd.ExecuteReader())
                     {
                         while (reader.Read())
                         {
-                            candidates.Add(new Candidate)
+                            Candidates.Add(new Candidate
                             {
                                 Id = reader.GetInt32("Id"),
                                 Name = reader.GetString("Name"),
@@ -146,7 +182,41 @@ namespace votingsystem.Database_Helper
                     }
                 }
             }
-            return candidates;
+
+            return Candidates;
+        }
+
+
+        public static bool DeleteCandidate(int id)
+        {
+            using (var con = GetConnection())
+            {
+                string query = @"DELETE FROM Candidates WHERE Id = @Id";
+
+                using (var cmd = new MySqlCommand(query, con))
+                {
+                    cmd.Parameters.AddWithValue("@Id", id);
+
+                    try
+                    {
+                        con.Open();
+                        Console.WriteLine("Database connection opened.");
+                        cmd.ExecuteNonQuery();
+                        Console.WriteLine("SQL query executed successfully.");
+                        return true; // success
+                    }
+                    catch (MySqlException ex)
+                    {
+                        Console.WriteLine($"MySQL Error: {ex.Message}");
+                        return false; // fail
+                    }
+                    finally
+                    {
+                        con.Close();
+                        Console.WriteLine("Database connection closed.");
+                    }
+                }
+            }
         }
 
 

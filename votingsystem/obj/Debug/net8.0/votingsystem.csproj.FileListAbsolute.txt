@@ -70,3 +70,4 @@ C:\Users\John Paul\source\repos\votingsystem\votingsystem\obj\Debug\net8.0\refin
 C:\Users\John Paul\source\repos\votingsystem\votingsystem\obj\Debug\net8.0\votingsystem.pdb
 C:\Users\John Paul\source\repos\votingsystem\votingsystem\obj\Debug\net8.0\votingsystem.genruntimeconfig.cache
 C:\Users\John Paul\source\repos\votingsystem\votingsystem\obj\Debug\net8.0\ref\votingsystem.dll
+C:\Users\John Paul\source\repos\votingsystem\votingsystem\obj\Debug\net8.0\votingsystem.sourcelink.json
