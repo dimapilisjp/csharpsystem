@@ -8,6 +8,7 @@
     <meta charset="utf-8">
     <title>Voting System Admin Dashboard</title>
     <link rel="stylesheet" href="/css/Dashboard.css">
+    <script defer src="/js/Dashboard.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
@@ -17,7 +18,7 @@
                 <li>
                     <form method="post" asp-page-handler="RedirectToDashboard">
                         <button type="submit" class="sidebar-button">
-                            <i class="fas fa-tachometer-alt"></i> Dashboard
+                            <i class="fas fa-chart-line"></i> Dashboard
                         </button>
                     </form>
                 </li>
@@ -50,7 +51,6 @@
             </div>
         </nav>
 
- 
         <div class="main-content">
             <header>
                 <h1>Admin Dashboard</h1>
@@ -59,24 +59,24 @@
             <section class="summary-cards">
                 <div class="card">
                     <h2>Total Elections</h2>
-                    <p>0</p>
+                    <p>@Model.TotalElections</p>
                     <i class="fas fa-bullhorn"></i>
                 </div>
                 <div class="card">
                     <h2>Total Voters</h2>
-                    <p>0</p>
+                    <p>@Model.TotalVoters</p>
                     <i class="fas fa-users"></i>
                 </div>
                 <div class="card">
                     <h2>Total Votes</h2>
-                    <p>0</p>
+                    <p>@Model.TotalVotes</p>
                     <i class="fas fa-chart-bar"></i>
                 </div>
-                <div class="card">
-                    <h2>Pending Registrations</h2>
-                    <p>0</p>
-                    <i class="fas fa-clock"></i>
-                </div>
+                @* <div class="card"> *@
+                @*     <h2>Pending Registrations</h2> *@
+                @*     <p>@Model.PendingRegistrations</p> *@
+                @*     <i class="fas fa-clock"></i> *@
+                @* </div> *@
             </section>
 
             <section class="charts-and-todo">

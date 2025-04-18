@@ -1,4 +1,4 @@
-﻿@page
+﻿@page "{handler?}/{id?}"
 @model votingsystem.Pages.Shared.ADManageElectionsModel
 @{
 }
@@ -20,7 +20,7 @@
                 <li>
                     <form method="post" asp-page-handler="RedirectToDashboard">
                         <button type="submit" class="sidebar-button">
-                            <i class="fas fa-tachometer-alt"></i> Dashboard
+                            <i class="fas fa-chart-line"></i> Dashboard
                         </button>
                     </form>
                 </li>
@@ -53,12 +53,92 @@
             </div>
         </nav>
 
-
         <div class="main-content">
+            @if (TempData["Message"] != null)
+            {
+                <div class="alert">
+                    @TempData["Message"]
+                </div>
+            }
+
             <header>
                 <h1>Manage Elections</h1>
-                <input type="text" id="search-candidates" placeholder="Search candidates..." />
+                <input type="text" id="search-candidates" placeholder="Search" />
             </header>
+
+            <section class="create-election-section">
+                <h2>@(Model.EditElection != null ? "Edit Election" : "Create Election")</h2>
+                <form method="post" asp-page-handler="CreateOrEditElection">
+                    <input type="hidden" name="Election.Id" value="@Model.EditElection?.Id" />
+                    <div class="form-group">
+                        <label for="title">Election Title</label>
+                        <input type="text" id="title" name="Election.Title" value="@Model.EditElection?.Title" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <textarea id="description" name="Election.Description">@Model.EditElection?.Description</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="start-time">Start Time</label>
+                        <input type="datetime-local" id="start-time" name="Election.StartTime" value="@Model.EditElection?.StartTime.ToString("yyyy-MM-ddTHH:mm")" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="end-time">End Time</label>
+                        <input type="datetime-local" id="end-time" name="Election.EndTime" value="@Model.EditElection?.EndTime.ToString("yyyy-MM-ddTHH:mm")" required>
+                    </div>
+                    <button type="submit" class="primary-button">@(Model.EditElection != null ? "Update Election" : "Create Election")</button>
+                </form>
+            </section>
+
+
+            <section class="election-list-section">
+                <h2>Elections</h2>
+                <table id="electionsTable">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Start Time</th>
+                            <th>End Time</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var election in Model.Elections)
+                        {
+                            <tr>
+                                <td>@election.Title</td>
+                                <td>@(election.Description ?? "No description provided")</td>
+                                <td>@election.StartTime</td>
+                                <td>@election.EndTime</td>
+                                <td>
+                                    @if (DateTime.UtcNow < election.StartTime)
+                                    {
+                                        <span class="status upcoming">Upcoming</span>
+                                    }
+                                    else if (DateTime.UtcNow >= election.StartTime && DateTime.UtcNow <= election.EndTime)
+                                    {
+                                        <span class="status active">Active</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="status closed">Closed</span>
+                                    }
+                                </td>
+                                <td>
+                                    <form method="post" asp-page-handler="DeleteElection" asp-route-id="@election.Id" style="display:inline;">
+                                        <button type="submit" class="delete-button">Delete</button>
+                                    </form>
+                                    <form method="get" asp-page-handler="EditElection" asp-route-id="@election.Id" style="display:inline;">
+                                        <button type="submit" class="edit-button">Edit</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </section>
 
 
             <section class="create-candidate-section">
@@ -91,7 +171,6 @@
                 </form>
             </section>
 
-
             <section class="candidate-table">
                 <h2>Candidates</h2>
                 <table id="candidatesTable">
@@ -106,7 +185,6 @@
                         </tr>
                     </thead>
                     <tbody>
-
                         @foreach (var candidate in Model.Candidates)
                         {
                             <tr>
@@ -122,7 +200,6 @@
                                 </td>
                             </tr>
                         }
-
                     </tbody>
                 </table>
             </section>

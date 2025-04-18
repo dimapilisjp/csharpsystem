@@ -1,13 +1,13 @@
-﻿document.querySelectorAll(".delete-button").forEach(button => {
-    button.addEventListener("click", function (event) {
-        const confirmDelete = confirm("Are you sure you want to delete this candidate?");
-        if (!confirmDelete) {
-            event.preventDefault();
-        }
+﻿document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll(".delete-button").forEach(button => {
+        button.addEventListener("click", function (event) {
+            const confirmDelete = confirm("Are you sure you want to delete this candidate?");
+            if (!confirmDelete) {
+                event.preventDefault();
+            }
+        });
     });
-});
 
-document.addEventListener("DOMContentLoaded", function () {
     const searchInput = document.getElementById("search-candidates");
     const tableRows = document.querySelectorAll(".candidate-table tbody tr");
 
