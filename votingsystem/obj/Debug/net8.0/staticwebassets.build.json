@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "YyvRKJJS+nQvw4/+/uf1a2zW0lNa2EcsqhL1rVlLA1A=",
+  "Hash": "K/4YhzUY8mXlsFqm7izqRA1Oodhm46WOsxVToeMhxFo=",
   "Source": "votingsystem",
   "BasePath": "_content/votingsystem",
   "Mode": "Default",
@@ -185,6 +185,48 @@
       "OriginalItemSpec": "wwwroot\\css\\site.css"
     },
     {
+      "Identity": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\css\\UPVotingPage.css",
+      "SourceId": "votingsystem",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\",
+      "BasePath": "_content/votingsystem",
+      "RelativePath": "css/UPVotingPage#[.{fingerprint}]?.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "aovdo6hzgw",
+      "Integrity": "mqGT8hAOA84wFti+UAwLGvhyrXWNrXcY4SLclFXfShw=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\UPVotingPage.css"
+    },
+    {
+      "Identity": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\css\\UserPage.css",
+      "SourceId": "votingsystem",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\",
+      "BasePath": "_content/votingsystem",
+      "RelativePath": "css/UserPage#[.{fingerprint}]?.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "jmbejvntsk",
+      "Integrity": "pU4hptcNMZ/uIz4J+Y9KgEcoD0tUTgb481lKyuLZzRQ=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\UserPage.css"
+    },
+    {
       "Identity": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\favicon.ico",
       "SourceId": "votingsystem",
       "SourceType": "Discovered",
@@ -241,8 +283,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "t4rslk5gbl",
-      "Integrity": "ozKuTnvStw+JNKxAE99G3OAS9T8U7BQV0mEDTyvk8DA=",
+      "Fingerprint": "tu4byx6fon",
+      "Integrity": "q2ydZ2z2eJ+iYRVt30Pp0p5ujSOuqEYSKTnDbyQGKfE=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\ADManageVoters.js"
@@ -2023,6 +2065,170 @@
       ]
     },
     {
+      "Route": "css/UPVotingPage.aovdo6hzgw.css",
+      "AssetFile": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\css\\UPVotingPage.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "6934"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"mqGT8hAOA84wFti+UAwLGvhyrXWNrXcY4SLclFXfShw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 24 Apr 2025 16:19:27 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "aovdo6hzgw"
+        },
+        {
+          "Name": "label",
+          "Value": "css/UPVotingPage.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-mqGT8hAOA84wFti+UAwLGvhyrXWNrXcY4SLclFXfShw="
+        }
+      ]
+    },
+    {
+      "Route": "css/UPVotingPage.css",
+      "AssetFile": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\css\\UPVotingPage.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "6934"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"mqGT8hAOA84wFti+UAwLGvhyrXWNrXcY4SLclFXfShw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 24 Apr 2025 16:19:27 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-mqGT8hAOA84wFti+UAwLGvhyrXWNrXcY4SLclFXfShw="
+        }
+      ]
+    },
+    {
+      "Route": "css/UserPage.css",
+      "AssetFile": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\css\\UserPage.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2191"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"pU4hptcNMZ/uIz4J+Y9KgEcoD0tUTgb481lKyuLZzRQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 19 Apr 2025 13:43:08 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-pU4hptcNMZ/uIz4J+Y9KgEcoD0tUTgb481lKyuLZzRQ="
+        }
+      ]
+    },
+    {
+      "Route": "css/UserPage.jmbejvntsk.css",
+      "AssetFile": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\css\\UserPage.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2191"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"pU4hptcNMZ/uIz4J+Y9KgEcoD0tUTgb481lKyuLZzRQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 19 Apr 2025 13:43:08 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "jmbejvntsk"
+        },
+        {
+          "Name": "label",
+          "Value": "css/UserPage.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-pU4hptcNMZ/uIz4J+Y9KgEcoD0tUTgb481lKyuLZzRQ="
+        }
+      ]
+    },
+    {
       "Route": "favicon.61n19gt1b8.ico",
       "AssetFile": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\favicon.ico",
       "Selectors": [],
@@ -2197,7 +2403,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "872"
+          "Value": "1075"
         },
         {
           "Name": "Content-Type",
@@ -2205,11 +2411,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"ozKuTnvStw+JNKxAE99G3OAS9T8U7BQV0mEDTyvk8DA=\""
+          "Value": "\"q2ydZ2z2eJ+iYRVt30Pp0p5ujSOuqEYSKTnDbyQGKfE=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 13 Apr 2025 14:00:29 GMT"
+          "Value": "Fri, 18 Apr 2025 13:24:54 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2219,12 +2425,12 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-ozKuTnvStw+JNKxAE99G3OAS9T8U7BQV0mEDTyvk8DA="
+          "Value": "sha256-q2ydZ2z2eJ+iYRVt30Pp0p5ujSOuqEYSKTnDbyQGKfE="
         }
       ]
     },
     {
-      "Route": "js/ADManageVoters.t4rslk5gbl.js",
+      "Route": "js/ADManageVoters.tu4byx6fon.js",
       "AssetFile": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\js\\ADManageVoters.js",
       "Selectors": [],
       "ResponseHeaders": [
@@ -2234,7 +2440,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "872"
+          "Value": "1075"
         },
         {
           "Name": "Content-Type",
@@ -2242,11 +2448,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"ozKuTnvStw+JNKxAE99G3OAS9T8U7BQV0mEDTyvk8DA=\""
+          "Value": "\"q2ydZ2z2eJ+iYRVt30Pp0p5ujSOuqEYSKTnDbyQGKfE=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 13 Apr 2025 14:00:29 GMT"
+          "Value": "Fri, 18 Apr 2025 13:24:54 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2256,7 +2462,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "t4rslk5gbl"
+          "Value": "tu4byx6fon"
         },
         {
           "Name": "label",
@@ -2264,7 +2470,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-ozKuTnvStw+JNKxAE99G3OAS9T8U7BQV0mEDTyvk8DA="
+          "Value": "sha256-q2ydZ2z2eJ+iYRVt30Pp0p5ujSOuqEYSKTnDbyQGKfE="
         }
       ]
     },

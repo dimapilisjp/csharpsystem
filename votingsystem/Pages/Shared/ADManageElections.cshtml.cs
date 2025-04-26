@@ -8,11 +8,12 @@ namespace votingsystem.Pages.Shared
     {
         public class Election
         {
-            public int Id { get; set; }
+            public int ElectionId { get; set; }
             public string Title { get; set; }
             public string Description { get; set; }
             public DateTime StartTime { get; set; }
             public DateTime EndTime { get; set; }
+            public string Status { get; set; }
         }
 
         public class Candidate
@@ -22,10 +23,13 @@ namespace votingsystem.Pages.Shared
             public int Age { get; set; }
             public string Address { get; set; }
             public string Position { get; set; }
+            public string PartyList { get; set; }
+            public int ElectionId { get; set; }
         }
         public List<Candidate> Candidates { get; set; } = new List<Candidate>();
         public List<Election> Elections { get; set; } = new List<Election>();
         public Election EditElection { get; set; }
+        public List<Election> UpcomingElections { get; set; } = new List<Election>();
 
         public IActionResult OnPostRedirectToManageVoters()
         {
@@ -48,18 +52,20 @@ namespace votingsystem.Pages.Shared
 
         public IActionResult OnPostCreateCandidate(Candidate candidate)
         {
+            Console.WriteLine($"ElectionId received from form: {candidate.ElectionId}");
             Candidates = Database_Helper.DbHelper.GetCandidates();
             // if candidate already exists
             if (Database_Helper.DbHelper.IsCandidateNameRegistered(candidate.Name))
             {
                 TempData["Message"] = "The name is already registered.";
-                return Page(); 
+                return Page();
             }
-
+          
             Database_Helper.DbHelper.CreateCandidate(candidate);
             TempData["Message"] = "Candidate successfully registered.";
-            return RedirectToPage("/Shared/ADManageElections");
-        }
+            return RedirectToPage("/Shared/ADManageElections");           
+        }    
+           
 
         public IActionResult OnPostDeleteCandidate(int id)
         {
@@ -95,7 +101,7 @@ namespace votingsystem.Pages.Shared
                 return Page();
             }
 
-            if (election.Id > 0)
+            if (election.ElectionId > 0)
             {
                 // update existing election
                 bool result = Database_Helper.DbHelper.UpdateElection(election);
@@ -129,6 +135,7 @@ namespace votingsystem.Pages.Shared
         {
             Candidates = Database_Helper.DbHelper.GetCandidates();
             Elections = Database_Helper.DbHelper.GetElections();
+            UpcomingElections = Database_Helper.DbHelper.GetUpcomingElections();
         }
 
         public void OnGetEditElection(int id)

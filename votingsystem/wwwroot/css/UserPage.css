@@ -1,0 +1,106 @@
+﻿body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f0f9ff;
+    color: #333;
+}
+
+.header-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #74b9ff;
+    color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.nav-links {
+    display: flex;
+    gap: 15px;
+}
+
+    .nav-links a {
+        color: #fff;
+        text-decoration: none;
+        font-size: 16px;
+        display: inline-flex;
+        align-items: center;
+        padding: 10px 20px;
+        margin: 5px;
+        background-color: #74b9ff;
+        border: 2px solid #74b9ff;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        transition: background-color 0.3s, box-shadow 0.3s;
+    }
+
+        .nav-links a:hover {
+            background-color: #5dade2;
+            border-color: #5dade2;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+        }
+
+        .nav-links a i {
+            margin-right: 8px;
+        }
+
+.profile-section {
+    display: flex;
+    align-items: center;
+}
+
+.profile-initials {
+    width: 40px;
+    height: 40px;
+    background-color: #ffd166;
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    margin-right: 10px;
+}
+
+.main-content {
+    margin: 20px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-section h2 {
+    color: #5dade2;
+    border-bottom: 2px solid #ffd166;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+}
+
+.election-card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 15px;
+    background-color: #f9f9f9;
+}
+
+.vote-button {
+    background-color: #74b9ff;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+    .vote-button:hover {
+        background-color: #5dade2;
+    }

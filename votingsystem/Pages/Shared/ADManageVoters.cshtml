@@ -100,9 +100,10 @@
                                     <td>@voter.Age</td>
                                     <td>@voter.Role</td>
                                     <td>
-                                        <form method="post" asp-page-handler="DeleteVoter" asp-route-id="@voter.Id">
-                                            <button type="submit" class="delete-button">Delete</button>
-                                        </form>
+                                    <form method="post" asp-page-handler="DeleteVoter" asp-route-id="@voter.Id">
+                                        <button type="submit" class="delete-button" onclick="return confirmDeletion('@voter.Id')">Delete</button>
+                                    </form>
+
                                     </td>
                                 </tr>
                         }

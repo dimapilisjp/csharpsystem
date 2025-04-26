@@ -69,7 +69,7 @@
             <section class="create-election-section">
                 <h2>@(Model.EditElection != null ? "Edit Election" : "Create Election")</h2>
                 <form method="post" asp-page-handler="CreateOrEditElection">
-                    <input type="hidden" name="Election.Id" value="@Model.EditElection?.Id" />
+                    <input type="hidden" name="Election.ElectionId" value="@Model.EditElection?.ElectionId" />
                     <div class="form-group">
                         <label for="title">Election Title</label>
                         <input type="text" id="title" name="Election.Title" value="@Model.EditElection?.Title" required>
@@ -85,7 +85,7 @@
                     <div class="form-group">
                         <label for="end-time">End Time</label>
                         <input type="datetime-local" id="end-time" name="Election.EndTime" value="@Model.EditElection?.EndTime.ToString("yyyy-MM-ddTHH:mm")" required>
-                    </div>
+                    </div>                  
                     <button type="submit" class="primary-button">@(Model.EditElection != null ? "Update Election" : "Create Election")</button>
                 </form>
             </section>
@@ -96,6 +96,7 @@
                 <table id="electionsTable">
                     <thead>
                         <tr>
+                            <th>ElectionId</th>
                             <th>Title</th>
                             <th>Description</th>
                             <th>Start Time</th>
@@ -108,6 +109,7 @@
                         @foreach (var election in Model.Elections)
                         {
                             <tr>
+                                <td>@election.ElectionId</td>
                                 <td>@election.Title</td>
                                 <td>@(election.Description ?? "No description provided")</td>
                                 <td>@election.StartTime</td>
@@ -127,10 +129,10 @@
                                     }
                                 </td>
                                 <td>
-                                    <form method="post" asp-page-handler="DeleteElection" asp-route-id="@election.Id" style="display:inline;">
+                                    <form method="post" asp-page-handler="DeleteElection" asp-route-id="@election.ElectionId" style="display:inline;">
                                         <button type="submit" class="delete-button">Delete</button>
                                     </form>
-                                    <form method="get" asp-page-handler="EditElection" asp-route-id="@election.Id" style="display:inline;">
+                                    <form method="get" asp-page-handler="EditElection" asp-route-id="@election.ElectionId" style="display:inline;">
                                         <button type="submit" class="edit-button">Edit</button>
                                     </form>
                                 </td>
@@ -167,6 +169,22 @@
                             <option value="Auditor">Auditor</option>
                         </select>
                     </div>
+                    <div class="form-group">
+                        <label for="partyList">Partylist</label>
+                        <input type="text" id="partyList" name="Candidate.PartyList" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="electionId">Assign to Election</label>
+                        <select id="electionId" name="Candidate.ElectionId" required>
+                            <option value="">Select Election</option>
+                            @foreach (var election in Model.UpcomingElections)
+                            {
+                                <option value="@election.ElectionId">@election.Title</option>
+                            }
+                        </select>
+
+                    </div>
+
                     <button type="submit" class="primary-button">Add Candidate</button>
                 </form>
             </section>
@@ -181,6 +199,8 @@
                             <th>Age</th>
                             <th>Address</th>
                             <th>Position</th>
+                            <th>Partylist</th>
+                            <th>Election ID</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -193,6 +213,8 @@
                                 <td>@candidate.Age</td>
                                 <td>@candidate.Address</td>
                                 <td>@candidate.Position</td>
+                                <td>@candidate.PartyList</td>
+                                <td>@candidate.ElectionId</td>
                                 <td>
                                     <form method="post" asp-page-handler="DeleteCandidate" asp-route-id="@candidate.Id">
                                         <button type="submit" class="delete-button">Delete</button>

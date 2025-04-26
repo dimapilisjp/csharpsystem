@@ -3,4 +3,68 @@
 @{
 }
 
-<h1> USER PAGE</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voter Dashboard</title>
+    <link rel="stylesheet" href="/css/UserPage.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header class="header-bar">
+        <div class="logo">VotingSystem</div>
+        <nav class="nav-links">
+            <a href="#"><i class="fas fa-home"></i> Home</a>
+            <a href="#"><i class="fas fa-list-alt"></i> My Ballots</a>
+            <a href="#"><i class="fas fa-chart-bar"></i> Results</a>
+            <a href="#"><i class="fas fa-cog"></i> Settings</a>
+            <a href="#"><i class="fas fa-question-circle"></i> Help</a>
+        </nav>
+        @* <div class="profile-section"> *@
+        @*     <span class="profile-initials">@Model.UserInitials</span> *@
+        @*     <span class="profile-name">@Model.FirstName</span> *@
+        @* </div> *@
+
+    </header>
+
+    <main class="main-content">
+        <section class="dashboard-section">
+            <h2>Available Elections</h2>
+            <div id="elections-container">
+                @foreach (var election in Model.AvailableElections)
+                {
+                    <div class="election-card">
+                        <h3>@election.Title</h3>
+                        <p>@election.Description</p>
+                        <p><strong>Voting Period:</strong> @election.StartTime.ToString("MMM dd, yyyy") - @election.EndTime.ToString("MMM dd, yyyy")</p>
+                        <p><strong>Status:</strong> @election.Status</p>
+                        <form method="post" asp-page-handler="RedirectToVote">
+                            <input type="hidden" name="electionId" value="@election.ElectionId">
+                            <button type="submit" class="vote-button">
+                                <i class="fas fa-vote-yea"></i> Cast Your Vote
+                            </button>
+                        </form>
+                    </div>
+                }
+            </div>
+        </section>
+
+        <section class="dashboard-section">
+            <h2>Upcoming Elections</h2>
+            <div id="upcoming-container">
+                @foreach (var election in Model.UpcomingElections)
+                {
+                    <div class="election-card">
+                        <h3>@election.Title</h3>
+                        <p>@election.Description</p>
+                        <p><strong>Voting Period:</strong> @election.StartTime.ToString("MMM dd, yyyy") - @election.EndTime.ToString("MMM dd, yyyy")</p>
+                        <p><strong>Status:</strong> Upcoming</p>
+                    </div>
+                }
+            </div>
+        </section>
+    </main>
+</body>
+</html>

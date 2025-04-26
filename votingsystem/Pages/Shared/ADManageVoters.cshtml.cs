@@ -40,6 +40,11 @@ namespace votingsystem.Pages.Shared
         {
             return RedirectToPage("/Shared/ADResults");
         }
+        public IActionResult OnPostDeleteVoter(int id)
+        {
+            Database_Helper.DbHelper.DeleteVoter(id);
+            return RedirectToPage("/Shared/ADManageVoters");
+        }
         public List<Voter> Voters { get; set; }
 
         public void OnGet()
@@ -48,21 +53,7 @@ namespace votingsystem.Pages.Shared
         }
 
 
-        //  delete form submitted
-        public IActionResult OnPostDeleteVoter(int id)
-        {
-            using (var connection = Database_Helper.DbHelper.GetConnection())
-            {
-                connection.Open();
-                string query = "DELETE FROM Users WHERE Id = @Id"; 
-                using (var command = new MySqlCommand(query, connection))
-                {
-                    command.Parameters.AddWithValue("@Id", id);
-                    command.ExecuteNonQuery();
-                }
-            }
-            return RedirectToPage("/Shared/ADManageVoters");
-        }
+
     }
 }
 

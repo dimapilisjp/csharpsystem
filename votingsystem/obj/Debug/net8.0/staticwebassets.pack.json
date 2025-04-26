@@ -21,6 +21,14 @@
       "PackagePath": "staticwebassets\\css\\Registration.css"
     },
     {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\css\\UPVotingPage.css",
+      "PackagePath": "staticwebassets\\css\\UPVotingPage.css"
+    },
+    {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\css\\UserPage.css",
+      "PackagePath": "staticwebassets\\css\\UserPage.css"
+    },
+    {
       "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\css\\login.css",
       "PackagePath": "staticwebassets\\css\\login.css"
     },

@@ -1,0 +1,72 @@
+﻿@page
+@model votingsystem.Pages.Shared.VotingPageModel
+@{
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vote Now</title>
+    <link rel="stylesheet" href="/css/UPVotingPage.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header class="header-bar">
+        <div class="logo">VotingSystem</div>
+        <nav class="nav-links">
+            <a href="#"><i class="fas fa-home"></i> Home</a>
+            <a href="#"><i class="fas fa-list-alt"></i> My Ballots</a>
+            <a href="#"><i class="fas fa-chart-bar"></i> Results</a>
+            <a href="#"><i class="fas fa-cog"></i> Settings</a>
+            <a href="#"><i class="fas fa-question-circle"></i> Help</a>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <section class="dashboard-section">
+            <form method="post" asp-page-handler="CastVote">
+                <input type="hidden" name="electionId" value="@Model?.Election?.ElectionId ?? 0">
+
+                @if (Model?.Candidates != null && Model.Candidates.Any())
+                {
+                    var groupedCandidates = Model.Candidates.GroupBy(c => c.Position);
+
+                    foreach (var group in groupedCandidates)
+                    {
+                        <div class="position-group">
+                            <h2 class="section-title">Candidates for @group.Key</h2>
+                            <div class="candidate-container">
+                                @foreach (var candidate in group)
+                                {
+                                    <div class="candidate-card" onclick="selectCandidate(this, '@candidate.Id')">
+                                        <div class="selection-indicator">SELECTED</div>
+                                        <h3>@candidate.Name</h3>
+                                        <div class="candidate-info">
+                                            <div class="info-row">
+                                                <div class="info-label">Party:</div>
+                                                <div class="info-value">@candidate.PartyList</div>
+                                            </div>
+                                            <div class="info-row">
+                                                <div class="info-label">Address:</div>
+                                                <div class="info-value">@candidate.Address</div>
+                                            </div>
+                                        </div>
+                                        <input type="radio" id="candidate-@candidate.Id" name="candidateId" value="@candidate.Id" required>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <p>No candidates available for this election.</p>
+                }
+
+                <button type="submit" class="vote-button" id="voteButton" disabled>Submit Vote</button>
+            </form>
+        </section>
+    </main>
+</body>
+</html>

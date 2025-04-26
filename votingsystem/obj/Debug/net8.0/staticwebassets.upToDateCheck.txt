@@ -4,6 +4,8 @@ wwwroot\css\Dashboard.css
 wwwroot\css\login.css
 wwwroot\css\Registration.css
 wwwroot\css\site.css
+wwwroot\css\UPVotingPage.css
+wwwroot\css\UserPage.css
 wwwroot\favicon.ico
 wwwroot\js\ADManageElections.js
 wwwroot\js\ADManageVoters.js
