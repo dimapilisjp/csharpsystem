@@ -25,6 +25,7 @@ namespace votingsystem.Pages.Shared
             public string Position { get; set; }
             public string PartyList { get; set; }
             public int ElectionId { get; set; }
+            public string PictureUrl { get; set; }
         }
         public List<Candidate> Candidates { get; set; } = new List<Candidate>();
         public List<Election> Elections { get; set; } = new List<Election>();
@@ -49,23 +50,52 @@ namespace votingsystem.Pages.Shared
         {
             return RedirectToPage("/Shared/ADResults");
         }
-
-        public IActionResult OnPostCreateCandidate(Candidate candidate)
+        public IActionResult OnPostCreateCandidate(Candidate candidate, IFormFile candidateImage)
         {
-            Console.WriteLine($"ElectionId received from form: {candidate.ElectionId}");
-            Candidates = Database_Helper.DbHelper.GetCandidates();
-            // if candidate already exists
-            if (Database_Helper.DbHelper.IsCandidateNameRegistered(candidate.Name))
+            if (candidateImage != null)
             {
-                TempData["Message"] = "The name is already registered.";
+                Console.WriteLine($"Image received: {candidateImage.FileName}, Size: {candidateImage.Length} bytes");
+            }
+            else
+            {
+                Console.WriteLine("No image received.");
+                TempData["Message"] = "Candidate image is required.";
                 return Page();
             }
-          
-            Database_Helper.DbHelper.CreateCandidate(candidate);
-            TempData["Message"] = "Candidate successfully registered.";
-            return RedirectToPage("/Shared/ADManageElections");           
-        }    
+            // to check a valid file is uploaded
+            if (candidateImage != null && candidateImage.Length > 0)
+            {
+                // define directory to save images
+                var uploadsFolder = Path.Combine("wwwroot", "images");
+                Directory.CreateDirectory(uploadsFolder); // Ensure the directory exists
+
+                // save the file with its original name 
+                var fileName = Guid.NewGuid().ToString() + Path.GetExtension(candidateImage.FileName); 
+                var filePath = Path.Combine(uploadsFolder, fileName);
+
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    candidateImage.CopyTo(stream);
+                }
+
+               
+                candidate.PictureUrl = $"/images/{fileName}";
+            }
+            else
+            {
+                
+                TempData["Message"] = "Candidate image is required.";
+                return Page();
+            }
+
            
+            Database_Helper.DbHelper.CreateCandidate(candidate);
+
+            TempData["Message"] = "Candidate successfully registered.";
+            return RedirectToPage("/Shared/ADManageElections");
+        }
+
+
 
         public IActionResult OnPostDeleteCandidate(int id)
         {

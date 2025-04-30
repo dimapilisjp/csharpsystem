@@ -3,5 +3,69 @@
 @{
 }
 
-<h1>Results</h1>
-<p>This is where admins can manage voter profiles and registrations.</p>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Election Results</title>
+    <link rel="stylesheet" href="/css/ADManageVoters.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script defer src="/js/UPResults.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav class="sidebar">
+        <ul>
+            <li>
+                <form method="post" asp-page-handler="RedirectToDashboard">
+                    <button type="submit" class="sidebar-button">
+                        <i class="fas fa-chart-line"></i> Dashboard
+                    </button>
+                </form>
+            </li>
+            <li>
+                <form method="post" asp-page-handler="RedirectToManageElections">
+                    <button type="submit" class="sidebar-button">
+                        <i class="fas fa-vote-yea"></i> Manage Elections
+                    </button>
+                </form>
+            </li>
+            <li>
+                <form method="post" asp-page-handler="RedirectToManageVoters">
+                    <button type="submit" class="sidebar-button">
+                        <i class="fas fa-users"></i> Manage Voters
+                    </button>
+                </form>
+            </li>
+            <li>
+                <form method="post" asp-page-handler="RedirectToResults">
+                    <button type="submit" class="sidebar-button">
+                        <i class="fas fa-chart-bar"></i> Results
+                    </button>
+                </form>
+            </li>
+        </ul>
+        <div class="bottom-icons">
+            <a href="#"><i class="fas fa-cog"></i></a>
+            <a href="#"><i class="fas fa-bell"></i></a>
+            <a href="#"><i class="fas fa-user"></i></a>
+        </div>
+    </nav>
+    <div class="container">
+        @if (Model.ElectionData != null && Model.ElectionData.Any())
+        {
+            @foreach (var election in Model.ElectionData.GroupBy(e => e.ElectionId))
+            {
+                <h3>Election @election.Key Live Results Tally</h3>
+                <canvas id="chart-@election.Key" width="400" height="200"></canvas>
+            }
+        }
+        else
+        {
+            <p>No results available for this election.</p>
+        }
+    </div>
+</body>
+</html>

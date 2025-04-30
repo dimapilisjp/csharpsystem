@@ -2,6 +2,7 @@
 @model votingsystem.Pages.Shared.VotingPageModel
 @{
 }
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,6 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vote Now</title>
     <link rel="stylesheet" href="/css/UPVotingPage.css">
+    <script defer src="/js/UPVotingPage.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
@@ -26,8 +28,10 @@
     <main class="main-content">
         <section class="dashboard-section">
             <form method="post" asp-page-handler="CastVote">
+                <input type="hidden" asp-for="ElectionId" />
+                 @* <input type="hidden" asp-for="UserId" /> *@
                 <input type="hidden" name="electionId" value="@Model?.Election?.ElectionId ?? 0">
-
+                <input type="hidden" name="UserId" value="@Model?.UserId ?? 0" />
                 @if (Model?.Candidates != null && Model.Candidates.Any())
                 {
                     var groupedCandidates = Model.Candidates.GroupBy(c => c.Position);
@@ -39,20 +43,16 @@
                             <div class="candidate-container">
                                 @foreach (var candidate in group)
                                 {
-                                    <div class="candidate-card" onclick="selectCandidate(this, '@candidate.Id')">
-                                        <div class="selection-indicator">SELECTED</div>
-                                        <h3>@candidate.Name</h3>
-                                        <div class="candidate-info">
-                                            <div class="info-row">
-                                                <div class="info-label">Party:</div>
-                                                <div class="info-value">@candidate.PartyList</div>
+                                    <div class="candidate-card">
+                                        <label>
+                                            <img class="candidate-photo" src="@candidate.PictureUrl" alt="@candidate.Name" />
+                                            <h3>@candidate.Name</h3>
+                                            <div class="candidate-info">
+                                                <p><strong>Party:</strong> @candidate.PartyList</p>
+                                                <p><strong>Address:</strong> @candidate.Address</p>
                                             </div>
-                                            <div class="info-row">
-                                                <div class="info-label">Address:</div>
-                                                <div class="info-value">@candidate.Address</div>
-                                            </div>
-                                        </div>
-                                        <input type="radio" id="candidate-@candidate.Id" name="candidateId" value="@candidate.Id" required>
+                                            <input type="radio" id="candidate-@candidate.Id" name="selectedCandidates[@group.Key]" value="@candidate.Id" required>
+                                        </label>
                                     </div>
                                 }
                             </div>
@@ -63,8 +63,7 @@
                 {
                     <p>No candidates available for this election.</p>
                 }
-
-                <button type="submit" class="vote-button" id="voteButton" disabled>Submit Vote</button>
+                <button type="submit" class="vote-button" onclick="return confirm('Are you sure you want to submit your vote?')">Submit Vote</button>
             </form>
         </section>
     </main>

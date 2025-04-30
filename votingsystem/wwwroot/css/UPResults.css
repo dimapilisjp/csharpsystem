@@ -1,0 +1,35 @@
+﻿.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+h3 {
+    margin-top: 20px;
+    font-size: 1.5em;
+}
+
+canvas {
+    margin-bottom: 30px;
+    max-width: 100%;
+    height: auto;
+}
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+h3 {
+    font-size: 1.5em;
+    margin-top: 20px;
+}
+
+canvas {
+    margin-bottom: 30px;
+    width: 100%;
+    height: auto;
+}
+

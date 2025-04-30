@@ -140,7 +140,7 @@ body {
     background-color: #f0f8ff;
 }
 
-/* Header Styles */
+
 .header-bar {
     background-color: #3a86ff;
     color: white;
@@ -184,7 +184,6 @@ body {
             margin-right: 8px;
         }
 
-/* Main Content Styles */
 .main-content {
     padding: 20px;
 }
@@ -207,7 +206,7 @@ body {
     border-bottom: 2px solid #ffd60a;
 }
 
-/* Candidate Grid Layout */
+
 .candidate-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -215,7 +214,7 @@ body {
     margin-top: 25px;
 }
 
-/* Candidate Card Styles */
+
 .candidate-card {
     border: 1px solid #e0e0e0;
     border-radius: 10px;
@@ -242,7 +241,7 @@ body {
         background-color: #f0f7ff;
     }
 
-/* Party Indicator Bar */
+
 .party-indicator {
     position: absolute;
     top: 0;
@@ -252,14 +251,14 @@ body {
     background-color: #3a86ff;
 }
 
-/* Candidate Name */
+
 .candidate-card h3 {
     font-size: 22px;
     margin: 15px 0 5px 0;
     color: #333;
 }
 
-/* Information Layout */
+
 .candidate-info {
     display: flex;
     flex-direction: column;
@@ -282,7 +281,7 @@ body {
     flex: 1;
 }
 
-/* Selection Control */
+
 .candidate-card input[type="radio"] {
     position: absolute;
     top: 20px;
@@ -291,7 +290,6 @@ body {
     accent-color: #3a86ff;
 }
 
-/* Vote Button */
 .vote-button {
     background-color: #3a86ff;
     color: white;
@@ -315,7 +313,6 @@ body {
         cursor: not-allowed;
     }
 
-/* Selection Indicator */
 .selection-indicator {
     position: absolute;
     top: 15px;
@@ -333,7 +330,7 @@ body {
     display: block;
 }
 
-/* Responsive Design */
+
 @media (max-width: 768px) {
     .candidate-container {
         grid-template-columns: 1fr;
@@ -352,3 +349,19 @@ body {
         padding: 15px;
     }
 }
+.candidate-photo {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border: 2px solid #ddd;
+    transition: transform 0.3s;
+}
+
+    .candidate-photo:hover {
+        transform: scale(1.1);
+    }

@@ -1,6 +1,18 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Configuration.AddJsonFile("databaseconnection.json", optional: true, reloadOnChange: true);
+
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.ExpireTimeSpan = TimeSpan.FromMinutes(60); // Adjust as necessary
+        options.LoginPath = "/Index";
+    });
+
+
+builder.Services.AddAuthorization();
 
 // Add services to the container.
 builder.Services.AddRazorPages();
@@ -23,6 +35,7 @@ app.UseRouting();
 
 app.UseRouting();
 app.UseRouting();
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapRazorPages();

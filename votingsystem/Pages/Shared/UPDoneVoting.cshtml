@@ -1,0 +1,67 @@
+﻿@page
+@model votingsystem.Pages.Shared.UPDoneVotingModel
+@{
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voting Receipt</title>
+    <link rel="stylesheet" href="/css/UPDoneVoting.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header class="header-bar">
+        <div class="logo">VotingSystem</div>
+        <nav class="nav-links">
+            <a href="#"><i class="fas fa-home"></i> Home</a>
+            <a href="#"><i class="fas fa-list-alt"></i> My Ballots</a>
+            <a href="#"><i class="fas fa-chart-bar"></i> Results</a>
+            <a href="#"><i class="fas fa-cog"></i> Settings</a>
+            <a href="#"><i class="fas fa-question-circle"></i> Help</a>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <section class="receipt-section">
+            <h2>Voting Receipt</h2>
+            <p><strong>Election:</strong> @Model.ElectionTitle</p>
+            <div id="voted-container">
+                @if (Model.VotedCandidates != null && Model.VotedCandidates.Any())
+                {
+                    var groupedCandidates = Model.VotedCandidates.GroupBy(c => c.Position);
+
+                    foreach (var group in groupedCandidates)
+                    {
+                        <div class="position-group">
+                            <h3>Position: @group.Key</h3>
+                            <div class="candidate-container">
+                                @foreach (var candidate in group)
+                                {
+                                    <div class="candidate-card">
+                                        <img class="candidate-photo" src="@candidate.PictureUrl" alt="@candidate.Name">
+                                        <h4>@candidate.Name</h4>
+                                        <p><strong>Party:</strong> @candidate.PartyList</p>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <p>No votes have been cast for this election.</p>
+                }
+            </div>
+            <form method="post" asp-page-handler="RedirectToResults">
+                <input type="hidden" name="electionId" value="@Model.ElectionId">
+                <button type="submit" class="results-button">
+                    <i class="fas fa-chart-bar"></i> View Live Election Results
+                </button>
+            </form>
+        </section>
+    </main>
+</body>
+</html>

@@ -1,8 +1,10 @@
 ﻿using MySql.Data.MySqlClient;
-using votingsystem.Pages.Shared;
 using static votingsystem.Pages.RegistrationModel;
 using static votingsystem.Pages.Shared.ADManageElectionsModel;
 using static votingsystem.Pages.Shared.ADManageVotersModel;
+using static votingsystem.Pages.Shared.VotingPageModel;
+using static votingsystem.Pages.Shared.UPDoneVotingModel;
+using static votingsystem.Pages.Shared.UPResultsModel;
 namespace votingsystem.Database_Helper
 {
     public class DbHelper
@@ -121,6 +123,68 @@ namespace votingsystem.Database_Helper
                 }
             }
         }
+
+        public static bool CheckIfEmailExist(string email)
+        {
+            using (var con = GetConnection())
+            {
+                string query = "SELECT COUNT(*) FROM Users WHERE Email = @Email";
+                using (var cmd = new MySqlCommand(query, con))
+                {
+                    cmd.Parameters.AddWithValue("@Email", email);
+                    con.Open();
+                    return Convert.ToInt32(cmd.ExecuteScalar()) > 0;
+                }
+            }
+        }
+
+        public static void SaveResetToken(string email, string token)
+        {
+            using (var con = GetConnection())
+            {
+                string query = "UPDATE Users SET ResetToken = @Token, TokenExpiry = @Expiry WHERE Email = @Email";
+                using (var cmd = new MySqlCommand(query, con))
+                {
+                    cmd.Parameters.AddWithValue("@Token", token);
+                    cmd.Parameters.AddWithValue("@Expiry", DateTime.Now.AddHours(1)); //  expires in 1hr
+                    cmd.Parameters.AddWithValue("@Email", email);
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public static bool ValidateResetToken(string token)
+        {
+            using (var con = GetConnection())
+            {
+                string query = "SELECT COUNT(*) FROM Users WHERE ResetToken = @Token AND TokenExpiry > NOW()";
+                using (var cmd = new MySqlCommand(query, con))
+                {
+                    cmd.Parameters.AddWithValue("@Token", token);
+                    con.Open();
+                    return Convert.ToInt32(cmd.ExecuteScalar()) > 0;
+                }
+            }
+        }
+
+        public static bool ResetPassword(string token, string password)
+        {
+            using (var con = GetConnection())
+            {
+                string query = "UPDATE Users SET PasswordHash = @Password, ResetToken = NULL, TokenExpiry = NULL WHERE ResetToken = @Token";
+                using (var cmd = new MySqlCommand(query, con))
+                {
+                    cmd.Parameters.AddWithValue("@Password", BCrypt.Net.BCrypt.HashPassword(password)); // Hash the password
+                    cmd.Parameters.AddWithValue("@Token", token);
+                    con.Open();
+                    return cmd.ExecuteNonQuery() > 0;
+                }
+            }
+        }
+
+
+
 
         public static string GetUserRole(string userName)
         {
@@ -473,8 +537,8 @@ namespace votingsystem.Database_Helper
         {
             using (var con = GetConnection())
             {
-                string query = @"INSERT INTO Candidates (Name, Age, Address, Position, PartyList, ElectionId)
-                         VALUES (@Name, @Age, @Address, @Position, @PartyList, @ElectionId)";
+                string query = @"INSERT INTO Candidates (Name, Age, Address, Position, PartyList, ElectionId, PictureUrl)
+                         VALUES (@Name, @Age, @Address, @Position, @PartyList, @ElectionId, @PictureUrl)";
 
                 using (var cmd = new MySqlCommand(query, con))
                 {
@@ -484,6 +548,7 @@ namespace votingsystem.Database_Helper
                     cmd.Parameters.AddWithValue("@Position", candidate.Position);
                     cmd.Parameters.AddWithValue("@PartyList", candidate.PartyList);
                     cmd.Parameters.AddWithValue("@ElectionId", candidate.ElectionId);
+                    cmd.Parameters.AddWithValue("@PictureUrl", candidate.PictureUrl);
 
                     try
                     {
@@ -518,7 +583,7 @@ namespace votingsystem.Database_Helper
                     cmd.Parameters.AddWithValue("@Name", name);
 
                     var count = Convert.ToInt32(cmd.ExecuteScalar());
-                    return count > 0; // Return true if count is greater than 0
+                    return count > 0; 
                 }
             }
         }
@@ -731,7 +796,7 @@ namespace votingsystem.Database_Helper
 
             using (var con = GetConnection())
             {
-                string query = "SELECT Id, Name, Address, Age, Position, PartyList FROM Candidates WHERE ElectionId = @ElectionId";
+                string query = "SELECT Id, Name, Address, Age, Position, PartyList, PictureUrl FROM Candidates WHERE ElectionId = @ElectionId";
                 using (var cmd = new MySqlCommand(query, con))
                 {
                     cmd.Parameters.AddWithValue("@ElectionId", electionId);
@@ -747,7 +812,8 @@ namespace votingsystem.Database_Helper
                                 Address = reader["Address"].ToString(),
                                 Age = Convert.ToInt32(reader["Age"]),
                                 Position = reader["Position"].ToString(),
-                                PartyList = reader["PartyList"].ToString()
+                                PartyList = reader["PartyList"].ToString(),
+                                PictureUrl = reader["PictureUrl"].ToString()
                             });
                         }
                     }
@@ -766,27 +832,75 @@ namespace votingsystem.Database_Helper
                 {
                     cmd.Parameters.AddWithValue("@UserId", userId);
                     cmd.Parameters.AddWithValue("@ElectionId", electionId);
+
                     con.Open();
-                    return Convert.ToInt32(cmd.ExecuteScalar()) > 0;
+                    int count = Convert.ToInt32(cmd.ExecuteScalar());
+                    return count > 0; 
                 }
             }
         }
 
-        public static void RecordVote(int userId, int electionId, int candidateId)
+        public static void RecordVote(Vote vote)
+        {
+            try
+            {
+                Console.WriteLine($"Attempting to insert vote: UserId={vote.UserId}, ElectionId={vote.ElectionId}, CandidateId={vote.CandidateId}, Position={vote.Position}");
+
+                using (var con = GetConnection())
+                {
+                    string query = "INSERT INTO Votes (UserId, ElectionId, CandidateId, Position) VALUES (@UserId, @ElectionId, @CandidateId, @Position)";
+                    using (var cmd = new MySqlCommand(query, con))
+                    {
+                        cmd.Parameters.AddWithValue("@UserId", vote.UserId);
+                        cmd.Parameters.AddWithValue("@ElectionId", vote.ElectionId);
+                        cmd.Parameters.AddWithValue("@CandidateId", vote.CandidateId);
+                        cmd.Parameters.AddWithValue("@Position", vote.Position);
+
+                        con.Open();
+                        cmd.ExecuteNonQuery();
+                        Console.WriteLine("Vote successfully recorded in the database.");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error during RecordVote: {ex.Message}");
+                throw;
+            }
+        }
+
+
+        public static int ValidateUser(string username, string password)
         {
             using (var con = GetConnection())
             {
-                string query = "INSERT INTO Votes (UserId, ElectionId, CandidateId) VALUES (@UserId, @ElectionId, @CandidateId)";
+                string query = "SELECT Id, PasswordHash FROM Users WHERE UserName = @Username";
                 using (var cmd = new MySqlCommand(query, con))
                 {
-                    cmd.Parameters.AddWithValue("@UserId", userId);
-                    cmd.Parameters.AddWithValue("@ElectionId", electionId);
-                    cmd.Parameters.AddWithValue("@CandidateId", candidateId);
+                    cmd.Parameters.AddWithValue("@Username", username);
+
                     con.Open();
-                    cmd.ExecuteNonQuery();
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            int userId = Convert.ToInt32(reader["Id"]);
+                            string storedPasswordHash = reader["PasswordHash"].ToString();
+
+                            // Verify the provided password against the stored hash
+                            if (BCrypt.Net.BCrypt.Verify(password, storedPasswordHash))
+                            {
+                                return userId; 
+                            }
+                        }
+                    }
                 }
             }
+
+            return 0; 
         }
+
+
 
         public static int GetUserIdByUsername(string username)
         {
@@ -797,10 +911,245 @@ namespace votingsystem.Database_Helper
                 {
                     cmd.Parameters.AddWithValue("@Username", username);
                     con.Open();
-                    return Convert.ToInt32(cmd.ExecuteScalar());
+                    var result = cmd.ExecuteScalar();
+                    Console.WriteLine($"[DbHelper] Querying UserId for Username: {username}, Result: {result}");
+                    return result != null ? Convert.ToInt32(result) : 0;
                 }
             }
         }
+
+
+        public static string GetElectionTitle(int electionId)
+        {
+            using (var con = GetConnection())
+            {
+                string query = "SELECT Title FROM Elections WHERE ElectionId = @ElectionId";
+                using (var cmd = new MySqlCommand(query, con))
+                {
+                    cmd.Parameters.AddWithValue("@ElectionId", electionId);
+
+                    con.Open();
+                    return cmd.ExecuteScalar()?.ToString();
+                }
+            }
+        }
+
+        //public static List<CandidateResult> GetElectionResults(int electionId)
+        //{
+        //    var results = new List<CandidateResult>();
+
+        //    try
+        //    {
+        //        using (var con = GetConnection())
+        //        {
+        //            string query = @"
+        //              SELECT c.Id, c.Name, c.Position, c.PartyList, c.PictureUrl, COUNT(v.Id) AS VoteCount
+        //              FROM Candidates c
+        //              LEFT JOIN Votes v ON c.Id = v.CandidateId
+        //              WHERE c.ElectionId = @ElectionId
+        //              GROUP BY c.Id, c.Name, c.Position, c.PartyList, c.PictureUrl
+        //              ORDER BY c.Position, VoteCount DESC";
+
+        //            using (var cmd = new MySqlCommand(query, con))
+        //            {
+        //                // Ensure the parameter is added correctly
+        //                cmd.Parameters.AddWithValue("@ElectionId", electionId);
+
+        //                // Open the connection
+        //                con.Open();
+
+        //                // Execute the query and read the results
+        //                using (var reader = cmd.ExecuteReader())
+        //                {
+        //                    while (reader.Read())
+        //                    {
+        //                        results.Add(new CandidateResult
+        //                        {
+        //                            CandidateId = reader.GetInt32(reader.GetOrdinal("Id")),
+        //                            Name = reader.GetString(reader.GetOrdinal("Name")),
+        //                            Position = reader.GetString(reader.GetOrdinal("Position")),
+        //                            PartyList = reader.GetString(reader.GetOrdinal("PartyList")),
+        //                            PictureUrl = reader.GetString(reader.GetOrdinal("PictureUrl")),
+        //                            VoteCount = reader.GetInt32(reader.GetOrdinal("VoteCount"))
+        //                        });
+        //                    }
+        //                }
+        //            }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Console.WriteLine($"Error while fetching election results: {ex.Message}");
+        //        // Optionally, rethrow or handle the error appropriately
+        //    }
+
+        //    return results;
+        //}
+
+        public static List<Candidate> GetUserVotedCandidates(int userId, int electionId)
+        {
+            var candidates = new List<Candidate>();
+
+            using (var con = GetConnection())
+            {
+                string query = @"
+                  SELECT c.Id, c.Name, c.Position, c.PartyList, c.PictureUrl
+                  FROM Votes v
+                  INNER JOIN Candidates c ON v.CandidateId = c.Id
+                  WHERE v.UserId = @UserId AND v.ElectionId = @ElectionId";
+
+                using (var cmd = new MySqlCommand(query, con))
+                {
+                    cmd.Parameters.AddWithValue("@UserId", userId);
+                    cmd.Parameters.AddWithValue("@ElectionId", electionId);
+
+                    con.Open();
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            candidates.Add(new Candidate
+                            {
+                                Id = Convert.ToInt32(reader["Id"]),
+                                Name = reader["Name"].ToString(),
+                                Position = reader["Position"].ToString(),
+                                PartyList = reader["PartyList"].ToString(),
+                                PictureUrl = reader["PictureUrl"].ToString()
+                            });
+                        }
+                    }
+                }
+            }
+
+            return candidates;
+        }
+
+
+        public static List<Candidate> GetVotedCandidates(int electionId, int userId)
+        {
+            var candidates = new List<Candidate>();
+
+            using (var con = GetConnection())
+            {
+                string query = @"
+                  SELECT c.Id, c.Name, c.Address, c.Position, c.PartyList, c.PictureUrl
+                  FROM Votes v
+                  INNER JOIN Candidates c ON v.CandidateId = c.Id
+                  WHERE v.ElectionId = @ElectionId AND v.UserId = @UserId";
+
+                using (var cmd = new MySqlCommand(query, con))
+                {
+                    cmd.Parameters.AddWithValue("@ElectionId", electionId);
+                    cmd.Parameters.AddWithValue("@UserId", userId);
+
+                    con.Open();
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            candidates.Add(new Candidate
+                            {
+                                Id = Convert.ToInt32(reader["Id"]),
+                                Name = reader["Name"].ToString(),
+                                Address = reader["Address"].ToString(),
+                                Position = reader["Position"].ToString(),
+                                PartyList = reader["PartyList"].ToString(),
+                                PictureUrl = reader["PictureUrl"].ToString()
+                            });
+                        }
+                    }
+                }
+            }
+
+            return candidates;
+        }
+
+        public static List<ElectionResults> GetElectionResults()
+        {
+            var results = new List<ElectionResults>();
+
+            try
+            {
+                using (var con = GetConnection())
+                {
+                    string query = @"
+                 SELECT 
+                    Votes.ElectionId, 
+                    Votes.CandidateId, 
+                    Candidates.Name AS CandidateName, 
+                    COUNT(Votes.Id) AS VoteCount
+                 FROM 
+                    Votes
+                 JOIN 
+                    Candidates ON Votes.CandidateId = Candidates.Id
+                 GROUP BY 
+                    Votes.ElectionId, Votes.CandidateId, Candidates.Name
+                 ORDER BY 
+                    Votes.ElectionId, VoteCount DESC;
+            ";
+
+                    using (var cmd = new MySqlCommand(query, con))
+                    {
+                        con.Open();
+                        using (var reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                results.Add(new ElectionResults
+                                {
+                                    ElectionId = reader.GetInt32("ElectionId"),
+                                    CandidateId = reader.GetInt32("CandidateId"),
+                                    CandidateName = reader.GetString("CandidateName"),
+                                    VoteCount = reader.GetInt32("VoteCount")
+                                });
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error in GetElectionResults: {ex.Message}");
+            }
+
+            return results;
+        }
+
+
+        public static List<VoteReceipt> GetVoteReceipt(int userId, int electionId)
+        {
+            var receipt = new List<VoteReceipt>();
+            using (var con = GetConnection())
+            {
+                string query = @"
+            SELECT Candidates.Name AS CandidateName, Votes.Position
+            FROM Votes
+            JOIN Candidates ON Votes.CandidateId = Candidates.Id
+            WHERE Votes.UserId = @UserId AND Votes.ElectionId = @ElectionId";
+
+                using (var cmd = new MySqlCommand(query, con))
+                {
+                    cmd.Parameters.AddWithValue("@UserId", userId);
+                    cmd.Parameters.AddWithValue("@ElectionId", electionId);
+
+                    con.Open();
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            receipt.Add(new VoteReceipt
+                            {
+                                CandidateName = reader.GetString("CandidateName"),
+                                Position = reader.GetString("Position")
+                            });
+                        }
+                    }
+                }
+            }
+            return receipt;
+        }
+
+
 
     }
 }

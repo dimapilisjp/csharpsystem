@@ -21,6 +21,14 @@
       "PackagePath": "staticwebassets\\css\\Registration.css"
     },
     {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\css\\UPDoneVoting.css",
+      "PackagePath": "staticwebassets\\css\\UPDoneVoting.css"
+    },
+    {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\css\\UPResults.css",
+      "PackagePath": "staticwebassets\\css\\UPResults.css"
+    },
+    {
       "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\css\\UPVotingPage.css",
       "PackagePath": "staticwebassets\\css\\UPVotingPage.css"
     },
@@ -41,6 +49,14 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\61595433-f1b0-4d48-a8c3-8f02daaf7e77.png",
+      "PackagePath": "staticwebassets\\images\\61595433-f1b0-4d48-a8c3-8f02daaf7e77.png"
+    },
+    {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\img.jpeg",
+      "PackagePath": "staticwebassets\\images\\img.jpeg"
+    },
+    {
       "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\js\\ADManageElections.js",
       "PackagePath": "staticwebassets\\js\\ADManageElections.js"
     },
@@ -55,6 +71,14 @@
     {
       "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\js\\Registration.js",
       "PackagePath": "staticwebassets\\js\\Registration.js"
+    },
+    {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\js\\UPResults.js",
+      "PackagePath": "staticwebassets\\js\\UPResults.js"
+    },
+    {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\js\\UPVotingPage.js",
+      "PackagePath": "staticwebassets\\js\\UPVotingPage.js"
     },
     {
       "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\js\\login.js",

@@ -141,11 +141,9 @@
                     </tbody>
                 </table>
             </section>
-
-
             <section class="create-candidate-section">
                 <h2>Create Candidate</h2>
-                <form id="candidateForm" method="post" asp-page-handler="CreateCandidate">
+                <form id="candidateForm" method="post" asp-page-handler="CreateCandidate" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="name">Name</label>
                         <input type="text" id="name" name="Candidate.Name" required>
@@ -182,9 +180,12 @@
                                 <option value="@election.ElectionId">@election.Title</option>
                             }
                         </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="candidateImage">Upload Image</label>
+                        <input type="file" id="candidateImage" name="candidateImage" accept="image/*" required>
 
                     </div>
-
                     <button type="submit" class="primary-button">Add Candidate</button>
                 </form>
             </section>
@@ -201,6 +202,7 @@
                             <th>Position</th>
                             <th>Partylist</th>
                             <th>Election ID</th>
+                            <th>Image</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -215,6 +217,9 @@
                                 <td>@candidate.Position</td>
                                 <td>@candidate.PartyList</td>
                                 <td>@candidate.ElectionId</td>
+                                <td>
+                                    <img src="@candidate.PictureUrl" alt="Candidate Image" width="50">
+                                </td>
                                 <td>
                                     <form method="post" asp-page-handler="DeleteCandidate" asp-route-id="@candidate.Id">
                                         <button type="submit" class="delete-button">Delete</button>

@@ -1,0 +1,37 @@
+﻿@page
+@model votingsystem.Pages.Shared.UPResultsModel
+@{
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Election Results</title>
+    <link rel="stylesheet" href="/css/UPResults.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script defer src="/js/UPResults.js"></script>
+    <script>
+        const electionData = @Html.Raw(Json.Serialize(Model.ElectionData));
+        console.log("Election Data:", electionData); // Debugging
+    </script>
+</head>
+<body>
+    <div class="container">
+        @if (Model.ElectionData != null && Model.ElectionData.Any())
+        {
+            @foreach (var election in Model.ElectionData.GroupBy(e => e.ElectionId))
+            {
+                <h3>Election @election.Key Live Results Tally</h3>
+                <canvas id="chart-@election.Key" width="400" height="200"></canvas>
+            }
+        }
+        else
+        {
+            <p>No results available for this election.</p>
+        }
+    </div>
+</body>
+</html>
+

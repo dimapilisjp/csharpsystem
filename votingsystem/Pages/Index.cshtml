@@ -3,7 +3,6 @@
 @{
     ViewData["Title"] = "Home page";
 }
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,22 +16,28 @@
 <body>
     <div class="wrapper">
         <div class="title"><span>Voting LogIn (User)</span></div>
-        <form method="post">
+
+        <!-- Login Form -->
+        <form method="post" asp-page-handler="LoginAsync">
+            @Html.AntiForgeryToken()
             <div class="row">
                 <i class="fas fa-user"></i>
-                <input type="text" name="UserName" placeholder="UserName" required />
+                <input type="text" asp-for="UserName" placeholder="UserName" aria-label="UserName" required />
             </div>
             <div class="row">
                 <i class="fas fa-lock"></i>
-                <input type="password" name="Password" placeholder="Password" required />
+                <input type="password" asp-for="Password" placeholder="Password" aria-label="Password" required />
             </div>
-            <div class="pass"><a href="#">Forgot password?</a></div>
             <div class="button">
-                <input type="submit" asp-page-handler="Login" value="Login" />
+                <input type="submit" value="Login" />
             </div>
         </form>
-        <form method="post">
-            <button type="submit" asp-page-handler="RedirectToRegistration">Sign up here</button>
+        <form method="post" asp-page-handler="RedirectToForgotPassword">
+            @Html.AntiForgeryToken()
+            <button type="submit">Forgot password?</button>
+        </form>
+        <form method="post" asp-page="Registration">
+            <button type="submit">Sign up here</button>
         </form>
     </div>
 </body>
