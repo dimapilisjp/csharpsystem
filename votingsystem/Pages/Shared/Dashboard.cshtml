@@ -2,6 +2,7 @@
 @model votingsystem.Pages.Shared.DashboardModel
 @{
 }
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,9 +31,30 @@
                     </form>
                 </li>
                 <li>
+                    <form method="post" asp-page-handler="RedirectToManageCandidates">
+                        <button type="submit" class="sidebar-button">
+                            <i class="fas fa-users"></i> Manage Candidates
+                        </button>
+                    </form>
+                </li>
+                <li>
                     <form method="post" asp-page-handler="RedirectToManageVoters">
                         <button type="submit" class="sidebar-button">
                             <i class="fas fa-users"></i> Manage Voters
+                        </button>
+                    </form>
+                </li>
+                <li>
+                    <form method="post" asp-page-handler="RedirectToVotesRecord">
+                        <button type="submit" class="sidebar-button">
+                            <i class="fas fa-list-alt"></i> Votes Record
+                        </button>
+                    </form>
+                </li>
+                <li>
+                    <form method="post" asp-page-handler="RedirectToElectionsData">
+                        <button type="submit" class="sidebar-button">
+                            <i class="fas fa-chart-line"></i> Elections Data
                         </button>
                     </form>
                 </li>
@@ -44,13 +66,14 @@
                     </form>
                 </li>
             </ul>
-            <div class="bottom-icons">
-                <a href="#"><i class="fas fa-cog"></i></a>
-                <a href="#"><i class="fas fa-bell"></i></a>
-                <a href="#"><i class="fas fa-user"></i></a>
+            <div class="bottom-icon">
+                <form method="post" asp-page-handler="LogOut">
+                    <button type="submit" class="logout-button">
+                        <i class="fas fa-sign-out-alt"></i> Log Out
+                    </button>
+                </form>
             </div>
         </nav>
-
         <div class="main-content">
             <header>
                 <h1>Admin Dashboard</h1>
@@ -72,19 +95,10 @@
                     <p>@Model.TotalVotes</p>
                     <i class="fas fa-chart-bar"></i>
                 </div>
-                @* <div class="card"> *@
-                @*     <h2>Pending Registrations</h2> *@
-                @*     <p>@Model.PendingRegistrations</p> *@
-                @*     <i class="fas fa-clock"></i> *@
-                @* </div> *@
-            </section>
-
-            <section class="charts-and-todo">
-                <div class="chart">
-                    <h2>Daily Voting Chart</h2>
-                </div>
-                <div class="todo-list">
-                    <h2>Admin Tasks</h2>
+                <div class="card">
+                    <h2>Pending Registrations</h2>
+                    <p>@Model.PendingRegistrations</p>
+                    <i class="fas fa-clock"></i>
                 </div>
             </section>
         </div>

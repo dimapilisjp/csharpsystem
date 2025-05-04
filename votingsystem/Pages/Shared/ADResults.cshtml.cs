@@ -1,30 +1,88 @@
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using static votingsystem.Pages.Shared.ADManageElectionsModel;
 using static votingsystem.Pages.Shared.UPResultsModel;
 
 namespace votingsystem.Pages.Shared
 {
     public class ADResultsModel : PageModel
     {
-        public List<ElectionResults> ElectionData { get; set; }
         public int ElectionId { get; set; }
+        public List<ElectionResult> LiveResults { get; set; }
 
-        public void OnGet(int electionId)
+        public List<Election> AllElections { get; set; }
+
+        public IActionResult OnPostRedirectToManageVoters()
         {
-            ElectionId = electionId;
+            return RedirectToPage("/Shared/ADManageVoters");
+        }
+        public IActionResult OnPostRedirectToDashboard()
+        {
+            return RedirectToPage("/Shared/Dashboard");
+        }
 
-            // Fetch results for the specified election ID
-            ElectionData = Database_Helper.DbHelper.GetElectionResults()
-                           .FindAll(e => e.ElectionId == electionId);
-            ElectionData = Database_Helper.DbHelper.GetElectionResults();
+        public IActionResult OnPostRedirectToManageElections()
+        {
+            return RedirectToPage("/Shared/ADManageElections");
+        }
 
-            // Debugging: Ensure ElectionData is populated
-            Console.WriteLine($"Fetched ElectionData for ElectionId: {ElectionId}");
-            foreach (var data in ElectionData)
+        public IActionResult OnPostRedirectToVotesRecord()
+        {
+            return RedirectToPage("/Shared/ADVotesRecord");
+        }
+
+        public IActionResult OnPostRedirectToResults()
+        {
+            return RedirectToPage("/Shared/ADResults");
+        }
+
+        public IActionResult OnPostRedirectToManageCandidates()
+        {
+            return RedirectToPage("/Shared/ADManageCandidates");
+        }
+
+        public IActionResult OnPostRedirectToElectionsData()
+        {
+            return RedirectToPage("/Shared/ADElectionsData");
+        }
+
+
+        public IActionResult OnPostLogOut()
+        {
+            HttpContext.SignOutAsync();
+            return RedirectToPage("/Index");
+        }
+
+        public void OnGet(int? electionId)
+        {
+            Console.WriteLine($"Fetching live results for ElectionId={electionId}");
+
+            // fetch all available elections
+            AllElections = Database_Helper.DbHelper.GetAllElections();
+
+            // if an election is selected, fetch live results
+            if (electionId.HasValue)
             {
-                Console.WriteLine($"ElectionId: {data.ElectionId}, CandidateName: {data.CandidateName}, VoteCount: {data.VoteCount}");
+                // fetch live results for the selected election
+                LiveResults = Database_Helper.DbHelper.GetLiveElectionAdminResults(electionId.Value);
+            }
+            else
+            {
+                // if no election selected, set liveresults to an empty list
+                LiveResults = new List<ElectionResult>();
             }
         }
+
+        // fetch live results for a specific election via AJAX
+        public JsonResult OnGetLiveResults(int electionId)
+        {
+            Console.WriteLine($" AJAX call received for electionId={electionId}");
+            var results = Database_Helper.DbHelper.GetLiveElectionResults(electionId);
+            return new JsonResult(results);
+        }
+
+
     }
-    
+
 }

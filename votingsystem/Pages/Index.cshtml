@@ -3,6 +3,7 @@
 @{
     ViewData["Title"] = "Home page";
 }
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,9 +16,13 @@
 </head>
 <body>
     <div class="wrapper">
-        <div class="title"><span>Voting LogIn (User)</span></div>
-
-        <!-- Login Form -->
+        @if (!string.IsNullOrEmpty(Model.Message))
+        {
+            <div class="alert">
+                @Model.Message
+            </div>
+        }
+        <div class="title"><span>Voting System</span></div>
         <form method="post" asp-page-handler="LoginAsync">
             @Html.AntiForgeryToken()
             <div class="row">

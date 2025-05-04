@@ -1,35 +1,166 @@
-﻿.container {
-    max-width: 1200px;
+﻿body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f5f5dc;
+    color: #333;
+}
+
+.header-bar {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background-color: #5e4b82;
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.nav-links {
+    display: flex;
+    gap: 10px;
+}
+
+    .nav-links a,
+    .ballot-button,
+    .results-button {
+        display: inline-flex;
+        align-items: center;
+        font-size: 16px;
+        text-decoration: none;
+        color: #fff;
+        background-color: #5e4b82;
+        padding: 10px 16px;
+        border-radius: 5px;
+        border: none;
+        transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        cursor: pointer;
+    }
+
+        .nav-links a:hover,
+        .ballot-button:hover,
+        .results-button:hover {
+            background-color: #4a3b68;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-links a i,
+        .ballot-button i,
+        .results-button i {
+            margin-right: 8px;
+        }
+
+.main-content {
+    padding: 40px 20px;
+    max-width: 1000px;
     margin: 0 auto;
+}
+
+.results-section {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
     padding: 20px;
+    box-sizing: border-box;
+}
+
+    .results-section h2 {
+        color: #5e4b82;
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+label {
+    font-weight: bold;
+    font-size: 16px;
+    color: #5e4b82;
+}
+
+select {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+    background-color: #fff;
+}
+
+#chart-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.chart-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    padding: 20px;
+    width: 100%;
+    max-width: 500px;
     text-align: center;
 }
 
-h3 {
-    margin-top: 20px;
-    font-size: 1.5em;
-}
+    .chart-card h3 {
+        color: #5e4b82;
+        margin-bottom: 15px;
+    }
 
 canvas {
-    margin-bottom: 30px;
+    background-color: #f9f9f9;
+    border-radius: 6px;
+    padding: 10px;
     max-width: 100%;
     height: auto;
 }
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-    text-align: center;
-}
 
-h3 {
-    font-size: 1.5em;
+button {
+    padding: 10px 20px;
+    background-color: #4a3b68;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
     margin-top: 20px;
+    transition: background-color 0.3s;
 }
 
-canvas {
-    margin-bottom: 30px;
+    button:hover {
+        background-color: #5e4b82;
+    }
+
+.results-button i {
+    margin-right: 6px;
+}
+
+.logout-button {
+    padding: 10px 20px;
+    background-color: #d9534f;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    display: inline-flex;
+    align-items: center;
+    transition: background-color 0.3s;
     width: 100%;
-    height: auto;
+    text-align: left;
 }
 
+    .logout-button:hover {
+        background-color: #c9302c;
+    }
+
+    .logout-button i {
+        margin-right: 6px;
+    }

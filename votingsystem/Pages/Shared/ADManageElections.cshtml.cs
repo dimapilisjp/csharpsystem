@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using MySql.Data.MySqlClient;
@@ -14,20 +15,10 @@ namespace votingsystem.Pages.Shared
             public DateTime StartTime { get; set; }
             public DateTime EndTime { get; set; }
             public string Status { get; set; }
+            public string Department { get; set; }
+            public string Program { get; set; }
         }
 
-        public class Candidate
-        {
-            public int Id { get; set; }
-            public string Name { get; set; }
-            public int Age { get; set; }
-            public string Address { get; set; }
-            public string Position { get; set; }
-            public string PartyList { get; set; }
-            public int ElectionId { get; set; }
-            public string PictureUrl { get; set; }
-        }
-        public List<Candidate> Candidates { get; set; } = new List<Candidate>();
         public List<Election> Elections { get; set; } = new List<Election>();
         public Election EditElection { get; set; }
         public List<Election> UpcomingElections { get; set; } = new List<Election>();
@@ -46,62 +37,33 @@ namespace votingsystem.Pages.Shared
             return RedirectToPage("/Shared/ADManageElections");
         }
 
+        public IActionResult OnPostRedirectToVotesRecord()
+        {
+            return RedirectToPage("/Shared/ADVotesRecord");
+        }
+
         public IActionResult OnPostRedirectToResults()
         {
             return RedirectToPage("/Shared/ADResults");
         }
-        public IActionResult OnPostCreateCandidate(Candidate candidate, IFormFile candidateImage)
+
+        public IActionResult OnPostRedirectToManageCandidates()
         {
-            if (candidateImage != null)
-            {
-                Console.WriteLine($"Image received: {candidateImage.FileName}, Size: {candidateImage.Length} bytes");
-            }
-            else
-            {
-                Console.WriteLine("No image received.");
-                TempData["Message"] = "Candidate image is required.";
-                return Page();
-            }
-            // to check a valid file is uploaded
-            if (candidateImage != null && candidateImage.Length > 0)
-            {
-                // define directory to save images
-                var uploadsFolder = Path.Combine("wwwroot", "images");
-                Directory.CreateDirectory(uploadsFolder); // Ensure the directory exists
+            return RedirectToPage("/Shared/ADManageCandidates");
+        }
 
-                // save the file with its original name 
-                var fileName = Guid.NewGuid().ToString() + Path.GetExtension(candidateImage.FileName); 
-                var filePath = Path.Combine(uploadsFolder, fileName);
-
-                using (var stream = new FileStream(filePath, FileMode.Create))
-                {
-                    candidateImage.CopyTo(stream);
-                }
-
-               
-                candidate.PictureUrl = $"/images/{fileName}";
-            }
-            else
-            {
-                
-                TempData["Message"] = "Candidate image is required.";
-                return Page();
-            }
-
-           
-            Database_Helper.DbHelper.CreateCandidate(candidate);
-
-            TempData["Message"] = "Candidate successfully registered.";
-            return RedirectToPage("/Shared/ADManageElections");
+        public IActionResult OnPostRedirectToElectionsData()
+        {
+            return RedirectToPage("/Shared/ADElectionsData");
         }
 
 
-
-        public IActionResult OnPostDeleteCandidate(int id)
+        public IActionResult OnPostLogOut()
         {
-            Database_Helper.DbHelper.DeleteCandidate(id);
-            return RedirectToPage("/Shared/ADManageElections");
+            HttpContext.SignOutAsync();
+            return RedirectToPage("/Index");
         }
+
         public IActionResult OnPostCreateElection(Election election)
         {
             Console.WriteLine($"Received Title: {election.Title}, Start Time: {election.StartTime}, End Time: {election.EndTime}");
@@ -118,13 +80,25 @@ namespace votingsystem.Pages.Shared
                 return Page();
             }
 
+            if (string.IsNullOrEmpty(election.Department))
+            {
+                throw new Exception("Department is required.");
+            }
+
+            if (string.IsNullOrEmpty(election.Program))
+            {
+                election.Program = null; 
+            }
+
+
             Database_Helper.DbHelper.CreateElection(election);
             TempData["Message"] = "Election successfully created.";
             return RedirectToPage("/Shared/ADManageElections");
 
         }
-        public IActionResult OnPostCreateOrEditElection(Election election)
+        public IActionResult OnPostCreateOrEditElection(Election election, int id)
         {
+
             if (election.EndTime <= election.StartTime)
             {
                 TempData["Message"] = "End time must be after the start time.";
@@ -142,14 +116,16 @@ namespace votingsystem.Pages.Shared
                 // new election
                 if (Database_Helper.DbHelper.IsElectionTitleRegistered(election.Title))
                 {
+                    EditElection = Database_Helper.DbHelper.GetElectionById(id);
                     TempData["Message"] = "An election with this title already exists.";
-                    return Page();
+                    return RedirectToPage("/Shared/ADManageElections");
                 }
 
                 Database_Helper.DbHelper.CreateElection(election);
                 TempData["Message"] = "Election successfully created.";
             }
 
+            EditElection = Database_Helper.DbHelper.GetElectionById(id);
             return RedirectToPage("/Shared/ADManageElections");
         }
 
@@ -161,11 +137,10 @@ namespace votingsystem.Pages.Shared
             return RedirectToPage("/Shared/ADManageElections");
         }
 
-        public void OnGet()
+        public void OnGet(int id)
         {
-            Candidates = Database_Helper.DbHelper.GetCandidates();
             Elections = Database_Helper.DbHelper.GetElections();
-            UpcomingElections = Database_Helper.DbHelper.GetUpcomingElections();
+            EditElection = Database_Helper.DbHelper.GetElectionById(id);
         }
 
         public void OnGetEditElection(int id)
@@ -174,7 +149,7 @@ namespace votingsystem.Pages.Shared
 
             if (EditElection != null)
             {
-                Console.WriteLine($"Editing Election: Title={EditElection.Title}, StartTime={EditElection.StartTime}");
+                Console.WriteLine($"Editing Election: Title={EditElection.Title}, StartTime={EditElection.StartTime}, Department={EditElection.Department}");
             }
             else
             {

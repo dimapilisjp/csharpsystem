@@ -16,11 +16,26 @@
     <header class="header-bar">
         <div class="logo">VotingSystem</div>
         <nav class="nav-links">
-            <a href="#"><i class="fas fa-home"></i> Home</a>
-            <a href="#"><i class="fas fa-list-alt"></i> My Ballots</a>
-            <a href="#"><i class="fas fa-chart-bar"></i> Results</a>
-            <a href="#"><i class="fas fa-cog"></i> Settings</a>
-            <a href="#"><i class="fas fa-question-circle"></i> Help</a>
+            <form method="post" asp-page-handler="RedirectToHome">
+                <button type="submit" class="ballot-button">
+                    <i class="fas fa-home"></i> Home
+                </button>
+            </form>
+            <form method="post" asp-page-handler="RedirectToBallot">
+                <button type="submit" class="ballot-button">
+                    <i class="fas fa-list-alt"></i> My Ballots
+                </button>
+            </form>
+            <form method="post" asp-page-handler="RedirectToResults">
+                <button type="submit" class="results-button">
+                    <i class="fas fa-chart-bar"></i> Results
+                </button>
+            </form>
+            <form method="post" asp-page-handler="Logout">
+                <button type="submit" class="logout-button" onclick="return confirm('Are you sure you want to log out?');">
+                    <i class="fas fa-sign-out-alt"></i> Log Out
+                </button>
+            </form>
         </nav>
     </header>
 
@@ -28,20 +43,32 @@
         <section class="dashboard-section">
             <h2>Available Elections</h2>
             <div id="elections-container">
-                @foreach (var election in Model.AvailableElections)
+                @if (Model.AvailableElections.Any())
                 {
-                    <div class="election-card">
-                        <h3>@election.Title</h3>
-                        <p>@election.Description</p>
-                        <p><strong>Voting Period:</strong> @election.StartTime.ToString("MMM dd, yyyy") - @election.EndTime.ToString("MMM dd, yyyy")</p>
-                        <p><strong>Status:</strong> @election.Status</p>
-                        <form method="post" asp-page-handler="RedirectToVote">
-                            <input type="hidden" name="electionId" value="@election.ElectionId">
-                            <button type="submit" class="vote-button">
-                                <i class="fas fa-vote-yea"></i> Cast Your Vote
-                            </button>
-                        </form>
-                    </div>
+                    @foreach (var election in Model.AvailableElections)
+                    {
+                        <div class="election-card">
+                            <h3>@election.Title</h3>
+                            <p>@election.Description</p>
+                            <p><strong>Voting Period:</strong> @election.StartTime.ToString("MMM dd, yyyy") - @election.EndTime.ToString("MMM dd, yyyy")</p>
+                            <p>
+                                <strong>Status:</strong>
+                                <span class="@election.Status == " Ongoing" ? "status-ongoing" : "status-ended">
+                                    @election.Status
+                                </span>
+                            </p>
+                            <form method="post" asp-page-handler="RedirectToVote">
+                                <input type="hidden" name="electionId" value="@election.ElectionId">
+                                <button type="submit" class="vote-button">
+                                    <i class="fas fa-vote-yea"></i> Cast Your Vote
+                                </button>
+                            </form>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <p>No available elections for your department or program.</p>
                 }
             </div>
         </section>
@@ -49,17 +76,25 @@
         <section class="dashboard-section">
             <h2>Upcoming Elections</h2>
             <div id="upcoming-container">
-                @foreach (var election in Model.UpcomingElections)
+                @if (Model.UpcomingElections.Any())
                 {
-                    <div class="election-card">
-                        <h3>@election.Title</h3>
-                        <p>@election.Description</p>
-                        <p><strong>Voting Period:</strong> @election.StartTime.ToString("MMM dd, yyyy") - @election.EndTime.ToString("MMM dd, yyyy")</p>
-                        <p><strong>Status:</strong> Upcoming</p>
-                    </div>
+                    @foreach (var election in Model.UpcomingElections)
+                    {
+                        <div class="election-card">
+                            <h3>@election.Title</h3>
+                            <p>@election.Description</p>
+                            <p><strong>Voting Period:</strong> @election.StartTime.ToString("MMM dd, yyyy") - @election.EndTime.ToString("MMM dd, yyyy")</p>
+                            <p><strong>Status:</strong> Upcoming</p>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <p>No upcoming elections for your department or program.</p>
                 }
             </div>
         </section>
     </main>
 </body>
 </html>
+

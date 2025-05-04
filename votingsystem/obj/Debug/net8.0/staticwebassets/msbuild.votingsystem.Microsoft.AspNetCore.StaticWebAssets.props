@@ -1,5 +1,41 @@
 ﻿<Project>
   <ItemGroup>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\ADElectionsData.css'))">
+      <SourceType>Package</SourceType>
+      <SourceId>votingsystem</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/votingsystem</BasePath>
+      <RelativePath>css/ADElectionsData.css</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>4x2734ug6f</Fingerprint>
+      <Integrity>eKKZwCff5UGwoi2rITAWIsVAcCgxbKyXB0Wl4afGagQ=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\ADElectionsData.css'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\ADManageCandidates.css'))">
+      <SourceType>Package</SourceType>
+      <SourceId>votingsystem</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/votingsystem</BasePath>
+      <RelativePath>css/ADManageCandidates.css</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>bcz0k75que</Fingerprint>
+      <Integrity>65KvhksAshoL4ujN75gg80NR4smMx+cIjHKecqs0Up0=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\ADManageCandidates.css'))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\ADManageElections.css'))">
       <SourceType>Package</SourceType>
       <SourceId>votingsystem</SourceId>
@@ -12,8 +48,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>5vvuipaej6</Fingerprint>
-      <Integrity>L42ZQvDfJZORHHaEgAdaq66zvV2ezc2uaR5a0xEduqE=</Integrity>
+      <Fingerprint>t9adw28vnh</Fingerprint>
+      <Integrity>v+IvThYSofmEdtq2mPW2pTMrjsVt1PEg4O3C7YZJ7y4=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\ADManageElections.css'))</OriginalItemSpec>
@@ -30,11 +66,65 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>ehaoowv6a6</Fingerprint>
-      <Integrity>ElPHMc0fweQrq/jNZehwkyilACVTJ1fnzom2cuuxUFs=</Integrity>
+      <Fingerprint>q8ld0e14el</Fingerprint>
+      <Integrity>yrQodHv9ecA+iz6Q6UNnlIBcbS0g/qrc/G9zAGT9TtM=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\ADManageVoters.css'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\ADResults.css'))">
+      <SourceType>Package</SourceType>
+      <SourceId>votingsystem</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/votingsystem</BasePath>
+      <RelativePath>css/ADResults.css</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>f4ul7pxldg</Fingerprint>
+      <Integrity>v0bGgvrFtzwU/sN09dinMYiVkKX2dfnJZNbH+l6BmbA=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\ADResults.css'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\ADViewBallot.css'))">
+      <SourceType>Package</SourceType>
+      <SourceId>votingsystem</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/votingsystem</BasePath>
+      <RelativePath>css/ADViewBallot.css</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>cmgecfr0xn</Fingerprint>
+      <Integrity>XNxuMgzOfom8YecnwWJr5lRFubDiqFEZ5IsNc8NoggE=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\ADViewBallot.css'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\ADVotesRecord.css'))">
+      <SourceType>Package</SourceType>
+      <SourceId>votingsystem</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/votingsystem</BasePath>
+      <RelativePath>css/ADVotesRecord.css</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>ly5trazsu8</Fingerprint>
+      <Integrity>k6lQ/jfvXUexppkdHWRwEVuZvu12YXQ0wNGbsWbwVKU=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\ADVotesRecord.css'))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\Dashboard.css'))">
       <SourceType>Package</SourceType>
@@ -48,11 +138,29 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>8yam36wd09</Fingerprint>
-      <Integrity>8NvrlynfObE8z3CND2/mZD1kxdz2GpZa0/zdaofUusE=</Integrity>
+      <Fingerprint>prtw1ve0nv</Fingerprint>
+      <Integrity>S0T/hkXd46G82peKjMEfyVrj6xsLk5+i7PTJqlBKNbM=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\Dashboard.css'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\ForgotPassword.css'))">
+      <SourceType>Package</SourceType>
+      <SourceId>votingsystem</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/votingsystem</BasePath>
+      <RelativePath>css/ForgotPassword.css</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>7ddaltx6b6</Fingerprint>
+      <Integrity>1UTABtGZYgLrlfH3bvExKP/GrnjHJJxO2u4iVb2SE84=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\ForgotPassword.css'))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\login.css'))">
       <SourceType>Package</SourceType>
@@ -66,8 +174,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>nn9dra24kg</Fingerprint>
-      <Integrity>3Qp9EX62z/T62xeQIz/9Xfm068SpoQjb/yFlcaYmbtA=</Integrity>
+      <Fingerprint>dok9tk8pqb</Fingerprint>
+      <Integrity>7Z01hogNstI44dDEoIltZpOlVcwMgkuQyXs2Fs+n8bI=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\login.css'))</OriginalItemSpec>
@@ -84,11 +192,29 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>7dc0wnqp0l</Fingerprint>
-      <Integrity>ZQUHake7IQOWijuYcxdrPxRMp+B3DZ7ysJxVagkKT2k=</Integrity>
+      <Fingerprint>qd2ol7naq9</Fingerprint>
+      <Integrity>8jyT3wSTa+zD9jPwD/QqQLZDlYhLfMUqqQgCZGb+6b8=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\Registration.css'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\ResetPassword.css'))">
+      <SourceType>Package</SourceType>
+      <SourceId>votingsystem</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/votingsystem</BasePath>
+      <RelativePath>css/ResetPassword.css</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>4sspmh1hd8</Fingerprint>
+      <Integrity>DJjGnnnBzsq69H+pBO3Un1OHk1vKOl/UznW4Q+ntKuc=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\ResetPassword.css'))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\site.css'))">
       <SourceType>Package</SourceType>
@@ -120,11 +246,29 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>l4y5ixg9wk</Fingerprint>
-      <Integrity>+w2uTahfJJeJNu3Q98KSFnlPmV4niTkOwKt4tIb+zfM=</Integrity>
+      <Fingerprint>jn8941qdnz</Fingerprint>
+      <Integrity>8WMUBt7etDDS8BXEONDjbSFrqOwjOBUIQxY7dnMhQnQ=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\UPDoneVoting.css'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\UPMyBallots.css'))">
+      <SourceType>Package</SourceType>
+      <SourceId>votingsystem</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/votingsystem</BasePath>
+      <RelativePath>css/UPMyBallots.css</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>o2n9j04dcn</Fingerprint>
+      <Integrity>8K8UyxWxgsyR0fLRR3At55P2UIAfUx7ULU6XG/U9U4A=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\UPMyBallots.css'))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\UPResults.css'))">
       <SourceType>Package</SourceType>
@@ -138,8 +282,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>zg3x5t1ret</Fingerprint>
-      <Integrity>0xj+l7r33UA8Ed5VvA3fMoijNEmWgyArtvvsclRL63I=</Integrity>
+      <Fingerprint>eps5ysjdf2</Fingerprint>
+      <Integrity>bh38oIBZiZ6LNkz3uL1Z/Fi4ZECiZOSrJei1NaJjZbs=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\UPResults.css'))</OriginalItemSpec>
@@ -156,8 +300,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>buicqg6nmb</Fingerprint>
-      <Integrity>nVv+kgg9wkvbBespaaK3vMnOdj7Btirbgxf5jYXtUAE=</Integrity>
+      <Fingerprint>lrnjbjg7ez</Fingerprint>
+      <Integrity>7ylPsGkraAfpltnJTgrIuLF8C+GDS91wi2FRAphpSas=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\UPVotingPage.css'))</OriginalItemSpec>
@@ -174,8 +318,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>jmbejvntsk</Fingerprint>
-      <Integrity>pU4hptcNMZ/uIz4J+Y9KgEcoD0tUTgb481lKyuLZzRQ=</Integrity>
+      <Fingerprint>uyodm12kxw</Fingerprint>
+      <Integrity>pln0+UxwdFdqgQKZAKIc8kzik8oeD/fJhqMwBWZWfHY=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\UserPage.css'))</OriginalItemSpec>
@@ -198,6 +342,168 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\favicon.ico'))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\11fbfcbb-186b-4cf5-b9c6-afbd07553c0a.ico'))">
+      <SourceType>Package</SourceType>
+      <SourceId>votingsystem</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/votingsystem</BasePath>
+      <RelativePath>images/11fbfcbb-186b-4cf5-b9c6-afbd07553c0a.ico</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>gga6f3es7s</Fingerprint>
+      <Integrity>kEpyHbrHRPDmLY6ZdQW379Y+lhPMsl2puB4HDjIYZ5Y=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\11fbfcbb-186b-4cf5-b9c6-afbd07553c0a.ico'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\1b757e74-5814-46a4-bfd7-e870ae524ef2.ico'))">
+      <SourceType>Package</SourceType>
+      <SourceId>votingsystem</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/votingsystem</BasePath>
+      <RelativePath>images/1b757e74-5814-46a4-bfd7-e870ae524ef2.ico</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>gga6f3es7s</Fingerprint>
+      <Integrity>kEpyHbrHRPDmLY6ZdQW379Y+lhPMsl2puB4HDjIYZ5Y=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\1b757e74-5814-46a4-bfd7-e870ae524ef2.ico'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\28196ac4-c705-42f9-9956-909c281c3d42.ico'))">
+      <SourceType>Package</SourceType>
+      <SourceId>votingsystem</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/votingsystem</BasePath>
+      <RelativePath>images/28196ac4-c705-42f9-9956-909c281c3d42.ico</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>gga6f3es7s</Fingerprint>
+      <Integrity>kEpyHbrHRPDmLY6ZdQW379Y+lhPMsl2puB4HDjIYZ5Y=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\28196ac4-c705-42f9-9956-909c281c3d42.ico'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\2c7c2b49-1792-4ea3-bd9e-9a58e75a7250.ico'))">
+      <SourceType>Package</SourceType>
+      <SourceId>votingsystem</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/votingsystem</BasePath>
+      <RelativePath>images/2c7c2b49-1792-4ea3-bd9e-9a58e75a7250.ico</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>gga6f3es7s</Fingerprint>
+      <Integrity>kEpyHbrHRPDmLY6ZdQW379Y+lhPMsl2puB4HDjIYZ5Y=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\2c7c2b49-1792-4ea3-bd9e-9a58e75a7250.ico'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\36eb3298-db13-4f4c-99d6-bb56c4920f4d.ico'))">
+      <SourceType>Package</SourceType>
+      <SourceId>votingsystem</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/votingsystem</BasePath>
+      <RelativePath>images/36eb3298-db13-4f4c-99d6-bb56c4920f4d.ico</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>gga6f3es7s</Fingerprint>
+      <Integrity>kEpyHbrHRPDmLY6ZdQW379Y+lhPMsl2puB4HDjIYZ5Y=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\36eb3298-db13-4f4c-99d6-bb56c4920f4d.ico'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\3f26dbbd-0fea-454e-a21f-34eae49a0b22.ico'))">
+      <SourceType>Package</SourceType>
+      <SourceId>votingsystem</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/votingsystem</BasePath>
+      <RelativePath>images/3f26dbbd-0fea-454e-a21f-34eae49a0b22.ico</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>gga6f3es7s</Fingerprint>
+      <Integrity>kEpyHbrHRPDmLY6ZdQW379Y+lhPMsl2puB4HDjIYZ5Y=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\3f26dbbd-0fea-454e-a21f-34eae49a0b22.ico'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\48d54b22-62e1-40a9-a3b4-7bfead6af3ce.ico'))">
+      <SourceType>Package</SourceType>
+      <SourceId>votingsystem</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/votingsystem</BasePath>
+      <RelativePath>images/48d54b22-62e1-40a9-a3b4-7bfead6af3ce.ico</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>gga6f3es7s</Fingerprint>
+      <Integrity>kEpyHbrHRPDmLY6ZdQW379Y+lhPMsl2puB4HDjIYZ5Y=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\48d54b22-62e1-40a9-a3b4-7bfead6af3ce.ico'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\4cf07dd5-d438-4ee3-bbfb-25816c4e16a2.ico'))">
+      <SourceType>Package</SourceType>
+      <SourceId>votingsystem</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/votingsystem</BasePath>
+      <RelativePath>images/4cf07dd5-d438-4ee3-bbfb-25816c4e16a2.ico</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>gga6f3es7s</Fingerprint>
+      <Integrity>kEpyHbrHRPDmLY6ZdQW379Y+lhPMsl2puB4HDjIYZ5Y=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\4cf07dd5-d438-4ee3-bbfb-25816c4e16a2.ico'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\5bc1aa7c-06bd-4035-8fe4-0a6047788569.ico'))">
+      <SourceType>Package</SourceType>
+      <SourceId>votingsystem</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/votingsystem</BasePath>
+      <RelativePath>images/5bc1aa7c-06bd-4035-8fe4-0a6047788569.ico</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>gga6f3es7s</Fingerprint>
+      <Integrity>kEpyHbrHRPDmLY6ZdQW379Y+lhPMsl2puB4HDjIYZ5Y=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\5bc1aa7c-06bd-4035-8fe4-0a6047788569.ico'))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\61595433-f1b0-4d48-a8c3-8f02daaf7e77.png'))">
       <SourceType>Package</SourceType>
       <SourceId>votingsystem</SourceId>
@@ -215,6 +521,114 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\61595433-f1b0-4d48-a8c3-8f02daaf7e77.png'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\6e46a200-8836-4906-85d6-5b8b567693cc.ico'))">
+      <SourceType>Package</SourceType>
+      <SourceId>votingsystem</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/votingsystem</BasePath>
+      <RelativePath>images/6e46a200-8836-4906-85d6-5b8b567693cc.ico</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>gga6f3es7s</Fingerprint>
+      <Integrity>kEpyHbrHRPDmLY6ZdQW379Y+lhPMsl2puB4HDjIYZ5Y=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\6e46a200-8836-4906-85d6-5b8b567693cc.ico'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\73dc90a8-5fd6-4146-b40c-8e2a7b69804e.ico'))">
+      <SourceType>Package</SourceType>
+      <SourceId>votingsystem</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/votingsystem</BasePath>
+      <RelativePath>images/73dc90a8-5fd6-4146-b40c-8e2a7b69804e.ico</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>gga6f3es7s</Fingerprint>
+      <Integrity>kEpyHbrHRPDmLY6ZdQW379Y+lhPMsl2puB4HDjIYZ5Y=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\73dc90a8-5fd6-4146-b40c-8e2a7b69804e.ico'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\849d6507-280b-47e9-b0ae-07690a3d038f.ico'))">
+      <SourceType>Package</SourceType>
+      <SourceId>votingsystem</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/votingsystem</BasePath>
+      <RelativePath>images/849d6507-280b-47e9-b0ae-07690a3d038f.ico</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>gga6f3es7s</Fingerprint>
+      <Integrity>kEpyHbrHRPDmLY6ZdQW379Y+lhPMsl2puB4HDjIYZ5Y=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\849d6507-280b-47e9-b0ae-07690a3d038f.ico'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\8d9da9b4-7d9a-4f53-8917-00458c03fd62.ico'))">
+      <SourceType>Package</SourceType>
+      <SourceId>votingsystem</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/votingsystem</BasePath>
+      <RelativePath>images/8d9da9b4-7d9a-4f53-8917-00458c03fd62.ico</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>gga6f3es7s</Fingerprint>
+      <Integrity>kEpyHbrHRPDmLY6ZdQW379Y+lhPMsl2puB4HDjIYZ5Y=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\8d9da9b4-7d9a-4f53-8917-00458c03fd62.ico'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\9ffe459b-97f6-4343-b2fd-ced2284cf69c.ico'))">
+      <SourceType>Package</SourceType>
+      <SourceId>votingsystem</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/votingsystem</BasePath>
+      <RelativePath>images/9ffe459b-97f6-4343-b2fd-ced2284cf69c.ico</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>gga6f3es7s</Fingerprint>
+      <Integrity>kEpyHbrHRPDmLY6ZdQW379Y+lhPMsl2puB4HDjIYZ5Y=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\9ffe459b-97f6-4343-b2fd-ced2284cf69c.ico'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\bdf660e6-64ef-46a5-95d4-e30e7689b0ff.ico'))">
+      <SourceType>Package</SourceType>
+      <SourceId>votingsystem</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/votingsystem</BasePath>
+      <RelativePath>images/bdf660e6-64ef-46a5-95d4-e30e7689b0ff.ico</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>gga6f3es7s</Fingerprint>
+      <Integrity>kEpyHbrHRPDmLY6ZdQW379Y+lhPMsl2puB4HDjIYZ5Y=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\bdf660e6-64ef-46a5-95d4-e30e7689b0ff.ico'))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\img.jpeg'))">
       <SourceType>Package</SourceType>
@@ -234,6 +648,24 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\img.jpeg'))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\ADElectionsData.js'))">
+      <SourceType>Package</SourceType>
+      <SourceId>votingsystem</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/votingsystem</BasePath>
+      <RelativePath>js/ADElectionsData.js</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>90arcv2i4x</Fingerprint>
+      <Integrity>aXNXx57lUPsPuSaaBt6eleRkhGawVQNhWDsggWooswY=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\ADElectionsData.js'))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\ADManageElections.js'))">
       <SourceType>Package</SourceType>
       <SourceId>votingsystem</SourceId>
@@ -246,8 +678,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>uolzbhbxva</Fingerprint>
-      <Integrity>cuj0PotCfpfugaXf2jRc+DEs1bNu7E9FImF+ADOkHuw=</Integrity>
+      <Fingerprint>7h6umxelmn</Fingerprint>
+      <Integrity>S5boxVLjH9A4ODQIzMEmfCWeHk0Z6iFYah2Oc/SV158=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\ADManageElections.js'))</OriginalItemSpec>
@@ -264,11 +696,47 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>tu4byx6fon</Fingerprint>
-      <Integrity>q2ydZ2z2eJ+iYRVt30Pp0p5ujSOuqEYSKTnDbyQGKfE=</Integrity>
+      <Fingerprint>d1t8nad33z</Fingerprint>
+      <Integrity>AbTLX5KfPZxroXxjtJnX9S4w/j7Mvv5SNO4oEClGg1o=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\ADManageVoters.js'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\ADResults.js'))">
+      <SourceType>Package</SourceType>
+      <SourceId>votingsystem</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/votingsystem</BasePath>
+      <RelativePath>js/ADResults.js</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>7odc97cmgq</Fingerprint>
+      <Integrity>NzWAzFdlgtYNPJXYO1Fb3Mhvw8jXfRUJbhbB+ZIoABI=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\ADResults.js'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\ADVotesRecord.js'))">
+      <SourceType>Package</SourceType>
+      <SourceId>votingsystem</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/votingsystem</BasePath>
+      <RelativePath>js/ADVotesRecord.js</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>jiezmaa5je</Fingerprint>
+      <Integrity>O1IAM4omiGVl2dFwucSv5V8Wz6X6EuNglSMi0uXjDW4=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\ADVotesRecord.js'))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\Dashboard.js'))">
       <SourceType>Package</SourceType>
@@ -318,8 +786,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>qrqshlyh3g</Fingerprint>
-      <Integrity>hvusPRzI3vMImaUkRBMKGNTzK9hTk5BeN/jq5JUSRpI=</Integrity>
+      <Fingerprint>6oih77n2y0</Fingerprint>
+      <Integrity>OrQcV5BfeWGCby5Cd2cniDtlsPHEuLwT5sQtBjk9Cxo=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\Registration.js'))</OriginalItemSpec>
@@ -354,8 +822,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>op1yxi5dft</Fingerprint>
-      <Integrity>LBZdSIdojHpRaH1f0LhKR55mwFgS28UM5jlnO5wXGVo=</Integrity>
+      <Fingerprint>otdka8sd5o</Fingerprint>
+      <Integrity>/OxXeKpVUFMM/YAOiuJsZOvnuWlR62xyyz3xxsaQqyE=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\UPResults.js'))</OriginalItemSpec>

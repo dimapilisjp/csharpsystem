@@ -1,4 +1,4 @@
-﻿@page
+﻿@page "/Shared/UPResults"
 @model votingsystem.Pages.Shared.UPResultsModel
 @{
 }
@@ -10,28 +10,64 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Election Results</title>
     <link rel="stylesheet" href="/css/UPResults.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script defer src="/js/UPResults.js"></script>
-    <script>
-        const electionData = @Html.Raw(Json.Serialize(Model.ElectionData));
-        console.log("Election Data:", electionData); // Debugging
-    </script>
 </head>
 <body>
-    <div class="container">
-        @if (Model.ElectionData != null && Model.ElectionData.Any())
-        {
-            @foreach (var election in Model.ElectionData.GroupBy(e => e.ElectionId))
-            {
-                <h3>Election @election.Key Live Results Tally</h3>
-                <canvas id="chart-@election.Key" width="400" height="200"></canvas>
-            }
-        }
-        else
-        {
-            <p>No results available for this election.</p>
-        }
-    </div>
+    <!-- Header bar, same structure as Done Voting -->
+    <header class="header-bar">
+        <div class="logo">VotingSystem</div>
+        <nav class="nav-links">
+            <nav class="nav-links">
+                <form method="post" asp-page-handler="RedirectToHome">
+                    <button type="submit" class="ballot-button">
+                        <i class="fas fa-home"></i> Home
+                    </button>
+                </form>
+                <form method="post" asp-page-handler="RedirectToBallot">
+                    <button type="submit" class="ballot-button">
+                        <i class="fas fa-list-alt"></i> My Ballots
+                    </button>
+                </form>
+                <form method="post" asp-page-handler="RedirectToResults">
+                    <button type="submit" class="results-button">
+                        <i class="fas fa-chart-bar"></i> Results
+                    </button>
+                </form>
+                <form method="post" asp-page-handler="Logout">
+                    <button type="submit" class="logout-button" onclick="return confirm('Are you sure you want to log out?');">
+                        <i class="fas fa-sign-out-alt"></i> Log Out
+                    </button>
+                </form>
+            </nav>
+    </header>
+    <main class="main-content">
+        <section class="results-section">
+            <h2>Live Election Results</h2>
+
+            <label for="election-select">Choose an Election:</label>
+            <select id="election-select">
+                @foreach (var election in Model.AllElections)
+                {
+                    <option value="@election.ElectionId">@election.Title</option>
+                }
+            </select>
+
+            <div id="chart-container">
+                @foreach (var election in Model.AllElections)
+                {
+                    <div class="chart-card">
+                        <h3>@election.Title - Live Results</h3>
+                        <canvas id="chart-@election.ElectionId" width="400" height="200"></canvas>
+                    </div>
+                }
+            </div>
+        </section>
+    </main>
 </body>
 </html>
+
+
 

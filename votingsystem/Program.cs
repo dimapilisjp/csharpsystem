@@ -7,19 +7,19 @@ builder.Configuration.AddJsonFile("databaseconnection.json", optional: true, rel
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>
     {
-        options.ExpireTimeSpan = TimeSpan.FromMinutes(60); // Adjust as necessary
+        options.ExpireTimeSpan = TimeSpan.FromMinutes(60); 
         options.LoginPath = "/Index";
     });
 
 
 builder.Services.AddAuthorization();
 
-// Add services to the container.
+
 builder.Services.AddRazorPages();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");

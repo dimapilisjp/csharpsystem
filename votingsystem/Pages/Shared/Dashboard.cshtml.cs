@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -14,7 +15,7 @@ namespace votingsystem.Pages.Shared
             TotalElections = Database_Helper.DbHelper.GetTotalElections();
             TotalVoters = Database_Helper.DbHelper.GetTotalVoters();
             TotalVotes = Database_Helper.DbHelper.GetTotalVotes();
-            //PendingRegistrations = Database_Helper.DbHelper.GetPendingRegistrations();
+            PendingRegistrations = Database_Helper.DbHelper.GetPendingRegistrations();
         }
 
         public IActionResult OnPostRedirectToManageVoters()
@@ -29,11 +30,33 @@ namespace votingsystem.Pages.Shared
         public IActionResult OnPostRedirectToManageElections()
         {
             return RedirectToPage("/Shared/ADManageElections");
-        }      
+        }
+
+        public IActionResult OnPostRedirectToVotesRecord()
+        {
+            return RedirectToPage("/Shared/ADVotesRecord");
+        }
 
         public IActionResult OnPostRedirectToResults()
         {
             return RedirectToPage("/Shared/ADResults");
+        }
+
+        public IActionResult OnPostRedirectToManageCandidates()
+        {
+            return RedirectToPage("/Shared/ADManageCandidates");
+        }
+
+        public IActionResult OnPostRedirectToElectionsData()
+        {
+            return RedirectToPage("/Shared/ADElectionsData");
+        }
+
+
+        public IActionResult OnPostLogOut()
+        {
+            HttpContext.SignOutAsync();
+            return RedirectToPage("/Index");
         }
 
     }

@@ -1,0 +1,111 @@
+﻿@page
+@model votingsystem.Pages.Shared.ADViewBallotModel
+@{
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Vote Receipt</title>
+    <link rel="stylesheet" href="/css/ADViewBallot.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav class="sidebar">
+        <ul>
+            <li>
+                <form method="post" asp-page-handler="RedirectToDashboard">
+                    <button type="submit" class="sidebar-button">
+                        <i class="fas fa-chart-line"></i> Dashboard
+                    </button>
+                </form>
+            </li>
+            <li>
+                <form method="post" asp-page-handler="RedirectToManageElections">
+                    <button type="submit" class="sidebar-button">
+                        <i class="fas fa-vote-yea"></i> Manage Elections
+                    </button>
+                </form>
+            </li>
+            <li>
+                <form method="post" asp-page-handler="RedirectToManageCandidates">
+                    <button type="submit" class="sidebar-button">
+                        <i class="fas fa-users"></i> Manage Candidates
+                    </button>
+                </form>
+            </li>
+            <li>
+                <form method="post" asp-page-handler="RedirectToManageVoters">
+                    <button type="submit" class="sidebar-button">
+                        <i class="fas fa-users"></i> Manage Voters
+                    </button>
+                </form>
+            </li>
+            <li>
+                <form method="post" asp-page-handler="RedirectToVotesRecord">
+                    <button type="submit" class="sidebar-button">
+                        <i class="fas fa-list-alt"></i> Votes Record
+                    </button>
+                </form>
+            </li>
+            <li>
+                <form method="post" asp-page-handler="RedirectToElectionsData">
+                    <button type="submit" class="sidebar-button">
+                        <i class="fas fa-chart-line"></i> Elections Data
+                    </button>
+                </form>
+            </li>
+            <li>
+                <form method="post" asp-page-handler="RedirectToResults">
+                    <button type="submit" class="sidebar-button">
+                        <i class="fas fa-chart-bar"></i> Results
+                    </button>
+                </form>
+            </li>
+        </ul>
+        <div class="bottom-icon">
+            <form method="post" asp-page-handler="LogOut">
+                <button type="submit" class="logout-button">
+                    <i class="fas fa-sign-out-alt"></i> Log Out
+                </button>
+            </form>
+        </div>
+    </nav>
+    <div class="container">
+        <header>
+            <h1>Vote Receipt</h1>
+            <p><strong>Election:</strong> @Model.ElectionTitle</p>
+        </header>
+
+        <section class="vote-summary">
+            <div id="voted-container">
+                @if (Model.VotedCandidates != null && Model.VotedCandidates.Any())
+                {
+                    var groupedCandidates = Model.VotedCandidates.GroupBy(c => c.Position);
+
+                    foreach (var group in groupedCandidates)
+                    {
+                        <div class="position-group">
+                            <h3>Position: @group.Key</h3>
+                            <ul>
+                                @foreach (var candidate in group)
+                                {
+                                    <li>@candidate.Name (@candidate.PartyList)</li>
+                                }
+                            </ul>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <p>No ballot records found for this election.</p>
+                }
+            </div>
+        </section>
+
+        <form method="post" asp-page-handler="RedirectToVotesRecord">
+            <button type="submit" class="return-button">Back to Votes Record</button>
+        </form>
+    </div>
+</body>
+</html>

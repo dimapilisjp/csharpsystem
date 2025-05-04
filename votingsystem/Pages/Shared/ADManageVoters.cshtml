@@ -14,7 +14,6 @@
 </head>
 <body>
     <div class="wrapper">
-       
         <nav class="sidebar">
             <ul>
                 <li>
@@ -32,9 +31,30 @@
                     </form>
                 </li>
                 <li>
+                    <form method="post" asp-page-handler="RedirectToManageCandidates">
+                        <button type="submit" class="sidebar-button">
+                            <i class="fas fa-users"></i> Manage Candidates
+                        </button>
+                    </form>
+                </li>
+                <li>
                     <form method="post" asp-page-handler="RedirectToManageVoters">
                         <button type="submit" class="sidebar-button">
                             <i class="fas fa-users"></i> Manage Voters
+                        </button>
+                    </form>
+                </li>
+                <li>
+                    <form method="post" asp-page-handler="RedirectToVotesRecord">
+                        <button type="submit" class="sidebar-button">
+                            <i class="fas fa-list-alt"></i> Votes Record
+                        </button>
+                    </form>
+                </li>
+                <li>
+                    <form method="post" asp-page-handler="RedirectToElectionsData">
+                        <button type="submit" class="sidebar-button">
+                            <i class="fas fa-chart-line"></i> Elections Data
                         </button>
                     </form>
                 </li>
@@ -46,72 +66,97 @@
                     </form>
                 </li>
             </ul>
-            <div class="bottom-icons">
-                <a href="#"><i class="fas fa-cog"></i></a>
-                <a href="#"><i class="fas fa-bell"></i></a>
-                <a href="#"><i class="fas fa-user"></i></a>
+            <div class="bottom-icon">
+                <form method="post" asp-page-handler="LogOut">
+                    <button type="submit" class="logout-button">
+                        <i class="fas fa-sign-out-alt"></i> Log Out
+                    </button>
+                </form>
             </div>
         </nav>
-
-       
         <div class="main-content">
-
             <header>
                 <h1>Manage Voters</h1>
-                <input type="text" id="search-voters" placeholder="Search voters..." />
+                <input type="text" id="search-voters" placeholder="Search voters" />
             </header>
-
-
-           
             <section class="voter-table">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Id</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Email</th>
-                            <th>Address</th>
-                            <th>Password</th>
-                            <th>Month</th>
-                            <th>Day</th>
-                            <th>Year</th>
-                            <th>Username</th>
-                            <th>Age</th>
-                            <th>Role</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                       
-                        @foreach (var voter in Model.Voters)
-                        {
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Email</th>
+                                <th>Address</th>
+                                <th>Username</th>
+                                <th>Age</th>
+                                <th>Department</th>
+                                <th>Program</th>
+                                <th>School ID/Certificate of Registration</th>
+                                <th>Approval Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var voter in Model.Voters)
+                            {
                                 <tr>
-                                    <td>@voter.Id</td>
+                                    <td>@voter.Id</td>  
                                     <td>@voter.FirstName</td>
                                     <td>@voter.LastName</td>
                                     <td>@voter.Email</td>
                                     <td>@voter.Address</td>
-                                    <td>@voter.PasswordHash</td>
-                                    <td>@voter.Month</td>
-                                    <td>@voter.Day</td>
-                                    <td>@voter.Year</td>
                                     <td>@voter.UserName</td>
                                     <td>@voter.Age</td>
-                                    <td>@voter.Role</td>
+                                    <td>@voter.Department</td>
+                                    <td>@voter.Program</td>
                                     <td>
-                                    <form method="post" asp-page-handler="DeleteVoter" asp-route-id="@voter.Id">
-                                        <button type="submit" class="delete-button" onclick="return confirmDeletion('@voter.Id')">Delete</button>
-                                    </form>
-
+                                        @if (!string.IsNullOrEmpty(voter.PhotoPath))
+                                        {
+                                            <a href="@voter.PhotoPath" target="_blank">
+                                                <img src="@voter.PhotoPath" alt="Voter Photo" style="max-width: 100px; max-height: 100px; cursor: pointer;" />
+                                            </a>
+                                        }
+                                        else
+                                        {
+                                            <span>No Photo Uploaded</span>
+                                        }
                                     </td>
+                                    <td>
+                                        @if (voter.IsApproved)
+                                        {
+                                            <span class="approved-status">Approved</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="pending-status">Pending Approval</span>
+                                        }
+                                    </td>
+                                    <td>
+                                        @if (!voter.IsApproved)
+                                        {
+                                            <form method="post" asp-page-handler="ApproveVoter" asp-route-id="@voter.Id" onsubmit="return confirmApproval('@voter.FirstName', '@voter.LastName')">
+                                                <button type="submit" class="approve-button">Approve</button>
+                                            </form>
+                                            <form method="post" asp-page-handler="RejectVoter" asp-route-id="@voter.Id" onsubmit="return confirmRejection('@voter.FirstName', '@voter.LastName')">
+                                                <button type="submit" class="reject-button">Reject</button>
+                                            </form>
+                                        }
+                                        <form method="post" asp-page-handler="DeleteVoter" asp-route-id="@voter.Id" onsubmit="return confirmDeletion('@voter.Id')">
+                                            <button type="submit" class="delete-button">Delete</button>
+                                        </form>
+                                    </td>
+
                                 </tr>
-                        }
-                    </tbody>
-                </table>
+                            }
+                        </tbody>
+                    </table>
+                </div>
             </section>
         </div>
     </div>
 </body>
 </html>
+
 

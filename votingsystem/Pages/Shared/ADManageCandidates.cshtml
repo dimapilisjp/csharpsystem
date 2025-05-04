@@ -1,0 +1,211 @@
+﻿@page
+@model votingsystem.Pages.Shared.ADManageCandidatesModel
+@{
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Manage Elections</title>
+    <link rel="stylesheet" href="/css/ADManageCandidates.css">
+    <script defer src="/js/ADManageElections.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="wrapper">
+        <nav class="sidebar">
+            <ul>
+                <li>
+                    <form method="post" asp-page-handler="RedirectToDashboard">
+                        <button type="submit" class="sidebar-button">
+                            <i class="fas fa-chart-line"></i> Dashboard
+                        </button>
+                    </form>
+                </li>
+                <li>
+                    <form method="post" asp-page-handler="RedirectToManageElections">
+                        <button type="submit" class="sidebar-button">
+                            <i class="fas fa-vote-yea"></i> Manage Elections
+                        </button>
+                    </form>
+                </li>
+                <li>
+                    <form method="post" asp-page-handler="RedirectToManageCandidates">
+                        <button type="submit" class="sidebar-button">
+                            <i class="fas fa-users"></i> Manage Candidates
+                        </button>
+                    </form>
+                </li>
+                <li>
+                    <form method="post" asp-page-handler="RedirectToManageVoters">
+                        <button type="submit" class="sidebar-button">
+                            <i class="fas fa-users"></i> Manage Voters
+                        </button>
+                    </form>
+                </li>
+                <li>
+                    <form method="post" asp-page-handler="RedirectToVotesRecord">
+                        <button type="submit" class="sidebar-button">
+                            <i class="fas fa-list-alt"></i> Votes Record
+                        </button>
+                    </form>
+                </li>
+                <li>
+                    <form method="post" asp-page-handler="RedirectToElectionsData">
+                        <button type="submit" class="sidebar-button">
+                            <i class="fas fa-chart-line"></i> Elections Data
+                        </button>
+                    </form>
+                </li>
+                <li>
+                    <form method="post" asp-page-handler="RedirectToResults">
+                        <button type="submit" class="sidebar-button">
+                            <i class="fas fa-chart-bar"></i> Results
+                        </button>
+                    </form>
+                </li>
+            </ul>
+            <div class="bottom-icon">
+                <form method="post" asp-page-handler="LogOut">
+                    <button type="submit" class="logout-button">
+                        <i class="fas fa-sign-out-alt"></i> Log Out
+                    </button>
+                </form>
+            </div>
+        </nav>
+        <div class="main-content">
+            @if (TempData["Message"] != null)
+            {
+                <div class="alert">
+                    @TempData["Message"]
+                </div>
+            }
+            <header>
+                <h1>Manage Candidates</h1>
+                <input type="text" id="search-candidates" placeholder="Search" />
+            </header>
+
+            <section class="create-candidate-section">
+                <h2>Create Candidate</h2>
+                <form id="candidateForm" method="post" asp-page-handler="CreateCandidate" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="Candidate.Name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="age">Age</label>
+                        <input type="number" id="age" name="Candidate.Age" required min="18">
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Address</label>
+                        <input type="text" id="address" name="Candidate.Address" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="position">Position</label>
+                        <select id="position" name="Candidate.Position" required>
+                            <option value="">Select Position</option>
+                            <option value="President">President</option>
+                            <option value="Vice President">Vice President</option>
+                            <option value="Secretary">Secretary</option>
+                            <option value="Treasurer">Treasurer</option>
+                            <option value="Auditor">Auditor</option>
+                            <option value="PRO">Public Relations Officer</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="partyList">Partylist</label>
+                        <input type="text" id="partyList" name="Candidate.PartyList" required>
+                    </div>
+                    <div class="row">
+                        <select id="department" name="Candidate.Department" placeholder="Department" required>
+                            <option value="" selected disabled>Select Department</option>
+                            <option value="CCS">College of Computing Studies (CCS)</option>
+                            <option value="CAS">College of Arts and Sciences (CAS)</option>
+                            <option value="CoEng">College of Engineering (CoEng)</option>
+                            <option value="CBAA">College of Business Administration and Accountancy (CBAA)</option>
+                            <option value="CoEd">College of Education (CoEd)</option>
+                        </select>
+                    </div>
+                    <div class="row">
+                        <select id="program" name="Candidate.Program" placeholder="Program" required>
+                            <option value="" selected disabled>Select Program</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="electionId">Assign to Election</label>
+                        <select id="electionId" name="Candidate.ElectionId" required>
+                            <option value="">Select Election</option>
+                            @foreach (var election in Model.UpcomingElections)
+                            {
+                                <option value="@election.ElectionId">@election.Title</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="candidateImage">Upload Image</label>
+                        <input type="file" id="candidateImage" name="candidateImage" accept="image/*" required>
+
+                    </div>
+                    <button type="submit" class="primary-button">Add Candidate</button>
+                </form>
+            </section>
+            <section class="candidate-table">
+                <h2>Candidates</h2>
+                <div class="table-container">
+                    <table id="candidatesTable">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Age</th>
+                                <th>Address</th>
+                                <th>Position</th>
+                                <th>Partylist</th>
+                                <th>Election ID</th>
+                                <th>Department</th>
+                                <th>Program</th>
+                                <th>Image</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var candidate in Model.Candidates)
+                            {
+                                <tr>
+                                    <td>@candidate.Id</td>
+                                    <td>@candidate.Name</td>
+                                    <td>@candidate.Age</td>
+                                    <td>@candidate.Address</td>
+                                    <td>@candidate.Position</td>
+                                    <td>@candidate.PartyList</td>
+                                    <td>@candidate.ElectionId</td>
+                                    <td>@candidate.Department</td>
+                                    <td>@candidate.Program</td>
+                                    <td>
+                                        @if (!string.IsNullOrEmpty(candidate.PictureUrl))
+                                        {
+                                            <a href="@candidate.PictureUrl" target="_blank">
+                                                <img src="@candidate.PictureUrl" alt="Candidate Photo" style="max-width: 100px; max-height: 100px; cursor: pointer;" />
+                                            </a>
+                                        }
+                                        else
+                                        {
+                                            <span>No Photo Uploaded</span>
+                                        }
+                                    </td>
+                                    <td>
+                                        <form method="post" asp-page-handler="DeleteCandidate" asp-route-id="@candidate.Id">
+                                            <button type="submit" class="delete-button">Delete</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </div>
+</body>
+</html>

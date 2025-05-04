@@ -5,19 +5,17 @@ using Microsoft.EntityFrameworkCore;
 using MySql.Data.MySqlClient;
 using Org.BouncyCastle.Crypto.Generators;
 using votingsystem.Database_Helper;
+using static votingsystem.Pages.RegistrationModel;
 
 
 namespace votingsystem.Pages
 {
     public class RegistrationModel : PageModel
     {
-        public IActionResult OnPostRedirectToLogin()
-        {
-            return RedirectToPage("/Index"); // redirect to login page
-        }
 
         public class User
         {
+            public int Id { get; set; }
             [Required(ErrorMessage = "First Name is required")]
             public string FirstName { get; set; }
 
@@ -43,6 +41,9 @@ namespace votingsystem.Pages
             public string PasswordHash { get; set; }
 
             public int Age { get; set; }
+            public string Department { get; set; }
+            public string Program { get; set; }
+            public string PhotoPath { get; set; }
         }
 
         public class DbHelper
@@ -56,78 +57,90 @@ namespace votingsystem.Pages
 
         
         }
+        [BindProperty]
+        public User Input { get; set; }
+        [BindProperty]
+        public string Message { get; set; }
+
 
 
         private readonly DbHelper _DbHelper;
 
-        //public RegistrationModel()
-        //{
-        //    string connectionString = "YourConnectionStringHere"; 
-        //    _DbHelper = new DbHelper(connectionString);
-        //}
-
-        [BindProperty]
-        public User Input { get; set; }
-
-        public IActionResult OnPost()
+        public IActionResult OnPostRedirectToLogin()
         {
-            Console.WriteLine("Form submitted. Inspecting ModelState...");
+            return RedirectToPage("/Index"); 
+        }
 
-            
-            if (!ModelState.IsValid)
-            {
-                Console.WriteLine("ModelState is invalid. Errors:");
-                foreach (var error in ModelState)
-                {
-                    Console.WriteLine($"Key: {error.Key}, Error: {error.Value.Errors.FirstOrDefault()?.ErrorMessage}");
-                }
-                ViewData["ErrorMessage"] = "Please fill in all the required fields.";
-                return Page(); 
-            }
+        public IActionResult OnPostRegisterUser(User user, IFormFile photoFile)
+        {
+            Console.WriteLine($"Form submitted: FirstName={user.FirstName}, LastName={user.LastName}, Email={user.Email} Department={user.Department}");
 
-            int monthNumber = GetMonthNumber(Input.Month); 
-            DateTime birthDate = new DateTime(Input.Year, monthNumber, Input.Day);
-            int age = CalculateAge(birthDate); 
-            Input.Age = age; 
-            Console.WriteLine($"Calculated Age: {Input.Age}");
+            // Calculate age based on birthdate
+            int monthNumber = GetMonthNumber(user.Month);
+            DateTime birthDate = new DateTime(user.Year, monthNumber, user.Day);
+            int age = CalculateAge(birthDate);
+            user.Age = age;
 
+            Console.WriteLine($"Calculated Age: {user.Age}");
             if (age < 18)
             {
-                ViewData["ErrorMessage"] = "You must be at least 18 years old to register.";
+                TempData["Message"] = "You must be at least 18 years old to register.";
                 Console.WriteLine("User is underaged. Registration blocked.");
-                return Page(); 
+                return Page(); // Stay on the registration page
             }
 
+            // Handle photo upload
+            if (photoFile != null)
+            {
+                Console.WriteLine($"Image received: {photoFile.FileName}, Size: {photoFile.Length} bytes");
+            }
+            else
+            {
+                Console.WriteLine("No photo file received.");
+                TempData["Message"] = "Photo file (School ID / Certificate of Registration) is required.";
+                return Page(); // Stay on the registration page
+            }
 
-            Console.WriteLine($"Received Data - FirstName: {Input.FirstName}, LastName: {Input.LastName}, Email: {Input.Email}, Password: {Input.PasswordHash}");
+            if (photoFile != null && photoFile.Length > 0)
+            {
+                var uploadsFolder = Path.Combine("wwwroot", "images");
+                Directory.CreateDirectory(uploadsFolder);
 
+                var fileName = Guid.NewGuid().ToString() + Path.GetExtension(photoFile.FileName);
+                var filePath = Path.Combine(uploadsFolder, fileName);
+
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    photoFile.CopyTo(stream);
+                }
+
+                user.PhotoPath = $"/images/{fileName}";
+            }
+            else
+            {
+                TempData["Message"] = "Photo file is required.";
+                return Page(); // Stay on the registration page
+            }
+
+            // Hash the password using BCrypt
             Console.WriteLine("Hashing password...");
-            string hashedPassword = BCrypt.Net.BCrypt.HashPassword(Input.PasswordHash);
-            Input.PasswordHash = hashedPassword; 
-            Console.WriteLine($"Hashed Password: {Input.PasswordHash}");
+            user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(user.PasswordHash);
+            Console.WriteLine($"Hashed Password: {user.PasswordHash}");
 
-            
-            Console.WriteLine("Calling RegisterUser method...");
-            bool isRegistered = votingsystem.Database_Helper.DbHelper.RegisterUser(Input);
+            // Register user in the database
+            bool isRegistered = votingsystem.Database_Helper.DbHelper.RegisterUser(user);
 
-            
             if (!isRegistered)
             {
                 Console.WriteLine("Registration failed - Username or Email might already exist.");
-                ViewData["ErrorMessage"] = "Registration failed. Username or email may already be in use.";
-                return Page(); 
+                TempData["Message"] = "Registration failed. Username or email may already be in use.";
+                return Page(); // Stay on the registration page
             }
 
-            Console.WriteLine($"FirstName: {Input.FirstName}");
-            Console.WriteLine($"LastName: {Input.LastName}");
-            Console.WriteLine($"Email: {Input.Email}");
-            Console.WriteLine($"UserName: {Input.UserName}");
-            Console.WriteLine($"PasswordHash: {Input.PasswordHash}");
-            Console.WriteLine("Registration succeeded.");
-
-            ViewData["SuccessMessage"] = "You have successfully registered! Please proceed to the login page.";
-            return Page(); 
+            TempData["Message"] = "User successfully registered. Please wait for admin approval.";
+            return RedirectToPage("/Registration"); // Redirect to registration success page
         }
+
 
 
         private int GetMonthNumber(string month)

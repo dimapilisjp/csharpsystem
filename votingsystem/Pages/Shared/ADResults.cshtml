@@ -10,9 +10,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Election Results</title>
-    <link rel="stylesheet" href="/css/ADManageVoters.css">
+    <link rel="stylesheet" href="/css/ADResults.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script defer src="/js/UPResults.js"></script>
+    <script defer src="/js/ADResults.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
@@ -33,9 +33,30 @@
                 </form>
             </li>
             <li>
+                <form method="post" asp-page-handler="RedirectToManageCandidates">
+                    <button type="submit" class="sidebar-button">
+                        <i class="fas fa-users"></i> Manage Candidates
+                    </button>
+                </form>
+            </li>
+            <li>
                 <form method="post" asp-page-handler="RedirectToManageVoters">
                     <button type="submit" class="sidebar-button">
                         <i class="fas fa-users"></i> Manage Voters
+                    </button>
+                </form>
+            </li>
+            <li>
+                <form method="post" asp-page-handler="RedirectToVotesRecord">
+                    <button type="submit" class="sidebar-button">
+                        <i class="fas fa-list-alt"></i> Votes Record
+                    </button>
+                </form>
+            </li>
+            <li>
+                <form method="post" asp-page-handler="RedirectToElectionsData">
+                    <button type="submit" class="sidebar-button">
+                        <i class="fas fa-chart-line"></i> Elections Data
                     </button>
                 </form>
             </li>
@@ -47,25 +68,31 @@
                 </form>
             </li>
         </ul>
-        <div class="bottom-icons">
-            <a href="#"><i class="fas fa-cog"></i></a>
-            <a href="#"><i class="fas fa-bell"></i></a>
-            <a href="#"><i class="fas fa-user"></i></a>
+        <div class="bottom-icon">
+            <form method="post" asp-page-handler="LogOut">
+                <button type="submit" class="logout-button">
+                    <i class="fas fa-sign-out-alt"></i> Log Out
+                </button>
+            </form>
         </div>
     </nav>
     <div class="container">
-        @if (Model.ElectionData != null && Model.ElectionData.Any())
-        {
-            @foreach (var election in Model.ElectionData.GroupBy(e => e.ElectionId))
+        <h2>Live Election Results</h2>
+        <label for="election-select">Choose an Election:</label>
+        <select id="election-select">
+            @foreach (var election in Model.AllElections)
             {
-                <h3>Election @election.Key Live Results Tally</h3>
-                <canvas id="chart-@election.Key" width="400" height="200"></canvas>
+                <option value="@election.ElectionId">@election.Title</option>
             }
-        }
-        else
-        {
-            <p>No results available for this election.</p>
-        }
+        </select>
+
+        <div id="chart-container">
+            @foreach (var election in Model.AllElections)
+            {
+                <h3>Election @election.ElectionId Live Results Tally</h3>
+                <canvas id="chart-@election.ElectionId" width="400" height="200"></canvas>
+            }
+        </div>
     </div>
 </body>
 </html>

@@ -12,102 +12,77 @@
 }
 
 .sidebar {
-    position: fixed;
     width: 250px;
     background-color: #5e4b82;
     color: #fff;
     padding: 20px;
     height: 100vh;
     position: fixed;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-
+    top: 0;
+    left: 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 }
 
     .sidebar ul {
         list-style-type: none;
         padding: 0;
-        margin: 0;
     }
 
         .sidebar ul li {
             margin: 15px 0;
         }
 
-            .sidebar ul li form {
-                display: flex;
-                align-items: center;
-                font-size: 16px;
-                color: #fff;
-                background-color: transparent;
-                padding: 12px;
-                border-radius: 8px;
-                transition: background-color 0.4s ease, box-shadow 0.3s ease, transform 0.3s ease;
-                cursor: pointer;
-                border: none;
-                text-decoration: none;
-            }
-
-                .sidebar ul li form:hover {
-                    background-color: #836fa9; 
-                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
-                    transform: scale(1.03); 
-                }
-
-                .sidebar ul li form button {
-                    all: unset;
-                    display: flex;
-                    align-items: center;
-                    font-size: 16px;
-                    color: inherit;
-                    cursor: pointer;
-                }
-
-            .sidebar ul li i {
-                margin-right: 10px;
-                font-size: 18px;
-            }
-
-.bottom-icons {
-    position: absolute;
-    bottom: 20px;
-    width: 100%;
-    text-align: center;
-    gap: 15px; 
+.sidebar-button,
+.logout-button {
     display: flex;
-    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    text-decoration: none;
+    color: #fff;
+    background-color: transparent;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    border: none;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
 }
 
-    .bottom-icons a {
-        color: #fff;
-        font-size: 20px;
-        text-decoration: none;
-        transition: color 0.3s ease, transform 0.3s ease;
+    .sidebar-button:hover,
+    .logout-button:hover {
+        background-color: #4a3b68;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     }
 
-        .bottom-icons a:hover {
-            color: #f5f5dc;
-        }
+    .sidebar-button i,
+    .logout-button i {
+        margin-right: 10px;
+    }
 
-
-
-.bottom-icons {
+.bottom-icon {
     position: absolute;
     bottom: 20px;
-    width: 100%;
+    width: calc(100% - 40px);
     text-align: center;
 }
 
-    .bottom-icons a {
-        color: #fff;
-        text-decoration: none;
-        margin: 0 10px;
-        font-size: 18px;
-        transition: color 0.3s ease;
-    }
+.logout-button {
+    background-color: #d9534f;
+    color: #fff;
+    font-size: 16px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    width: 100%;
+}
 
-        .bottom-icons a:hover {
-            color: #f5f5dc;
-        }
+    .logout-button:hover {
+        background-color: #c9302c;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
 
 .main-content {
     margin-left: 250px;
@@ -137,7 +112,7 @@ header {
 }
 
 .voter-table th, .voter-table td {
-    padding: 10px;
+    padding: 12px 15px;
     text-align: left;
     border: 1px solid #ddd;
 }
@@ -157,7 +132,7 @@ header {
 }
 
 .delete-button {
-    background-color: #dc3545;
+    background-color: #d9534f;
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -167,5 +142,79 @@ header {
 }
 
     .delete-button:hover {
-        background-color: #b02a37;
+        background-color: #c9302c;
+    }
+
+.approved-status {
+    color: green;
+    font-weight: bold;
+}
+
+.pending-status {
+    color: orange;
+    font-weight: bold;
+}
+
+.approve-button {
+    background-color: green;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.reject-button {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.approval-form {
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background: #fff;
+    padding: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    text-align: left;
+}
+
+th, td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    white-space: nowrap;
+}
+
+th {
+    background: #5e4b82;
+    color: #fff;
+    font-weight: bold;
+}
+
+.delete-button {
+    background: #e74c3c;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+    .delete-button:hover {
+        background: #c0392b;
     }

@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using static votingsystem.Pages.Shared.ADManageElectionsModel;
+using static votingsystem.Pages.Shared.ADManageCandidatesModel;
+using Microsoft.AspNetCore.Authentication;
 
 namespace votingsystem.Pages.Shared
 {
@@ -16,6 +18,21 @@ namespace votingsystem.Pages.Shared
             public string Position { get; set; }
         }
         public int ElectionId { get; set; }
+
+        public IActionResult OnPostRedirectToBallot()
+        {
+            return RedirectToPage("/Shared/UPMyBallots");
+        }
+
+        public IActionResult OnPostRedirectToHome()
+        {
+            return RedirectToPage("/Shared/UserPage");
+        }
+        public IActionResult OnPostLogout()
+        {
+            HttpContext.SignOutAsync();
+            return RedirectToPage("/Index");
+        }
 
         public void OnGet(int electionId)
         {

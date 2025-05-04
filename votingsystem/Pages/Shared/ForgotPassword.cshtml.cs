@@ -11,17 +11,17 @@ namespace votingsystem.Pages.Shared
 
         public IActionResult OnPostForgotPassword(string email)
         {
-            // Validate email
+            // validate email
             if (string.IsNullOrWhiteSpace(email)) return BadRequest("Invalid email address.");
 
             if (!Database_Helper.DbHelper.CheckIfEmailExist(email))
                 return BadRequest("Email not found.");
 
-            // Generate token and save
+            // generate token and save
             string token = Guid.NewGuid().ToString();
             Database_Helper.DbHelper.SaveResetToken(email, token);
 
-            // Send reset link
+            // send reset link
             string resetLink = Url.Page("/ResetPassword", null, new { token }, Request.Scheme);
             SendResetEmail(email, resetLink);
 
@@ -31,14 +31,14 @@ namespace votingsystem.Pages.Shared
 
         public IActionResult OnPostSendResetLink(string Email)
         {
-            // Validate the entered email
+            // validate the entered email
             if (string.IsNullOrWhiteSpace(Email))
             {
                 Message = "Please enter a valid email address.";
                 return Page();
             }
 
-            // Check if the email exists in the database
+            // check if the email exists in the database
             bool userExists = Database_Helper.DbHelper.CheckIfEmailExist(Email);
             if (!userExists)
             {
@@ -46,13 +46,13 @@ namespace votingsystem.Pages.Shared
                 return Page();
             }
 
-            // Generate reset token and URL
-            string resetToken = Guid.NewGuid().ToString(); // Generate token
-            string resetUrl = Url.Page("/Shared/ResetPassword", null, new { token = resetToken }, "https"); // Generate URL
+            // generates reset token and URL
+            string resetToken = Guid.NewGuid().ToString(); 
+            string resetUrl = Url.Page("/Shared/ResetPassword", null, new { token = resetToken }, "https"); 
             Console.WriteLine($"Generated Reset URL: {resetUrl}");
             SendResetEmail(Email, resetUrl);
 
-            // Save the reset token
+            // save the reset token
             try
             {
                 Database_Helper.DbHelper.SaveResetToken(Email, resetToken);
@@ -64,7 +64,7 @@ namespace votingsystem.Pages.Shared
                 return Page();
             }
 
-            // Send reset link via email
+            // send reset link via email
             try
             {
                 SendResetEmail(Email, resetUrl);
@@ -79,8 +79,6 @@ namespace votingsystem.Pages.Shared
             return Page();
         }
 
-
-        // Helper: Send Reset Email
         private void SendResetEmail(string email, string resetUrl)
         {
             var smtpClient = new SmtpClient("smtp.gmail.com")

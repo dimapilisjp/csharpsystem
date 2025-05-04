@@ -18,6 +18,8 @@
     padding: 20px;
     height: 100vh;
     position: fixed;
+    top: 0;
+    left: 0;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 }
 
@@ -64,23 +66,31 @@
                 padding: 0;
             }
 
-.bottom-icons {
+.bottom-icon {
     position: absolute;
     bottom: 20px;
     width: 100%;
     text-align: center;
 }
 
-    .bottom-icons a {
-        color: #fff;
-        text-decoration: none;
-        margin: 0 10px;
-        font-size: 18px;
-        transition: color 0.3s ease;
+    .bottom-icon form {
+        margin: 0;
     }
 
-        .bottom-icons a:hover {
-            color: #f5f5dc;
+    .bottom-icon button {
+        background-color: #d9534f;
+        color: #fff;
+        font-size: 16px;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+        .bottom-icon button:hover {
+            background-color: #c9302c;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
         }
 
 .main-content {

@@ -10,19 +10,4 @@
     function confirmDeletion(voterId) {
         return confirm(`Are you sure you want to delete voter with ID ${voterId}?`);
     }
-
-
-    //const searchInput = document.getElementById("search-voters");
-    //const tableRows = document.querySelectorAll(".voter-table tbody tr");
-
-    //if (searchInput) {
-    //    searchInput.addEventListener("input", function () {
-    //        const searchText = this.value.toLowerCase();
-
-    //        tableRows.forEach(row => {
-    //            const rowText = row.textContent.toLowerCase();
-    //            row.style.display = rowText.includes(searchText) ? "" : "none";
-    //        });
-    //    });
-    //}
 });

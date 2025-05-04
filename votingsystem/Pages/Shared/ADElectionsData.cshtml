@@ -1,0 +1,144 @@
+﻿@page
+@model votingsystem.Pages.Shared.ADElectionsDataModel
+@{
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Elections Data</title>
+    <link rel="stylesheet" href="/css/ADElectionsData.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script defer src="/js/ADElectionsData.js"></script>
+</head>
+<body>
+    <nav class="sidebar">
+        <ul>
+            <li>
+                <form method="post" asp-page-handler="RedirectToDashboard">
+                    <button type="submit" class="sidebar-button">
+                        <i class="fas fa-chart-line"></i> Dashboard
+                    </button>
+                </form>
+            </li>
+            <li>
+                <form method="post" asp-page-handler="RedirectToManageElections">
+                    <button type="submit" class="sidebar-button">
+                        <i class="fas fa-vote-yea"></i> Manage Elections
+                    </button>
+                </form>
+            </li>
+            <li>
+                <form method="post" asp-page-handler="RedirectToManageCandidates">
+                    <button type="submit" class="sidebar-button">
+                        <i class="fas fa-users"></i> Manage Candidates
+                    </button>
+                </form>
+            </li>
+            <li>
+                <form method="post" asp-page-handler="RedirectToManageVoters">
+                    <button type="submit" class="sidebar-button">
+                        <i class="fas fa-users"></i> Manage Voters
+                    </button>
+                </form>
+            </li>
+            <li>
+                <form method="post" asp-page-handler="RedirectToVotesRecord">
+                    <button type="submit" class="sidebar-button">
+                        <i class="fas fa-list-alt"></i> Votes Record
+                    </button>
+                </form>
+            </li>
+            <li>
+                <form method="post" asp-page-handler="RedirectToElectionsData">
+                    <button type="submit" class="sidebar-button">
+                        <i class="fas fa-chart-line"></i> Elections Data
+                    </button>
+                </form>
+            </li>
+            <li>
+                <form method="post" asp-page-handler="RedirectToResults">
+                    <button type="submit" class="sidebar-button">
+                        <i class="fas fa-chart-bar"></i> Results
+                    </button>
+                </form>
+            </li>
+        </ul>
+        <div class="bottom-icon">
+            <form method="post" asp-page-handler="LogOut">
+                <button type="submit" class="logout-button">
+                    <i class="fas fa-sign-out-alt"></i> Log Out
+                </button>
+            </form>
+        </div>
+    </nav>
+    <div class="container">
+        <header>
+            <h1>Elections Data</h1>
+            <select id="election-dropdown">
+                <option value="">Select Election</option>
+                @foreach (var election in Model.AvailableElections)
+                {
+                    <option value="@election.ElectionId">@election.Title</option>
+                }
+            </select>
+        </header>
+
+        <section class="voter-summary">
+            <h2>Voter Turnout</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Department</th>
+                        <th>Program</th>
+                        <th>Registered Voters</th>
+                        <th>Users Voted</th>
+                        <th>Turnout %</th>
+                    </tr>
+                </thead>
+                <tbody id="voter-stats">
+                    @foreach (var stat in Model.VoterStatistics)
+                    {
+                        <tr>
+                            <td>@stat.Department</td>
+                            <td>@stat.Program</td>
+                            <td>@stat.TotalVoters</td>
+                            <td>@stat.UsersVoted</td>
+                            <td>@($"{stat.VotePercentage}%")</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </section>
+        <section class="vote-comparison">
+            <h2>Candidate Vote Distribution</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Position</th>
+                        <th>Candidate</th>
+                        <th>Votes</th>
+                        <th>Percentage</th>
+                    </tr>
+                </thead>
+                <tbody id="candidate-stats">
+                    @foreach (var comparison in Model.VoteCompare)
+                    {
+                        <tr>
+                            <td>@comparison.Position</td>
+                            <td>@comparison.CandidateName</td>
+                            <td>@comparison.VoteCount</td>
+                            <td>@($"{comparison.VotePercentage}%")</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <div id="vote-chart-container" class="chart-section"></div>
+        </section>
+        <form method="post" asp-page-handler="RedirectToDashboard">
+            <button type="submit" class="return-button">Back to Dashboard</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -14,7 +14,6 @@
 </head>
 <body>
     <div class="wrapper">
-
         <nav class="sidebar">
             <ul>
                 <li>
@@ -32,9 +31,30 @@
                     </form>
                 </li>
                 <li>
+                    <form method="post" asp-page-handler="RedirectToManageCandidates">
+                        <button type="submit" class="sidebar-button">
+                            <i class="fas fa-users"></i> Manage Candidates
+                        </button>
+                    </form>
+                </li>
+                <li>
                     <form method="post" asp-page-handler="RedirectToManageVoters">
                         <button type="submit" class="sidebar-button">
                             <i class="fas fa-users"></i> Manage Voters
+                        </button>
+                    </form>
+                </li>
+                <li>
+                    <form method="post" asp-page-handler="RedirectToVotesRecord">
+                        <button type="submit" class="sidebar-button">
+                            <i class="fas fa-list-alt"></i> Votes Record
+                        </button>
+                    </form>
+                </li>
+                <li>
+                    <form method="post" asp-page-handler="RedirectToElectionsData">
+                        <button type="submit" class="sidebar-button">
+                            <i class="fas fa-chart-line"></i> Elections Data
                         </button>
                     </form>
                 </li>
@@ -46,13 +66,14 @@
                     </form>
                 </li>
             </ul>
-            <div class="bottom-icons">
-                <a href="#"><i class="fas fa-cog"></i></a>
-                <a href="#"><i class="fas fa-bell"></i></a>
-                <a href="#"><i class="fas fa-user"></i></a>
+            <div class="bottom-icon">
+                <form method="post" asp-page-handler="LogOut">
+                    <button type="submit" class="logout-button">
+                        <i class="fas fa-sign-out-alt"></i> Log Out
+                    </button>
+                </form>
             </div>
         </nav>
-
         <div class="main-content">
             @if (TempData["Message"] != null)
             {
@@ -78,6 +99,22 @@
                         <label for="description">Description</label>
                         <textarea id="description" name="Election.Description">@Model.EditElection?.Description</textarea>
                     </div>
+                    <div class="row">
+                        <select id="department" name="Election.Department" placeholder="Department" required>
+                            <option value="" disabled selected>Select Department</option>
+                            <option value="CCS"> College of Computing Studies (CCS)</option>
+                            <option value="CAS">College of Arts and Sciences (CAS)</option>
+                            <option value="CoEng">College of Engineering (CoEng)</option>
+                            <option value="CBAA">College of Business Administration and Accountancy (CBAA)</option>
+                            <option value="CoEd">College of Education (CoEd)</option>
+                            <option value="ALL">All Departments</option>
+                        </select>
+                    </div>
+                    <div class="row">
+                        <select id="program" name="Election.Program" placeholder="Program">
+                            <option value="" disabled selected>Select Program</option>
+                        </select>
+                    </div>
                     <div class="form-group">
                         <label for="start-time">Start Time</label>
                         <input type="datetime-local" id="start-time" name="Election.StartTime" value="@Model.EditElection?.StartTime.ToString("yyyy-MM-ddTHH:mm")" required>
@@ -90,146 +127,69 @@
                 </form>
             </section>
 
-
             <section class="election-list-section">
                 <h2>Elections</h2>
-                <table id="electionsTable">
-                    <thead>
-                        <tr>
-                            <th>ElectionId</th>
-                            <th>Title</th>
-                            <th>Description</th>
-                            <th>Start Time</th>
-                            <th>End Time</th>
-                            <th>Status</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var election in Model.Elections)
-                        {
+                <div class="table-container">
+                    <table id="electionsTable">
+                        <thead>
                             <tr>
-                                <td>@election.ElectionId</td>
-                                <td>@election.Title</td>
-                                <td>@(election.Description ?? "No description provided")</td>
-                                <td>@election.StartTime</td>
-                                <td>@election.EndTime</td>
-                                <td>
-                                    @if (DateTime.UtcNow < election.StartTime)
-                                    {
-                                        <span class="status upcoming">Upcoming</span>
-                                    }
-                                    else if (DateTime.UtcNow >= election.StartTime && DateTime.UtcNow <= election.EndTime)
-                                    {
-                                        <span class="status active">Active</span>
-                                    }
-                                    else
-                                    {
-                                        <span class="status closed">Closed</span>
-                                    }
-                                </td>
-                                <td>
-                                    <form method="post" asp-page-handler="DeleteElection" asp-route-id="@election.ElectionId" style="display:inline;">
-                                        <button type="submit" class="delete-button">Delete</button>
-                                    </form>
-                                    <form method="get" asp-page-handler="EditElection" asp-route-id="@election.ElectionId" style="display:inline;">
-                                        <button type="submit" class="edit-button">Edit</button>
-                                    </form>
-                                </td>
+                                <th>ElectionId</th>
+                                <th>Title</th>
+                                <th>Description</th>
+                                <th>Start Time</th>
+                                <th>End Time</th>
+                                <th>Department</th>
+                                <th>Program</th>
+                                <th>Status</th>
+                                <th>Actions</th>
                             </tr>
-                        }
-                    </tbody>
-                </table>
-            </section>
-            <section class="create-candidate-section">
-                <h2>Create Candidate</h2>
-                <form id="candidateForm" method="post" asp-page-handler="CreateCandidate" enctype="multipart/form-data">
-                    <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" id="name" name="Candidate.Name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="age">Age</label>
-                        <input type="number" id="age" name="Candidate.Age" required min="18">
-                    </div>
-                    <div class="form-group">
-                        <label for="address">Address</label>
-                        <input type="text" id="address" name="Candidate.Address" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="position">Position</label>
-                        <select id="position" name="Candidate.Position" required>
-                            <option value="">Select Position</option>
-                            <option value="President">President</option>
-                            <option value="Vice President">Vice President</option>
-                            <option value="Secretary">Secretary</option>
-                            <option value="Treasurer">Treasurer</option>
-                            <option value="Auditor">Auditor</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="partyList">Partylist</label>
-                        <input type="text" id="partyList" name="Candidate.PartyList" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="electionId">Assign to Election</label>
-                        <select id="electionId" name="Candidate.ElectionId" required>
-                            <option value="">Select Election</option>
-                            @foreach (var election in Model.UpcomingElections)
+                        </thead>
+                        <tbody>
+                            @foreach (var election in Model.Elections)
                             {
-                                <option value="@election.ElectionId">@election.Title</option>
+                                <tr>
+                                    <td>@election.ElectionId</td>
+                                    <td>@election.Title</td>
+                                    <td>@election.Description</td>
+                                    <td>@election.StartTime</td>
+                                    <td>@election.EndTime</td>
+                                    <td>@election.Department</td>
+                                    <td>@election.Program</td>
+                                    <td>
+                                        @{
+                                            var currentTime = DateTime.UtcNow;
+                                            var electionEndTime = election.EndTime.ToUniversalTime();
+                                            var electionStartTime = election.StartTime.ToUniversalTime();
+
+                                            if (currentTime < electionStartTime)
+                                            {
+                                                <span class="status upcoming">Upcoming</span>
+                                            }
+                                            else if (currentTime >= electionStartTime && currentTime < electionEndTime)
+                                            {
+                                                <span class="status active">Active</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="status closed">Closed</span>
+                                            }
+                                        }
+                                    </td>
+
+                                    <td>
+                                        <form method="post" asp-page-handler="DeleteElection" asp-route-id="@election.ElectionId" style="display:inline;">
+                                            <button type="submit" class="delete-button">Delete</button>
+                                        </form>
+                                        <form method="get" asp-page-handler="EditElection" asp-route-id="@election.ElectionId" style="display:inline;">
+                                            <button type="submit" class="edit-button">Edit</button>
+                                        </form>
+                                    </td>
+                                </tr>
                             }
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="candidateImage">Upload Image</label>
-                        <input type="file" id="candidateImage" name="candidateImage" accept="image/*" required>
-
-                    </div>
-                    <button type="submit" class="primary-button">Add Candidate</button>
-                </form>
-            </section>
-
-            <section class="candidate-table">
-                <h2>Candidates</h2>
-                <table id="candidatesTable">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Age</th>
-                            <th>Address</th>
-                            <th>Position</th>
-                            <th>Partylist</th>
-                            <th>Election ID</th>
-                            <th>Image</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var candidate in Model.Candidates)
-                        {
-                            <tr>
-                                <td>@candidate.Id</td>
-                                <td>@candidate.Name</td>
-                                <td>@candidate.Age</td>
-                                <td>@candidate.Address</td>
-                                <td>@candidate.Position</td>
-                                <td>@candidate.PartyList</td>
-                                <td>@candidate.ElectionId</td>
-                                <td>
-                                    <img src="@candidate.PictureUrl" alt="Candidate Image" width="50">
-                                </td>
-                                <td>
-                                    <form method="post" asp-page-handler="DeleteCandidate" asp-route-id="@candidate.Id">
-                                        <button type="submit" class="delete-button">Delete</button>
-                                    </form>
-                                </td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-            </section>
+                        </tbody>
+                    </table>
+                </div>
+            </section>           
         </div>
     </div>
 </body>

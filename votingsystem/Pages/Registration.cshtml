@@ -16,35 +16,58 @@
 <body>
     <div class="wrapper">
         <div class="title">Create an Account</div>
-        <form method="post">
+        <form method="post" enctype="multipart/form-data" asp-page-handler="RegisterUser">
+            @if (TempData["Message"] != null)
+            {
+                <div class="alert">
+                    @TempData["Message"]
+                </div>
+            }
             <div class="row">
                 <i class="fas fa-user"></i>
-                <input type="text" id="firstname" name="FirstName" placeholder="First Name" required>
+                <input type="text" id="firstname" name="FirstName" placeholder="First Name" aria-label="First Name" required>
             </div>
             <div class="row">
                 <i class="fas fa-user"></i>
-                <input type="text" id="lastname" name="LastName" placeholder="Last Name" required>
+                <input type="text" id="lastname" name="LastName" placeholder="Last Name" aria-label="Last Name" required>
             </div>
             <div class="row">
                 <i class="fas fa-envelope"></i>
-                <input type="email" id="email" name="Email" placeholder="Email Address" required>
+                <input type="email" id="email" name="Email" placeholder="Email Address" aria-label="Email Address" required>
             </div>
             <div class="row">
                 <i class="fas fa-map-marker-alt"></i>
-                <input type="text" id="address" name="Address" placeholder="Address" required>
+                <input type="text" id="address" name="Address" placeholder="Address" aria-label="Address" required>
             </div>
             <div class="row">
                 <i class="fas fa-user"></i>
-                <input type="text" id="username" name="UserName" placeholder="Username" required>
+                <input type="text" id="username" name="UserName" placeholder="Username" aria-label="Username" required>
             </div>
             <div class="row">
                 <i class="fas fa-lock"></i>
-                <input type="password" id="password" name="PasswordHash" placeholder="Password" required>
+                <input type="password" id="password" name="PasswordHash" placeholder="Password" aria-label="Password" required>
             </div>
             <div class="row">
-                <i class="fas fa-calendar"></i>
+                <i class="fas fa-building"></i>
+                <select id="department" name="Department" aria-label="Department" required>
+                    <option value="" selected disabled>Select Department</option>
+                    <option value="CCS">College of Computing Studies (CCS)</option>
+                    <option value="CAS">College of Arts and Sciences (CAS)</option>
+                    <option value="CoEng">College of Engineering (CoEng)</option>
+                    <option value="CBAA">College of Business Administration and Accountancy (CBAA)</option>
+                    <option value="CoEd">College of Education (CoEd)</option>
+                </select>
+            </div>
+            <div class="row">
+                <i class="fas fa-book"></i>
+                <select id="program" name="Program" aria-label="Program" required>
+                    <option value="" selected disabled>Select Program</option>
+                </select>
+            </div>
+            <div class="row">
+                <label for="birthdate" class="birthdate-label">Birthday</label>
                 <div class="birthdate">
-                    <select id="month" name="month">
+                    <select id="month" name="Month" aria-label="Month" required>
                         <option value="" selected disabled>Month</option>
                         <option>January</option>
                         <option>February</option>
@@ -59,28 +82,34 @@
                         <option>November</option>
                         <option>December</option>
                     </select>
-                    <select id="day" name="day">
+                    <select id="day" name="Day" aria-label="Day" required>
                         <option value="" selected disabled>Day</option>
-                        <script>for (let i = 1; i <= 31; i++) document.write(`<option>${i}</option>`);</script>
+                        <script>
+                            for (let i = 1; i <= 31; i++) document.write(`<option>${i}</option>`);
+                        </script>
                     </select>
-                    <select id="year" name="year">
+                    <select id="year" name="Year" aria-label="Year" required>
                         <option value="" selected disabled>Year</option>
-                        <script>for (let i = new Date().getFullYear(); i >= 1950; i--) document.write(`<option>${i}</option>`);</script>
+                        <script>
+                            for (let i = new Date().getFullYear(); i >= 1950; i--) document.write(`<option>${i}</option>`);
+                        </script>
                     </select>
                 </div>
+            </div>
+            <div class="form-group">
+                <label for="photoFile">Upload School ID / Certificate of Registration</label>
+                <input type="file" id="photoFile" name="photoFile" accept="image/*" aria-label="Upload School ID" required>
             </div>
             <div class="row button">
                 <input type="submit" value="Register">
             </div>
         </form>
-        <p class="back-link">
-            Already have an account?
-            <form method="post" asp-page-handler="RedirectToLogin" style="display: inline;">
-                <button type="submit" class="back-button">Go back to Login</button>
-            </form>
-        </p>
+        <form method="post" asp-page-handler="RedirectToLogin">
+            <button type="submit" class="back-button">Go back to Login</button>
+        </form>
 
     </div>
 </body>
 </html>
+
 

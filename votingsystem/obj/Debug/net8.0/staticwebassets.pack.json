@@ -5,6 +5,14 @@
       "PackagePath": "staticwebassets\\votingsystem.hy546egjjl.bundle.scp.css"
     },
     {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\css\\ADElectionsData.css",
+      "PackagePath": "staticwebassets\\css\\ADElectionsData.css"
+    },
+    {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\css\\ADManageCandidates.css",
+      "PackagePath": "staticwebassets\\css\\ADManageCandidates.css"
+    },
+    {
       "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\css\\ADManageElections.css",
       "PackagePath": "staticwebassets\\css\\ADManageElections.css"
     },
@@ -13,16 +21,40 @@
       "PackagePath": "staticwebassets\\css\\ADManageVoters.css"
     },
     {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\css\\ADResults.css",
+      "PackagePath": "staticwebassets\\css\\ADResults.css"
+    },
+    {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\css\\ADViewBallot.css",
+      "PackagePath": "staticwebassets\\css\\ADViewBallot.css"
+    },
+    {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\css\\ADVotesRecord.css",
+      "PackagePath": "staticwebassets\\css\\ADVotesRecord.css"
+    },
+    {
       "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\css\\Dashboard.css",
       "PackagePath": "staticwebassets\\css\\Dashboard.css"
+    },
+    {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\css\\ForgotPassword.css",
+      "PackagePath": "staticwebassets\\css\\ForgotPassword.css"
     },
     {
       "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\css\\Registration.css",
       "PackagePath": "staticwebassets\\css\\Registration.css"
     },
     {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\css\\ResetPassword.css",
+      "PackagePath": "staticwebassets\\css\\ResetPassword.css"
+    },
+    {
       "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\css\\UPDoneVoting.css",
       "PackagePath": "staticwebassets\\css\\UPDoneVoting.css"
+    },
+    {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\css\\UPMyBallots.css",
+      "PackagePath": "staticwebassets\\css\\UPMyBallots.css"
     },
     {
       "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\css\\UPResults.css",
@@ -49,12 +81,76 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\11fbfcbb-186b-4cf5-b9c6-afbd07553c0a.ico",
+      "PackagePath": "staticwebassets\\images\\11fbfcbb-186b-4cf5-b9c6-afbd07553c0a.ico"
+    },
+    {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\1b757e74-5814-46a4-bfd7-e870ae524ef2.ico",
+      "PackagePath": "staticwebassets\\images\\1b757e74-5814-46a4-bfd7-e870ae524ef2.ico"
+    },
+    {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\28196ac4-c705-42f9-9956-909c281c3d42.ico",
+      "PackagePath": "staticwebassets\\images\\28196ac4-c705-42f9-9956-909c281c3d42.ico"
+    },
+    {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\2c7c2b49-1792-4ea3-bd9e-9a58e75a7250.ico",
+      "PackagePath": "staticwebassets\\images\\2c7c2b49-1792-4ea3-bd9e-9a58e75a7250.ico"
+    },
+    {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\36eb3298-db13-4f4c-99d6-bb56c4920f4d.ico",
+      "PackagePath": "staticwebassets\\images\\36eb3298-db13-4f4c-99d6-bb56c4920f4d.ico"
+    },
+    {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\3f26dbbd-0fea-454e-a21f-34eae49a0b22.ico",
+      "PackagePath": "staticwebassets\\images\\3f26dbbd-0fea-454e-a21f-34eae49a0b22.ico"
+    },
+    {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\48d54b22-62e1-40a9-a3b4-7bfead6af3ce.ico",
+      "PackagePath": "staticwebassets\\images\\48d54b22-62e1-40a9-a3b4-7bfead6af3ce.ico"
+    },
+    {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\4cf07dd5-d438-4ee3-bbfb-25816c4e16a2.ico",
+      "PackagePath": "staticwebassets\\images\\4cf07dd5-d438-4ee3-bbfb-25816c4e16a2.ico"
+    },
+    {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\5bc1aa7c-06bd-4035-8fe4-0a6047788569.ico",
+      "PackagePath": "staticwebassets\\images\\5bc1aa7c-06bd-4035-8fe4-0a6047788569.ico"
+    },
+    {
       "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\61595433-f1b0-4d48-a8c3-8f02daaf7e77.png",
       "PackagePath": "staticwebassets\\images\\61595433-f1b0-4d48-a8c3-8f02daaf7e77.png"
     },
     {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\6e46a200-8836-4906-85d6-5b8b567693cc.ico",
+      "PackagePath": "staticwebassets\\images\\6e46a200-8836-4906-85d6-5b8b567693cc.ico"
+    },
+    {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\73dc90a8-5fd6-4146-b40c-8e2a7b69804e.ico",
+      "PackagePath": "staticwebassets\\images\\73dc90a8-5fd6-4146-b40c-8e2a7b69804e.ico"
+    },
+    {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\849d6507-280b-47e9-b0ae-07690a3d038f.ico",
+      "PackagePath": "staticwebassets\\images\\849d6507-280b-47e9-b0ae-07690a3d038f.ico"
+    },
+    {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\8d9da9b4-7d9a-4f53-8917-00458c03fd62.ico",
+      "PackagePath": "staticwebassets\\images\\8d9da9b4-7d9a-4f53-8917-00458c03fd62.ico"
+    },
+    {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\9ffe459b-97f6-4343-b2fd-ced2284cf69c.ico",
+      "PackagePath": "staticwebassets\\images\\9ffe459b-97f6-4343-b2fd-ced2284cf69c.ico"
+    },
+    {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\bdf660e6-64ef-46a5-95d4-e30e7689b0ff.ico",
+      "PackagePath": "staticwebassets\\images\\bdf660e6-64ef-46a5-95d4-e30e7689b0ff.ico"
+    },
+    {
       "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\img.jpeg",
       "PackagePath": "staticwebassets\\images\\img.jpeg"
+    },
+    {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\js\\ADElectionsData.js",
+      "PackagePath": "staticwebassets\\js\\ADElectionsData.js"
     },
     {
       "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\js\\ADManageElections.js",
@@ -63,6 +159,14 @@
     {
       "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\js\\ADManageVoters.js",
       "PackagePath": "staticwebassets\\js\\ADManageVoters.js"
+    },
+    {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\js\\ADResults.js",
+      "PackagePath": "staticwebassets\\js\\ADResults.js"
+    },
+    {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\js\\ADVotesRecord.js",
+      "PackagePath": "staticwebassets\\js\\ADVotesRecord.js"
     },
     {
       "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\js\\Dashboard.js",

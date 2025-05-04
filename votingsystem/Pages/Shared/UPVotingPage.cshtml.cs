@@ -3,8 +3,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using static votingsystem.Pages.RegistrationModel;
 using static votingsystem.Pages.Shared.ADManageElectionsModel;
+using static votingsystem.Pages.Shared.ADManageCandidatesModel;
 using static votingsystem.Pages.Shared.ADManageVotersModel;
 using static votingsystem.Pages.Shared.UPDoneVotingModel;
+using Microsoft.AspNetCore.Authentication;
 
 
 namespace votingsystem.Pages.Shared
@@ -22,12 +24,37 @@ namespace votingsystem.Pages.Shared
         {
             public int UserId { get; set; }
             public int ElectionId { get; set; }
-            public int CandidateId { get; set; }
-            public string Position { get; set; }
+            public int? PresidentCandidateId { get; set; }
+            public int? VicePresidentCandidateId { get; set; }
+            public int? SecretaryCandidateId { get; set; }
+            public int? TreasurerCandidateId { get; set; }
+            public int? AuditorCandidateId { get; set; }
+            public int? PROCandidateId { get; set; }
         }
+
         public List<Candidate> VotedCandidates { get; set; }
         public bool HasVoted { get; set; }
         public List<VoteReceipt> VoteReceipts { get; set; }
+
+        public IActionResult OnPostRedirectToBallot()
+        {
+            return RedirectToPage("/Shared/UPMyBallots");
+        }
+
+        public IActionResult OnPostRedirectToHome()
+        {
+            return RedirectToPage("/Shared/UserPage");
+        }
+
+        public IActionResult OnPostRedirectToResults(int electionId)
+        {
+            return RedirectToPage("/Shared/UPResults", new { electionId });
+        }
+        public IActionResult OnPostLogout()
+        {
+            HttpContext.SignOutAsync();
+            return RedirectToPage("/Index");
+        }
 
         public void OnGet(int electionId)
         {
@@ -39,17 +66,15 @@ namespace votingsystem.Pages.Shared
             if (Candidates == null || !Candidates.Any())
             {
                 Console.WriteLine($"No candidates found for ElectionId: {electionId}");
-            }         
-            
+            }
         }
 
-        public IActionResult OnPostCastVote(int electionId, Dictionary<string, int> selectedCandidates)
+        public IActionResult OnPostCastVote(int electionId, Dictionary<string, int?> selectedCandidates)
         {
             Console.WriteLine($"[Debug] User.Identity.Name: {User.Identity.Name}");
 
             try
             {
-                // Validate User.Identity.Name
                 if (string.IsNullOrWhiteSpace(User.Identity.Name))
                 {
                     Console.WriteLine("Error: User.Identity.Name is empty. Redirecting to login.");
@@ -57,7 +82,6 @@ namespace votingsystem.Pages.Shared
                     return RedirectToPage("/Account/Login");
                 }
 
-                // Fetch UserId
                 var userId = Database_Helper.DbHelper.GetUserIdByUsername(User.Identity.Name);
                 Console.WriteLine($"[Debug] Fetched UserId: {userId}");
 
@@ -70,14 +94,12 @@ namespace votingsystem.Pages.Shared
 
                 Console.WriteLine($"[Debug] ElectionId: {electionId}");
 
-                // Validate election and selectedCandidates
                 if (electionId <= 0 || selectedCandidates == null || selectedCandidates.Count == 0)
                 {
                     TempData["Error"] = "Invalid election or candidate selection.";
                     return RedirectToPage("/Shared/ADResults");
                 }
 
-                // Check if the user has already voted
                 if (Database_Helper.DbHelper.HasUserVoted(userId, electionId))
                 {
                     Console.WriteLine($"User {userId} has already voted for ElectionId {electionId}.");
@@ -85,42 +107,40 @@ namespace votingsystem.Pages.Shared
                     return RedirectToPage("/Shared/UPDoneVoting", new { electionId });
                 }
 
-                // Record votes
-                foreach (var position in selectedCandidates)
+                var vote = new Vote
                 {
-                    Console.WriteLine($"Position: {position.Key}, CandidateId: {position.Value}");
-                    int candidateId = position.Value;
+                    UserId = userId,
+                    ElectionId = electionId,
+                    PresidentCandidateId = selectedCandidates.ContainsKey("President") ? selectedCandidates["President"] : null,
+                    VicePresidentCandidateId = selectedCandidates.ContainsKey("Vice President") ? selectedCandidates["Vice President"] : null,
+                    SecretaryCandidateId = selectedCandidates.ContainsKey("Secretary") ? selectedCandidates["Secretary"] : null,
+                    TreasurerCandidateId = selectedCandidates.ContainsKey("Treasurer") ? selectedCandidates["Treasurer"] : null,
+                    AuditorCandidateId = selectedCandidates.ContainsKey("Auditor") ? selectedCandidates["Auditor"] : null,
+                    PROCandidateId = selectedCandidates.ContainsKey("PRO") ? selectedCandidates["PRO"] : null
+                };
 
-                    var vote = new Vote
-                    {
-                        ElectionId = electionId,
-                        UserId = userId,
-                        CandidateId = candidateId,
-                        Position = position.Key
-                    };
-
-                    try
-                    {
-                        Console.WriteLine($"Recording vote: {vote.ElectionId}, {vote.UserId}, {vote.CandidateId}, {vote.Position}");
-                        Database_Helper.DbHelper.RecordVote(vote);
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine($"Error while recording vote for {position.Key}: {ex.Message}");
-                        TempData["Error"] = "An error occurred while recording your votes.";
-                    }
+                try
+                {
+                    Console.WriteLine($"Recording vote: {vote.UserId}, ElectionId={vote.ElectionId}");
+                    Database_Helper.DbHelper.RecordVote(vote);
+                    TempData["Success"] = "Your votes have been successfully cast!";
+                    Console.WriteLine($"Votes successfully recorded for UserId={userId}, ElectionId={electionId}");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Error while recording vote: {ex.Message}");
+                    TempData["Error"] = "An error occurred while recording your votes.";
                 }
 
-                TempData["Success"] = "Your votes have been successfully cast!";
-                Console.WriteLine($"Votes successfully recorded for UserId={userId}, ElectionId={electionId}");
                 return RedirectToPage("/Shared/UPDoneVoting", new { electionId });
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error while casting vote for UserId, ElectionId={electionId}: {ex.Message}");
+                Console.WriteLine($"Error while casting vote for ElectionId={electionId}: {ex.Message}");
                 TempData["Error"] = "An unexpected error occurred while processing your votes.";
                 return RedirectToPage("/Shared/UPDoneVoting", new { electionId });
             }
         }
     }
+
 }
