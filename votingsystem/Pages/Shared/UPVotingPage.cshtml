@@ -44,7 +44,6 @@
         <section class="dashboard-section">
             <form method="post" asp-page-handler="CastVote">
                 <input type="hidden" asp-for="ElectionId" />
-                 @* <input type="hidden" asp-for="UserId" /> *@
                 <input type="hidden" name="electionId" value="@Model?.Election?.ElectionId ?? 0">
                 <input type="hidden" name="UserId" value="@Model?.UserId ?? 0" />
                 @if (Model?.Candidates != null && Model.Candidates.Any())
@@ -66,7 +65,7 @@
                                                 <p><strong>Party:</strong> @candidate.PartyList</p>
                                                 <p><strong>Address:</strong> @candidate.Address</p>
                                             </div>
-                                            <input type="radio" id="candidate-@candidate.Id" name="selectedCandidates[@group.Key]" value="@candidate.Id" required>
+                                            <input type="radio" id="candidate-@candidate.Id" name="selectedCandidates[@group.Key]" value="@candidate.Id">
                                         </label>
                                     </div>
                                 }

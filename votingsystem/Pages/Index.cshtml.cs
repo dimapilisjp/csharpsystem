@@ -30,7 +30,7 @@ public class IndexModel : PageModel
     {
         Console.WriteLine("OnPostLoginAsync method executed.");
 
-        // Validate that Username and Password are provided
+        // validate username and password
         if (string.IsNullOrEmpty(UserName) || string.IsNullOrEmpty(Password))
         {
             Console.WriteLine("Username or Password is empty.");
@@ -41,7 +41,7 @@ public class IndexModel : PageModel
         Console.WriteLine($"Username: {UserName}");
         Console.WriteLine($"Password: {Password}");
 
-        // Verify user's credentials and approval status
+        // verify user's details and approval status
         Console.WriteLine("Calling VerifyUser...");
         bool isVerified = Database_Helper.DbHelper.VerifyUser(UserName, Password);
 
@@ -49,33 +49,33 @@ public class IndexModel : PageModel
         {
             Console.WriteLine("User verified. Checking approval status...");
 
-            // Check if the user is approved
-            bool isApproved = Database_Helper.DbHelper.IsUserApproved(UserName); // New method in DbHelper
+            // check if the user is approved
+            bool isApproved = Database_Helper.DbHelper.IsUserApproved(UserName); 
 
             if (!isApproved)
             {
                 Console.WriteLine($"Login blocked: User {UserName} is not approved.");
                 Message = "Your account is awaiting approval. Please wait for admin approval.";
-                return Page(); // Block login
+                return Page(); 
             }
 
             Console.WriteLine("User approved. Fetching user role...");
 
-            // Fetch the user's role from the database
+            // fetch role of the user
             string role = Database_Helper.DbHelper.GetUserRole(UserName);
 
             Console.WriteLine($"User role: {role}");
 
-            // Set claims for authentication
+            //sSet claims for authentication
             var claims = new List<Claim>
         {
-            new Claim(ClaimTypes.Name, UserName), // Sets User.Identity.Name
-            new Claim(ClaimTypes.Role, role)     // Adds user's role as a claim
+            new Claim(ClaimTypes.Name, UserName), // sets User.Identity.Name
+            new Claim(ClaimTypes.Role, role)     // claims role of user
         };
 
             var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
 
-            // Issue the authentication cookie
+            // issue the authentication cookie
             await HttpContext.SignInAsync(
                 CookieAuthenticationDefaults.AuthenticationScheme,
                 new ClaimsPrincipal(claimsIdentity)
@@ -83,7 +83,7 @@ public class IndexModel : PageModel
 
             Console.WriteLine($"[Login] Authentication cookie issued for UserName={UserName}, Role={role}");
 
-            // Redirect based on user role
+            // redirect based on user role
             if (role == "Admin")
             {
                 Console.WriteLine("Redirecting to Dashboard...");
@@ -102,8 +102,8 @@ public class IndexModel : PageModel
         }
         else
         {
-            // Determine the message for the login failure
-            if (!Database_Helper.DbHelper.IsUserApproved(UserName)) // Assuming IsUserApproved is a new DbHelper method
+            
+            if (!Database_Helper.DbHelper.IsUserApproved(UserName))
             {
                 Message = "Your account is awaiting approval. Please wait for admin approval.";
             }

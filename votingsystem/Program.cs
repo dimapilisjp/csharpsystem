@@ -2,6 +2,9 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddSession(); 
+builder.Services.AddDistributedMemoryCache(); 
+builder.Services.AddHttpContextAccessor();
 builder.Configuration.AddJsonFile("databaseconnection.json", optional: true, reloadOnChange: true);
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
@@ -39,5 +42,5 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapRazorPages();
-
+app.UseSession();
 app.Run();

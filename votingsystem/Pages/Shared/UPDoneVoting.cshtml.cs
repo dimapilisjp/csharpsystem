@@ -36,11 +36,11 @@ namespace votingsystem.Pages.Shared
 
         public void OnGet(int electionId)
         {
-            int userId = Database_Helper.DbHelper.GetUserIdByUsername(User.Identity.Name); // Assuming username is stored in User.Identity
+            int userId = Database_Helper.DbHelper.GetUserIdByUsername(User.Identity.Name); 
             VotedCandidates = Database_Helper.DbHelper.GetUserVotedCandidates(userId, electionId);
             ElectionId = electionId;
 
-            // You can also fetch the election title if needed
+            
             ElectionTitle = Database_Helper.DbHelper.GetElectionTitle(electionId);
         }
 

@@ -36,7 +36,7 @@ namespace votingsystem.Pages.Shared
         {
             Console.WriteLine($"[Debug] ElectionId: {electionId}");
 
-            // Validate User.Identity.Name
+            // validate User.Identity.Name
             if (string.IsNullOrWhiteSpace(User.Identity.Name))
             {
                 Console.WriteLine("Error: User.Identity.Name is empty. Redirecting to login.");
@@ -44,7 +44,7 @@ namespace votingsystem.Pages.Shared
                 return RedirectToPage("/Account/Login");
             }
 
-            // Fetch UserId
+            // fetch id
             var userId = Database_Helper.DbHelper.GetUserIdByUsername(User.Identity.Name);
             Console.WriteLine($"[Debug] Fetched UserId: {userId}");
 
@@ -55,7 +55,7 @@ namespace votingsystem.Pages.Shared
                 return RedirectToPage("/Account/Login");
             }
 
-            // Check if the user has already voted for the election
+            // check if user has already voted for election
             if (Database_Helper.DbHelper.HasUserVoted(userId, electionId))
             {
                 Console.WriteLine($"User {userId} has already voted for ElectionId {electionId}.");
@@ -63,7 +63,7 @@ namespace votingsystem.Pages.Shared
                 return RedirectToPage("/Shared/UPDoneVoting", new { electionId });
             }
 
-            // Redirect to the voting page if the user has not voted
+            // redirect to voting page if the user has not voted
             Console.WriteLine($"Redirecting User {userId} to voting page for ElectionId {electionId}.");
             return RedirectToPage("/Shared/UPVotingPage", new { electionId });
         }
@@ -72,7 +72,7 @@ namespace votingsystem.Pages.Shared
         {
             Console.WriteLine($"Fetching user elections for User: {User.Identity.Name}");
 
-            // Validate User.Identity.Name
+            // validate User.Identity.Name
             if (string.IsNullOrWhiteSpace(User.Identity.Name))
             {
                 Console.WriteLine("Error: User.Identity.Name is empty. Redirecting to login.");
@@ -81,7 +81,7 @@ namespace votingsystem.Pages.Shared
                 return;
             }
 
-            // Fetch user details
+            // fetch user details
             var user = Database_Helper.DbHelper.GetUserDetailsByUsername(User.Identity.Name);
             if (user == null)
             {

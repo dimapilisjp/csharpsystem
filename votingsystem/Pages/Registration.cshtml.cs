@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
@@ -16,29 +17,33 @@ namespace votingsystem.Pages
         public class User
         {
             public int Id { get; set; }
-            [Required(ErrorMessage = "First Name is required")]
+            [Required(ErrorMessage = "First Name required")]
             public string FirstName { get; set; }
 
-            [Required(ErrorMessage = "Last Name is required")]
+            [Required(ErrorMessage = "Last Name required")]
             public string LastName { get; set; }
 
-            [Required(ErrorMessage = "Email is required")]
+            [Required(ErrorMessage = "Email required")]
             [EmailAddress(ErrorMessage = "Invalid email format")]
             public string Email { get; set; }
 
             public string Address { get; set; }
             public string Month { get; set; }
-            [Range(1, 31, ErrorMessage = "Day must be between 1 and 31")]
+            
             public int Day { get; set; }
-            [Range(1900, 2100, ErrorMessage = "Year must be valid")]
+            
             public int Year { get; set; }
 
-            [Required(ErrorMessage = "Username is required")]
+            [Required(ErrorMessage = "Username required")]
             public string UserName { get; set; }
 
-            [Required(ErrorMessage = "Password is required")]
+            [Required(ErrorMessage = "Password required")]
             [StringLength(100, MinimumLength = 8, ErrorMessage = "Password must be at least 8 characters long")]
             public string PasswordHash { get; set; }
+
+            [Required(ErrorMessage = "Confirm Password required")]
+            [Compare("PasswordHash", ErrorMessage = "Passwords do not match")]
+            public string ConfirmPassword { get; set; }
 
             public int Age { get; set; }
             public string Department { get; set; }
@@ -75,21 +80,28 @@ namespace votingsystem.Pages
         {
             Console.WriteLine($"Form submitted: FirstName={user.FirstName}, LastName={user.LastName}, Email={user.Email} Department={user.Department}");
 
-            // Calculate age based on birthdate
-            int monthNumber = GetMonthNumber(user.Month);
-            DateTime birthDate = new DateTime(user.Year, monthNumber, user.Day);
+            int monthNumber = GetMonthNumber(Input.Month);
+            DateTime birthDate = new DateTime(Input.Year, monthNumber, Input.Day);
             int age = CalculateAge(birthDate);
             user.Age = age;
 
-            Console.WriteLine($"Calculated Age: {user.Age}");
+            Console.WriteLine($"Calculated Age: {Input.Age}");
             if (age < 18)
             {
                 TempData["Message"] = "You must be at least 18 years old to register.";
                 Console.WriteLine("User is underaged. Registration blocked.");
-                return Page(); // Stay on the registration page
+                return Page();
             }
 
-            // Handle photo upload
+            if (user.PasswordHash != user.ConfirmPassword)
+            {
+                Console.WriteLine("Password and Confirm Password do not match");
+                ModelState.AddModelError(string.Empty, "Passwords do not match");
+                TempData["Message"] = "Passwords do not match";
+                return Page();
+            }
+
+            // handle photo upload
             if (photoFile != null)
             {
                 Console.WriteLine($"Image received: {photoFile.FileName}, Size: {photoFile.Length} bytes");
@@ -98,7 +110,7 @@ namespace votingsystem.Pages
             {
                 Console.WriteLine("No photo file received.");
                 TempData["Message"] = "Photo file (School ID / Certificate of Registration) is required.";
-                return Page(); // Stay on the registration page
+                return Page(); 
             }
 
             if (photoFile != null && photoFile.Length > 0)
@@ -119,27 +131,28 @@ namespace votingsystem.Pages
             else
             {
                 TempData["Message"] = "Photo file is required.";
-                return Page(); // Stay on the registration page
+                return Page(); 
             }
 
-            // Hash the password using BCrypt
+            // hash password using BCrypt
             Console.WriteLine("Hashing password...");
             user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(user.PasswordHash);
             Console.WriteLine($"Hashed Password: {user.PasswordHash}");
 
-            // Register user in the database
-            bool isRegistered = votingsystem.Database_Helper.DbHelper.RegisterUser(user);
+            // generate OTP
+            string otp = Database_Helper.DbHelper.GenerateOTP();
+            Database_Helper.DbHelper.StoreOTP(user.Email, otp);
+            Database_Helper.DbHelper.SendEmailOTP(user.Email, otp);
 
-            if (!isRegistered)
-            {
-                Console.WriteLine("Registration failed - Username or Email might already exist.");
-                TempData["Message"] = "Registration failed. Username or email may already be in use.";
-                return Page(); // Stay on the registration page
-            }
+            // store user data in tempdata for OTP confirmation
+            TempData["User"] = JsonSerializer.Serialize(user);
+            TempData["Email"] = user.Email;
 
-            TempData["Message"] = "User successfully registered. Please wait for admin approval.";
-            return RedirectToPage("/Registration"); // Redirect to registration success page
+            Console.WriteLine($"OTP sent to {user.Email}");
+
+            return RedirectToPage("/Shared/OTPPage"); // OTP input page
         }
+
 
 
 

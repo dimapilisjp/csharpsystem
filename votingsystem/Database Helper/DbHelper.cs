@@ -12,6 +12,8 @@ using static votingsystem.Pages.Shared.UserPageModel;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 using Microsoft.EntityFrameworkCore.Storage;
 using votingsystem.Pages.Shared;
+using System.Net.Mail;
+using System.Net;
 namespace votingsystem.Database_Helper
 {
     public class DbHelper
@@ -1821,6 +1823,79 @@ namespace votingsystem.Database_Helper
 
             return results;
         }
+
+        public static string GenerateOTP()
+        {
+            Random rnd = new Random();
+            return rnd.Next(100000, 999999).ToString();
+        }
+
+        public static void SendEmailOTP(string email, string otp)
+        {
+            var smtpClient = new SmtpClient("smtp.gmail.com")
+            {
+                Port = 587,
+                Credentials = new NetworkCredential("votingsystem187@gmail.com", "dfgwnwtxjtokprhs"),
+                EnableSsl = true
+            };
+
+            var message = new MailMessage("votingsystem187@gmail.com", email)
+            {
+                Subject = "Email Verification OTP",
+                Body = $"Your OTP for User Registration is: {otp}. Enter this code to complete your registration."
+            };
+
+            smtpClient.Send(message);
+        }
+
+        public static void StoreOTP(string email, string otp)
+        {
+            using (var con = GetConnection())
+            {
+                string query = "INSERT INTO VerifyOTP (Email, OTP, Expiry) VALUES (@Email, @OTP, DATE_ADD(NOW(), INTERVAL 5 MINUTE))";
+                using (var cmd = new MySqlCommand(query, con))
+                {
+                    cmd.Parameters.AddWithValue("@Email", email);
+                    cmd.Parameters.AddWithValue("@OTP", otp);
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public static bool ValidateOTP(string email, string enteredOtp)
+        {
+            using (var con = GetConnection())
+            {
+                string query = "SELECT OTP FROM VerifyOTP WHERE Email = @Email AND Expiry > NOW()";
+                using (var cmd = new MySqlCommand(query, con))
+                {
+                    cmd.Parameters.AddWithValue("@Email", email);
+                    con.Open();
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            string storedOtp = reader["OTP"].ToString();
+                            Console.WriteLine($"Stored OTP: {storedOtp}");
+                            Console.WriteLine($"Entered OTP: {enteredOtp}");
+
+                            return storedOtp == enteredOtp;
+                        }
+                        else
+                        {
+                            Console.WriteLine("No OTP found or OTP expired.");
+                            return false;
+                        }
+                    }
+                }
+            }
+        }
+
+
+
+
     }
 }
 

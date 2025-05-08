@@ -79,18 +79,20 @@ namespace votingsystem.Pages.Shared
             return Page();
         }
 
+        
         private void SendResetEmail(string email, string resetUrl)
         {
+            //smtp details for the resetlink mail
             var smtpClient = new SmtpClient("smtp.gmail.com")
             {
                 Port = 587,
-                Credentials = new NetworkCredential("johnpauldimapilis3@gmail.com", "pyeqerqgxjczrnlr"), 
+                Credentials = new NetworkCredential("votingsystem187@gmail.com", "dfgwnwtxjtokprhs"), 
                 EnableSsl = true
             };
 
             var mailMessage = new MailMessage
             {
-                From = new MailAddress("your-email@gmail.com"),
+                From = new MailAddress("votingsystem187@gmail.com"),
                 Subject = "Password Reset Request",
                 Body = $"Click the link to reset your password: <a href=\"{resetUrl}\">{resetUrl}</a>",
                 IsBodyHtml = true,

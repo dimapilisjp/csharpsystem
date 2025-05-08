@@ -107,13 +107,13 @@ namespace votingsystem.Pages.Shared
             Database_Helper.DbHelper.CreateCandidate(candidate);
 
             TempData["Message"] = "Candidate successfully registered.";
-            return RedirectToPage("/Shared/ADManageElections");
+            return RedirectToPage("/Shared/ADManageCandidates");
         }
 
         public IActionResult OnPostDeleteCandidate(int id)
         {
             Database_Helper.DbHelper.DeleteCandidate(id);
-            return RedirectToPage("/Shared/ADManageElections");
+            return RedirectToPage("/Shared/ADManageCandidates");
         }
 
         public void OnGet()

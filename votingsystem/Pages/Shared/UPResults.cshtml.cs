@@ -41,15 +41,15 @@ namespace votingsystem.Pages.Shared
             return RedirectToPage("/Index");
         }
 
-        // Fetch all elections
+        // fetch all elections
         public void OnGet(int? electionId)
         {
             Console.WriteLine($"Fetching live results for ElectionId={electionId}");
 
-            // Fetch all available elections
+            // available elections
             AllElections = Database_Helper.DbHelper.GetAllElections();
 
-            // If an election is selected, fetch live results
+            // if an election is selected, fetch live results
             if (electionId.HasValue)
             {
                 LiveResults = Database_Helper.DbHelper.GetLiveElectionResults(electionId.Value);
@@ -60,7 +60,7 @@ namespace votingsystem.Pages.Shared
             }
         }
 
-        // Fetch live results for a specific election via AJAX
+        // fetch live results for a specific election 
         public JsonResult OnGetLiveResults(int electionId)
         {
             Console.WriteLine($" AJAX call received for electionId={electionId}");

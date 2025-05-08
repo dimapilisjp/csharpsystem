@@ -1,0 +1,89 @@
+﻿body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #f5f2eb;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.otp-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.otp-card {
+    background-color: white;
+    padding: 40px 30px;
+    border-radius: 16px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+}
+
+    .otp-card h2 {
+        color: #623e8f;
+        margin-bottom: 10px;
+        font-size: 24px;
+    }
+
+    .otp-card p {
+        color: #666;
+        margin-bottom: 25px;
+        font-size: 14px;
+    }
+
+    .otp-card label {
+        display: block;
+        text-align: left;
+        font-weight: 500;
+        margin-bottom: 8px;
+        color: #333;
+    }
+
+    .otp-card input {
+        width: 100%;
+        padding: 12px 15px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        font-size: 16px;
+        transition: border-color 0.3s;
+    }
+
+        .otp-card input:focus {
+            outline: none;
+            border-color: #7a4eab;
+        }
+
+    .otp-card button {
+        width: 100%;
+        padding: 12px;
+        background-color: #7a4eab;
+        color: white;
+        border: none;
+        border-radius: 10px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+        .otp-card button:hover {
+            background-color: #623e8f;
+        }
+
+.resend-button {
+    margin-top: 10px;
+    background-color: transparent;
+    color: #7a4eab;
+    border: 2px solid #7a4eab;
+}
+
+    .resend-button:hover {
+        background-color: #f3eaff;
+    }

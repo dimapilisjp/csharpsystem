@@ -41,6 +41,10 @@
       "PackagePath": "staticwebassets\\css\\ForgotPassword.css"
     },
     {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\css\\OTPPage.css",
+      "PackagePath": "staticwebassets\\css\\OTPPage.css"
+    },
+    {
       "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\css\\Registration.css",
       "PackagePath": "staticwebassets\\css\\Registration.css"
     },
@@ -81,68 +85,360 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\0074cbf9-cbec-46b5-bdf4-aa0e5ec50819.ico",
+      "PackagePath": "staticwebassets\\images\\0074cbf9-cbec-46b5-bdf4-aa0e5ec50819.ico"
+    },
+    {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\04fe331f-d0ec-4577-8830-b030892511a7.ico",
+      "PackagePath": "staticwebassets\\images\\04fe331f-d0ec-4577-8830-b030892511a7.ico"
+    },
+    {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\05c01ab7-4e79-4034-81f9-fb7a7190d715.ico",
+      "PackagePath": "staticwebassets\\images\\05c01ab7-4e79-4034-81f9-fb7a7190d715.ico"
+    },
+    {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\08bc3ef3-15e6-4caa-860b-67c37053c77d.ico",
+      "PackagePath": "staticwebassets\\images\\08bc3ef3-15e6-4caa-860b-67c37053c77d.ico"
+    },
+    {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\101e60a9-5bf9-4f8a-ae29-8b23a29e6023.ico",
+      "PackagePath": "staticwebassets\\images\\101e60a9-5bf9-4f8a-ae29-8b23a29e6023.ico"
+    },
+    {
       "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\11fbfcbb-186b-4cf5-b9c6-afbd07553c0a.ico",
       "PackagePath": "staticwebassets\\images\\11fbfcbb-186b-4cf5-b9c6-afbd07553c0a.ico"
+    },
+    {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\12a117fd-49fa-4213-9c04-c430ec6e1402.ico",
+      "PackagePath": "staticwebassets\\images\\12a117fd-49fa-4213-9c04-c430ec6e1402.ico"
+    },
+    {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\13db460e-04cb-4be9-bfd9-31e3bd1173af.ico",
+      "PackagePath": "staticwebassets\\images\\13db460e-04cb-4be9-bfd9-31e3bd1173af.ico"
+    },
+    {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\150a249e-fcbe-4e83-af26-bddda6891e4f.jpeg",
+      "PackagePath": "staticwebassets\\images\\150a249e-fcbe-4e83-af26-bddda6891e4f.jpeg"
+    },
+    {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\185de7ef-55c0-41c2-bc9d-0edaf3cfb092.ico",
+      "PackagePath": "staticwebassets\\images\\185de7ef-55c0-41c2-bc9d-0edaf3cfb092.ico"
+    },
+    {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\19d50f4c-1cce-41cf-bd1d-609221c089f0.ico",
+      "PackagePath": "staticwebassets\\images\\19d50f4c-1cce-41cf-bd1d-609221c089f0.ico"
     },
     {
       "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\1b757e74-5814-46a4-bfd7-e870ae524ef2.ico",
       "PackagePath": "staticwebassets\\images\\1b757e74-5814-46a4-bfd7-e870ae524ef2.ico"
     },
     {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\1e578e64-2207-40e1-84b8-31680eb65e90.jpeg",
+      "PackagePath": "staticwebassets\\images\\1e578e64-2207-40e1-84b8-31680eb65e90.jpeg"
+    },
+    {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\20a8a942-1437-4bff-95b1-53e425c3a416.png",
+      "PackagePath": "staticwebassets\\images\\20a8a942-1437-4bff-95b1-53e425c3a416.png"
+    },
+    {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\20eaecc1-1c89-4f31-9918-879a2ee78d7c.ico",
+      "PackagePath": "staticwebassets\\images\\20eaecc1-1c89-4f31-9918-879a2ee78d7c.ico"
+    },
+    {
       "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\28196ac4-c705-42f9-9956-909c281c3d42.ico",
       "PackagePath": "staticwebassets\\images\\28196ac4-c705-42f9-9956-909c281c3d42.ico"
+    },
+    {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\2a4b9299-0f8d-4092-8e56-e6030657010d.ico",
+      "PackagePath": "staticwebassets\\images\\2a4b9299-0f8d-4092-8e56-e6030657010d.ico"
+    },
+    {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\2c187e91-cca4-48c5-a393-8c24207863a2.ico",
+      "PackagePath": "staticwebassets\\images\\2c187e91-cca4-48c5-a393-8c24207863a2.ico"
+    },
+    {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\2c1ed323-b457-400f-bbf6-25c4b0dfdc3d.ico",
+      "PackagePath": "staticwebassets\\images\\2c1ed323-b457-400f-bbf6-25c4b0dfdc3d.ico"
     },
     {
       "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\2c7c2b49-1792-4ea3-bd9e-9a58e75a7250.ico",
       "PackagePath": "staticwebassets\\images\\2c7c2b49-1792-4ea3-bd9e-9a58e75a7250.ico"
     },
     {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\2f411f7a-822b-4028-bd5a-0c76f4283d28.ico",
+      "PackagePath": "staticwebassets\\images\\2f411f7a-822b-4028-bd5a-0c76f4283d28.ico"
+    },
+    {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\33c96472-11f5-4268-a952-40c7a5f6e1b4.png",
+      "PackagePath": "staticwebassets\\images\\33c96472-11f5-4268-a952-40c7a5f6e1b4.png"
+    },
+    {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\34635a10-72a7-436b-9ac5-9b6ff754e56d.ico",
+      "PackagePath": "staticwebassets\\images\\34635a10-72a7-436b-9ac5-9b6ff754e56d.ico"
+    },
+    {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\350dadf6-17fa-44b9-8175-46c84c0196ab.ico",
+      "PackagePath": "staticwebassets\\images\\350dadf6-17fa-44b9-8175-46c84c0196ab.ico"
+    },
+    {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\359a26df-8352-4fec-9abd-b548d497298f.png",
+      "PackagePath": "staticwebassets\\images\\359a26df-8352-4fec-9abd-b548d497298f.png"
+    },
+    {
       "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\36eb3298-db13-4f4c-99d6-bb56c4920f4d.ico",
       "PackagePath": "staticwebassets\\images\\36eb3298-db13-4f4c-99d6-bb56c4920f4d.ico"
+    },
+    {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\3a4e87e9-3cdd-4543-ae22-8ca692f4b25a.png",
+      "PackagePath": "staticwebassets\\images\\3a4e87e9-3cdd-4543-ae22-8ca692f4b25a.png"
     },
     {
       "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\3f26dbbd-0fea-454e-a21f-34eae49a0b22.ico",
       "PackagePath": "staticwebassets\\images\\3f26dbbd-0fea-454e-a21f-34eae49a0b22.ico"
     },
     {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\4518c4d9-0103-4d83-b20f-c450f0d3ca76.jpeg",
+      "PackagePath": "staticwebassets\\images\\4518c4d9-0103-4d83-b20f-c450f0d3ca76.jpeg"
+    },
+    {
       "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\48d54b22-62e1-40a9-a3b4-7bfead6af3ce.ico",
       "PackagePath": "staticwebassets\\images\\48d54b22-62e1-40a9-a3b4-7bfead6af3ce.ico"
+    },
+    {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\4a08e10b-aa2d-4407-b2be-dceb5f77d2d3.ico",
+      "PackagePath": "staticwebassets\\images\\4a08e10b-aa2d-4407-b2be-dceb5f77d2d3.ico"
+    },
+    {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\4a8fc66d-9201-4ba7-bac0-1394285dd477.ico",
+      "PackagePath": "staticwebassets\\images\\4a8fc66d-9201-4ba7-bac0-1394285dd477.ico"
+    },
+    {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\4bce390c-411d-4598-91ad-4ab048f54d94.ico",
+      "PackagePath": "staticwebassets\\images\\4bce390c-411d-4598-91ad-4ab048f54d94.ico"
     },
     {
       "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\4cf07dd5-d438-4ee3-bbfb-25816c4e16a2.ico",
       "PackagePath": "staticwebassets\\images\\4cf07dd5-d438-4ee3-bbfb-25816c4e16a2.ico"
     },
     {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\54f182fc-c113-4965-97e9-3c5fc49141e7.png",
+      "PackagePath": "staticwebassets\\images\\54f182fc-c113-4965-97e9-3c5fc49141e7.png"
+    },
+    {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\55445a03-8d0a-4ba9-97f7-5abb7d133ebd.ico",
+      "PackagePath": "staticwebassets\\images\\55445a03-8d0a-4ba9-97f7-5abb7d133ebd.ico"
+    },
+    {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\56aff0d9-5da2-45e1-a055-1d61561e1b38.ico",
+      "PackagePath": "staticwebassets\\images\\56aff0d9-5da2-45e1-a055-1d61561e1b38.ico"
+    },
+    {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\5acad3e5-2444-4660-b1d6-e4a068c3c2ca.ico",
+      "PackagePath": "staticwebassets\\images\\5acad3e5-2444-4660-b1d6-e4a068c3c2ca.ico"
+    },
+    {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\5b5cdae9-369f-4c03-ab2b-4f652a99530c.ico",
+      "PackagePath": "staticwebassets\\images\\5b5cdae9-369f-4c03-ab2b-4f652a99530c.ico"
+    },
+    {
       "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\5bc1aa7c-06bd-4035-8fe4-0a6047788569.ico",
       "PackagePath": "staticwebassets\\images\\5bc1aa7c-06bd-4035-8fe4-0a6047788569.ico"
+    },
+    {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\5c64471c-796c-4ece-baa8-52ae4fccf6f1.ico",
+      "PackagePath": "staticwebassets\\images\\5c64471c-796c-4ece-baa8-52ae4fccf6f1.ico"
+    },
+    {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\5d4dbc7d-8810-4928-a26a-e0e9fbfbb5f9.ico",
+      "PackagePath": "staticwebassets\\images\\5d4dbc7d-8810-4928-a26a-e0e9fbfbb5f9.ico"
     },
     {
       "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\61595433-f1b0-4d48-a8c3-8f02daaf7e77.png",
       "PackagePath": "staticwebassets\\images\\61595433-f1b0-4d48-a8c3-8f02daaf7e77.png"
     },
     {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\64bc8033-564d-424d-8905-d77ff1b82ddf.ico",
+      "PackagePath": "staticwebassets\\images\\64bc8033-564d-424d-8905-d77ff1b82ddf.ico"
+    },
+    {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\65047c6e-1b83-4b53-9b3b-9944dc9dfda0.ico",
+      "PackagePath": "staticwebassets\\images\\65047c6e-1b83-4b53-9b3b-9944dc9dfda0.ico"
+    },
+    {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\66d1e67a-b259-499c-a437-5261776e9a72.ico",
+      "PackagePath": "staticwebassets\\images\\66d1e67a-b259-499c-a437-5261776e9a72.ico"
+    },
+    {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\67ba81ce-2fec-46d8-a579-0bb4041e4fbc.ico",
+      "PackagePath": "staticwebassets\\images\\67ba81ce-2fec-46d8-a579-0bb4041e4fbc.ico"
+    },
+    {
       "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\6e46a200-8836-4906-85d6-5b8b567693cc.ico",
       "PackagePath": "staticwebassets\\images\\6e46a200-8836-4906-85d6-5b8b567693cc.ico"
+    },
+    {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\6f7f832d-7cde-4d57-bd80-0bf7864c6ace.png",
+      "PackagePath": "staticwebassets\\images\\6f7f832d-7cde-4d57-bd80-0bf7864c6ace.png"
+    },
+    {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\72e02aeb-9bf8-4abd-8abe-029a1961f4e8.ico",
+      "PackagePath": "staticwebassets\\images\\72e02aeb-9bf8-4abd-8abe-029a1961f4e8.ico"
+    },
+    {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\72ec417a-1334-4046-ac1f-5b76ee25ea79.png",
+      "PackagePath": "staticwebassets\\images\\72ec417a-1334-4046-ac1f-5b76ee25ea79.png"
     },
     {
       "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\73dc90a8-5fd6-4146-b40c-8e2a7b69804e.ico",
       "PackagePath": "staticwebassets\\images\\73dc90a8-5fd6-4146-b40c-8e2a7b69804e.ico"
     },
     {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\7727a097-8d67-4e95-abfc-aef9f089680e.ico",
+      "PackagePath": "staticwebassets\\images\\7727a097-8d67-4e95-abfc-aef9f089680e.ico"
+    },
+    {
       "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\849d6507-280b-47e9-b0ae-07690a3d038f.ico",
       "PackagePath": "staticwebassets\\images\\849d6507-280b-47e9-b0ae-07690a3d038f.ico"
+    },
+    {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\897b1c91-da41-48c5-9683-abcd218ed0e8.jpeg",
+      "PackagePath": "staticwebassets\\images\\897b1c91-da41-48c5-9683-abcd218ed0e8.jpeg"
     },
     {
       "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\8d9da9b4-7d9a-4f53-8917-00458c03fd62.ico",
       "PackagePath": "staticwebassets\\images\\8d9da9b4-7d9a-4f53-8917-00458c03fd62.ico"
     },
     {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\9043e918-23dc-48d0-9b3e-32092a560217.ico",
+      "PackagePath": "staticwebassets\\images\\9043e918-23dc-48d0-9b3e-32092a560217.ico"
+    },
+    {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\930b4977-fe23-4e25-9be5-4b1594f09659.ico",
+      "PackagePath": "staticwebassets\\images\\930b4977-fe23-4e25-9be5-4b1594f09659.ico"
+    },
+    {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\9d6135c7-41c9-4bc4-a335-de1265eeb85d.ico",
+      "PackagePath": "staticwebassets\\images\\9d6135c7-41c9-4bc4-a335-de1265eeb85d.ico"
+    },
+    {
       "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\9ffe459b-97f6-4343-b2fd-ced2284cf69c.ico",
       "PackagePath": "staticwebassets\\images\\9ffe459b-97f6-4343-b2fd-ced2284cf69c.ico"
     },
     {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\a19f30ae-e4b8-4870-b9ec-fb5298bb7147.ico",
+      "PackagePath": "staticwebassets\\images\\a19f30ae-e4b8-4870-b9ec-fb5298bb7147.ico"
+    },
+    {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\a8da73dc-dcc1-4523-92c3-ad6bcf71029e.ico",
+      "PackagePath": "staticwebassets\\images\\a8da73dc-dcc1-4523-92c3-ad6bcf71029e.ico"
+    },
+    {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\a948143b-f8fd-40fc-a6b1-343dac9c47c5.ico",
+      "PackagePath": "staticwebassets\\images\\a948143b-f8fd-40fc-a6b1-343dac9c47c5.ico"
+    },
+    {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\ab3364bc-dfcd-49ad-8ad3-c63fa1a97b81.ico",
+      "PackagePath": "staticwebassets\\images\\ab3364bc-dfcd-49ad-8ad3-c63fa1a97b81.ico"
+    },
+    {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\af1a23df-02a8-47c2-9bdb-8dabd8e854e4.png",
+      "PackagePath": "staticwebassets\\images\\af1a23df-02a8-47c2-9bdb-8dabd8e854e4.png"
+    },
+    {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\b047e0a7-4e5b-4899-9654-630a34512920.jpeg",
+      "PackagePath": "staticwebassets\\images\\b047e0a7-4e5b-4899-9654-630a34512920.jpeg"
+    },
+    {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\b3893b0f-3fd8-4fe5-b46a-a9a5172f3a21.png",
+      "PackagePath": "staticwebassets\\images\\b3893b0f-3fd8-4fe5-b46a-a9a5172f3a21.png"
+    },
+    {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\b6251762-4d4e-40d3-b2ac-0498aa117c0e.ico",
+      "PackagePath": "staticwebassets\\images\\b6251762-4d4e-40d3-b2ac-0498aa117c0e.ico"
+    },
+    {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\b76ebd26-efe7-4641-9db2-373bfda99f7b.ico",
+      "PackagePath": "staticwebassets\\images\\b76ebd26-efe7-4641-9db2-373bfda99f7b.ico"
+    },
+    {
       "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\bdf660e6-64ef-46a5-95d4-e30e7689b0ff.ico",
       "PackagePath": "staticwebassets\\images\\bdf660e6-64ef-46a5-95d4-e30e7689b0ff.ico"
+    },
+    {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\c44e6258-5558-4122-ae74-719a19b04284.ico",
+      "PackagePath": "staticwebassets\\images\\c44e6258-5558-4122-ae74-719a19b04284.ico"
+    },
+    {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\cff1ea1c-acfe-42fa-bff5-f8b73df96ea4.ico",
+      "PackagePath": "staticwebassets\\images\\cff1ea1c-acfe-42fa-bff5-f8b73df96ea4.ico"
+    },
+    {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\d01d2bd2-78bf-49b4-8b92-c5bb014deac1.ico",
+      "PackagePath": "staticwebassets\\images\\d01d2bd2-78bf-49b4-8b92-c5bb014deac1.ico"
+    },
+    {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\d5860a3d-d2e0-412b-b426-fa744d27ce5a.ico",
+      "PackagePath": "staticwebassets\\images\\d5860a3d-d2e0-412b-b426-fa744d27ce5a.ico"
+    },
+    {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\d59b9726-9b15-4a4c-a49c-5d8b72684bae.ico",
+      "PackagePath": "staticwebassets\\images\\d59b9726-9b15-4a4c-a49c-5d8b72684bae.ico"
+    },
+    {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\d719abc0-c155-49ca-9718-32fe8e9c84cf.ico",
+      "PackagePath": "staticwebassets\\images\\d719abc0-c155-49ca-9718-32fe8e9c84cf.ico"
+    },
+    {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\d71fb1fe-1f20-4780-8674-7b346da3aa2d.jpeg",
+      "PackagePath": "staticwebassets\\images\\d71fb1fe-1f20-4780-8674-7b346da3aa2d.jpeg"
+    },
+    {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\d83bd5c1-c8d5-4b92-8e28-408ff551a036.ico",
+      "PackagePath": "staticwebassets\\images\\d83bd5c1-c8d5-4b92-8e28-408ff551a036.ico"
+    },
+    {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\d9381ffb-8ad1-4e91-bfe7-316053ed89b4.jpeg",
+      "PackagePath": "staticwebassets\\images\\d9381ffb-8ad1-4e91-bfe7-316053ed89b4.jpeg"
+    },
+    {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\dba84753-f11e-4fd3-8ff2-563ae80e1098.png",
+      "PackagePath": "staticwebassets\\images\\dba84753-f11e-4fd3-8ff2-563ae80e1098.png"
+    },
+    {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\de27dc64-579a-44ac-8d8a-8d4120bb67e8.ico",
+      "PackagePath": "staticwebassets\\images\\de27dc64-579a-44ac-8d8a-8d4120bb67e8.ico"
+    },
+    {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\e305b314-d547-442e-9e25-d761e88c5353.ico",
+      "PackagePath": "staticwebassets\\images\\e305b314-d547-442e-9e25-d761e88c5353.ico"
+    },
+    {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\e4d39c9d-e33f-403f-88e5-9bcbc19a74ca.ico",
+      "PackagePath": "staticwebassets\\images\\e4d39c9d-e33f-403f-88e5-9bcbc19a74ca.ico"
+    },
+    {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\ed0d3a7d-5e5f-4dd7-9b99-e9fdf296d44d.ico",
+      "PackagePath": "staticwebassets\\images\\ed0d3a7d-5e5f-4dd7-9b99-e9fdf296d44d.ico"
+    },
+    {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\ed5bdf8d-85f0-4577-b773-961e6f4982cc.ico",
+      "PackagePath": "staticwebassets\\images\\ed5bdf8d-85f0-4577-b773-961e6f4982cc.ico"
+    },
+    {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\edba91ce-9821-4c7b-ae16-90d01311f47b.ico",
+      "PackagePath": "staticwebassets\\images\\edba91ce-9821-4c7b-ae16-90d01311f47b.ico"
+    },
+    {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\eff188b4-6229-480e-9e17-a626e339fd8f.ico",
+      "PackagePath": "staticwebassets\\images\\eff188b4-6229-480e-9e17-a626e339fd8f.ico"
+    },
+    {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\f687ebab-7a99-40e3-89f8-6269b0668d30.ico",
+      "PackagePath": "staticwebassets\\images\\f687ebab-7a99-40e3-89f8-6269b0668d30.ico"
+    },
+    {
+      "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\f969bd7d-415f-4927-b2d7-1c95384bead2.jpeg",
+      "PackagePath": "staticwebassets\\images\\f969bd7d-415f-4927-b2d7-1c95384bead2.jpeg"
     },
     {
       "Id": "C:\\Users\\John Paul\\source\\repos\\votingsystem\\votingsystem\\wwwroot\\images\\img.jpeg",
