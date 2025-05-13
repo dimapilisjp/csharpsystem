@@ -91,7 +91,7 @@ namespace votingsystem.Pages.Shared
             }
 
 
-            Database_Helper.DbHelper.CreateElection(election);
+            Database_Helper.DbHelper.CreateElection(election); //DbHelper #18
             TempData["Message"] = "Election successfully created.";
             return RedirectToPage("/Shared/ADManageElections");
 
@@ -108,44 +108,46 @@ namespace votingsystem.Pages.Shared
             if (election.ElectionId > 0)
             {
                 // update existing election
-                bool result = Database_Helper.DbHelper.UpdateElection(election);
+                bool result = Database_Helper.DbHelper.UpdateElection(election); //DbHelper #22
                 TempData["Message"] = result ? "Election updated successfully." : "Error updating the election.";
             }
             else
             {
                 // new election
-                if (Database_Helper.DbHelper.IsElectionTitleRegistered(election.Title))
+                if (Database_Helper.DbHelper.IsElectionTitleRegistered(election.Title)) //DbHelper #20
                 {
-                    EditElection = Database_Helper.DbHelper.GetElectionById(id);
+                    EditElection = Database_Helper.DbHelper.GetElectionById(id); //DbHelper #21
                     TempData["Message"] = "An election with this title already exists.";
                     return RedirectToPage("/Shared/ADManageElections");
                 }
 
-                Database_Helper.DbHelper.CreateElection(election);
+                Database_Helper.DbHelper.CreateElection(election); //DbHelper #18
                 TempData["Message"] = "Election successfully created.";
             }
 
-            EditElection = Database_Helper.DbHelper.GetElectionById(id);
+            EditElection = Database_Helper.DbHelper.GetElectionById(id); //DbHelper #21
             return RedirectToPage("/Shared/ADManageElections");
         }
 
 
-
+        //delete the election
         public IActionResult OnPostDeleteElection(int id)
         {
-            Database_Helper.DbHelper.DeleteElection(id);
+            Database_Helper.DbHelper.DeleteElection(id); //DbHelper #23
             return RedirectToPage("/Shared/ADManageElections");
         }
 
+        //fetches the elections
         public void OnGet(int id)
         {
-            Elections = Database_Helper.DbHelper.GetElections();
-            EditElection = Database_Helper.DbHelper.GetElectionById(id);
+            Elections = Database_Helper.DbHelper.GetElections(); //DbHelper #19
+            EditElection = Database_Helper.DbHelper.GetElectionById(id); //DbHelper #21
         }
 
+        //edit the election
         public void OnGetEditElection(int id)
         {
-            EditElection = Database_Helper.DbHelper.GetElectionById(id);
+            EditElection = Database_Helper.DbHelper.GetElectionById(id); //DbHelper #21
 
             if (EditElection != null)
             {

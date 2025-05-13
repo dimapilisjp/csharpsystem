@@ -34,16 +34,19 @@ namespace votingsystem.Pages.Shared
             return RedirectToPage("/Index");
         }
 
+        //fetches the details of the user and the candidates the user voted
         public void OnGet(int electionId)
         {
-            int userId = Database_Helper.DbHelper.GetUserIdByUsername(User.Identity.Name); 
-            VotedCandidates = Database_Helper.DbHelper.GetUserVotedCandidates(userId, electionId);
+            Console.WriteLine($"Username: {User.Identity.Name} ElectionID: {electionId}");
+            int userId = Database_Helper.DbHelper.GetUserIdByUsername(User.Identity.Name); //DbHelper #41
+            VotedCandidates = Database_Helper.DbHelper.GetUserVotedCandidates(userId, electionId); //DbHelper #43
             ElectionId = electionId;
 
             
-            ElectionTitle = Database_Helper.DbHelper.GetElectionTitle(electionId);
+            ElectionTitle = Database_Helper.DbHelper.GetElectionTitle(electionId); //DbHelper #42
         }
 
+        //will redirect to the election total results
         public IActionResult OnPostRedirectToResults(int electionId)
         {
             Console.WriteLine($"Redirecting to live election results for ElectionId {electionId}.");

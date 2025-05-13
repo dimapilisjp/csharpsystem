@@ -78,13 +78,14 @@ namespace votingsystem.Pages.Shared
         public void OnGet()
         {
             Console.WriteLine("Fetching vote history...");
-            VoteHistories = Database_Helper.DbHelper.GetVoteHistories();
+            VoteHistories = Database_Helper.DbHelper.GetVoteHistories(); //DbHelper #15
         }
 
+        //fetches the details of the user and the electionid the user voted in
         public IActionResult OnGetVoteDetails(int userId, int electionId)
         {
             Console.WriteLine($"Fetching vote receipt for User ID: {userId}, Election ID: {electionId}");
-            var voteDetails = Database_Helper.DbHelper.GetVoteDetails(userId, electionId);
+            var voteDetails = Database_Helper.DbHelper.GetVoteDetails(userId, electionId); //DbHelper #16
 
             if (voteDetails == null || !voteDetails.Selections.Any())
             {

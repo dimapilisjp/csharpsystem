@@ -15,7 +15,7 @@
         container.innerHTML = `<canvas id="myChart" width="800" height="400"></canvas>`;
         const ctx = document.getElementById('myChart').getContext("2d");
 
-        // enforce the specific order of positions
+        // specific order of positions
         const orderedPositions = ["President", "Vice President", "Secretary", "Treasurer", "Auditor", "PRO"];
         const positions = orderedPositions.filter(pos => data.some(x => x.position === pos));
 

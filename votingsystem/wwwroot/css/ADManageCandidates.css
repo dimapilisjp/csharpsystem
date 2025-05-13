@@ -120,19 +120,13 @@ header {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-    .create-candidate-section:hover,
-    .candidate-table:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 6px 10px rgba(0, 0, 0, 0.5);
-    }
-
-    .create-candidate-section h2,
+/*    .create-candidate-section h2,
     .candidate-table h2 {
         font-size: 20px;
         margin-bottom: 15px;
         color: #5e4b82;
     }
-
+*/
 .form-group {
     margin-bottom: 15px;
 }

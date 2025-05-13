@@ -77,6 +77,12 @@
         <div class="main-content">
             <header>
                 <h1>Manage Voters</h1>
+                @if (TempData["Message"] != null)
+                {
+                    <div class="alert">
+                        @TempData["Message"]
+                    </div>
+                }
                 <input type="text" id="search-voters" placeholder="Search voters" />
             </header>
             <section class="voter-table">

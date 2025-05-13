@@ -46,13 +46,12 @@ namespace votingsystem.Pages.Shared
         {
             Console.WriteLine($"Fetching live results for ElectionId={electionId}");
 
-            // available elections
-            AllElections = Database_Helper.DbHelper.GetAllElections();
+            AllElections = Database_Helper.DbHelper.GetAllElections(); //DbHelper #45
 
             // if an election is selected, fetch live results
             if (electionId.HasValue)
             {
-                LiveResults = Database_Helper.DbHelper.GetLiveElectionResults(electionId.Value);
+                LiveResults = Database_Helper.DbHelper.GetLiveElectionResults(electionId.Value); //DbHelper #47
             }
             else
             {
@@ -64,7 +63,7 @@ namespace votingsystem.Pages.Shared
         public JsonResult OnGetLiveResults(int electionId)
         {
             Console.WriteLine($" AJAX call received for electionId={electionId}");
-            var results = Database_Helper.DbHelper.GetLiveElectionResults(electionId);
+            var results = Database_Helper.DbHelper.GetLiveElectionResults(electionId); //DbHelper #47
             return new JsonResult(results);
         }
 

@@ -27,6 +27,7 @@ namespace votingsystem.Pages.Shared
             public string PhotoPath { get; set; }
 
         }
+        public List<Voter> Voters { get; set; }
 
         public IActionResult OnPostRedirectToManageVoters()
         {
@@ -70,19 +71,31 @@ namespace votingsystem.Pages.Shared
         }
         public IActionResult OnPostDeleteVoter(int id)
         {
-            Database_Helper.DbHelper.DeleteVoter(id);
+            bool isDeleted = Database_Helper.DbHelper.DeleteVoter(id); //DbHelper #12
+
+            if (!isDeleted)
+            {
+                TempData["Message"] = "User cannot be deleted because they have existing votes.";
+                Console.WriteLine("User cannot be deleted because they have existing votes");
+            }
+            else
+            {
+                TempData["Message"] = "User successfully deleted.";
+            }
+
             return RedirectToPage("/Shared/ADManageVoters");
         }
-        public List<Voter> Voters { get; set; }
 
+        //fetches the list of voters
         public void OnGet()
         {
-            Voters = Database_Helper.DbHelper.GetVoters();
+            Voters = Database_Helper.DbHelper.GetVoters(); //DbHelper #11
         }
 
+        //approve the registration of the voter
         public IActionResult OnPostApproveVoter(int id)
         {
-            bool isApproved = Database_Helper.DbHelper.ApproveVoter(id);
+            bool isApproved = Database_Helper.DbHelper.ApproveVoter(id); //DbHelper #2
             if (isApproved)
             {
                 TempData["Message"] = "Voter approved successfully.";
@@ -94,10 +107,10 @@ namespace votingsystem.Pages.Shared
             return RedirectToPage("/Shared/ADManageVoters"); 
         }
 
-
+        //reject the registration of the voter, will be deleted
         public IActionResult OnPostRejectVoter(int id)
         {
-            bool isRejected = Database_Helper.DbHelper.RejectVoter(id);
+            bool isRejected = Database_Helper.DbHelper.RejectVoter(id); //DbHelper #3
             if (isRejected)
             {
                 TempData["Message"] = "Voter rejected and removed.";

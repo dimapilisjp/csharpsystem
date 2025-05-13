@@ -8,6 +8,7 @@ namespace votingsystem.Pages.Shared
 {
     public class UserPageModel : PageModel
     {
+        public string UserName { get; set; }
         public List<Election> AvailableElections { get; set; }
         public List<Election> UpcomingElections { get; set; }
 
@@ -28,7 +29,7 @@ namespace votingsystem.Pages.Shared
         public IActionResult OnPostLogout()
         {
             HttpContext.SignOutAsync();
-            return RedirectToPage("/Index"); 
+            return RedirectToPage("/Index");
         }
 
 
@@ -41,22 +42,22 @@ namespace votingsystem.Pages.Shared
             {
                 Console.WriteLine("Error: User.Identity.Name is empty. Redirecting to login.");
                 TempData["Error"] = "You need to log in to access the voting page.";
-                return RedirectToPage("/Account/Login");
+                return RedirectToPage("/Index");
             }
 
             // fetch id
-            var userId = Database_Helper.DbHelper.GetUserIdByUsername(User.Identity.Name);
+            var userId = Database_Helper.DbHelper.GetUserIdByUsername(User.Identity.Name); //DbHelper #41
             Console.WriteLine($"[Debug] Fetched UserId: {userId}");
 
             if (userId <= 0)
             {
                 Console.WriteLine("Error: Unable to fetch valid UserId. Redirecting to login.");
                 TempData["Error"] = "Invalid user session. Please log in again.";
-                return RedirectToPage("/Account/Login");
+                return RedirectToPage("/Index");
             }
 
-            // check if user has already voted for election
-            if (Database_Helper.DbHelper.HasUserVoted(userId, electionId))
+            // check if user has already voted for election 
+            if (Database_Helper.DbHelper.HasUserVoted(userId, electionId)) //DbHelper #38
             {
                 Console.WriteLine($"User {userId} has already voted for ElectionId {electionId}.");
                 TempData["Error"] = "You have already cast your vote for this election.";
@@ -77,23 +78,23 @@ namespace votingsystem.Pages.Shared
             {
                 Console.WriteLine("Error: User.Identity.Name is empty. Redirecting to login.");
                 TempData["Error"] = "You need to log in to access your elections.";
-                RedirectToPage("/Account/Login");
+                RedirectToPage("/Index");
                 return;
             }
 
             // fetch user details
-            var user = Database_Helper.DbHelper.GetUserDetailsByUsername(User.Identity.Name);
+            var user = Database_Helper.DbHelper.GetUserDetailsByUsername(User.Identity.Name); //DbHelper #32
             if (user == null)
             {
                 Console.WriteLine("Error: Unable to fetch user details. Redirecting to login.");
                 TempData["Error"] = "Invalid user session. Please log in again.";
-                RedirectToPage("/Account/Login");
+                RedirectToPage("/Index");
                 return;
-            }           
-            Console.WriteLine($"Fetched User Details: Department={user.Department}, Program={user.Program}");
+            }
+            Console.WriteLine($"User Details: Department={user.Department}, Program={user.Program}");
 
-            AvailableElections = Database_Helper.DbHelper.GetAvailableElections(user.Department, user.Program);
-            UpcomingElections = Database_Helper.DbHelper.GetUpcomingElectionsByUser(user.Department, user.Program);
+            AvailableElections = Database_Helper.DbHelper.GetAvailableElections(user.Department, user.Program); //DbHelper #33
+            UpcomingElections = Database_Helper.DbHelper.GetUpcomingElectionsByUser(user.Department, user.Program); //DbHelper #36
 
 
             Console.WriteLine($"Fetched {AvailableElections.Count} available elections and {UpcomingElections.Count} upcoming elections.");

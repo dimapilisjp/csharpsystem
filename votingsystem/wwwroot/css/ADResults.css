@@ -50,16 +50,6 @@
     padding: 20px;
 }
 
-header {
-    text-align: center;
-    padding: 20px 0;
-    border-bottom: 3px solid #5e4b82;
-}
-
-    header h2 {
-        font-size: 24px;
-        color: #333;
-    }
 
 label {
     font-size: 16px;

@@ -41,6 +41,7 @@
 
     <main class="main-content">
         <section class="dashboard-section">
+            <h3>Welcome, @(User.Identity.IsAuthenticated ? User.Identity.Name : "Guest")!</h3>
             <h2>Available Elections</h2>
             <div id="elections-container">
                 @if (Model.AvailableElections.Any())

@@ -43,14 +43,14 @@ public class IndexModel : PageModel
 
         // verify user's details and approval status
         Console.WriteLine("Calling VerifyUser...");
-        bool isVerified = Database_Helper.DbHelper.VerifyUser(UserName, Password);
+        bool isVerified = Database_Helper.DbHelper.VerifyUser(UserName, Password); //DbHelper #4
 
         if (isVerified)
         {
             Console.WriteLine("User verified. Checking approval status...");
 
             // check if the user is approved
-            bool isApproved = Database_Helper.DbHelper.IsUserApproved(UserName); 
+            bool isApproved = Database_Helper.DbHelper.IsUserApproved(UserName); //DbHelper #5
 
             if (!isApproved)
             {
@@ -62,7 +62,7 @@ public class IndexModel : PageModel
             Console.WriteLine("User approved. Fetching user role...");
 
             // fetch role of the user
-            string role = Database_Helper.DbHelper.GetUserRole(UserName);
+            string role = Database_Helper.DbHelper.GetUserRole(UserName); //DbHelper #10
 
             Console.WriteLine($"User role: {role}");
 
@@ -103,7 +103,7 @@ public class IndexModel : PageModel
         else
         {
             
-            if (!Database_Helper.DbHelper.IsUserApproved(UserName))
+            if (!Database_Helper.DbHelper.IsUserApproved(UserName)) //DbHelper #5
             {
                 Message = "Your account is awaiting approval. Please wait for admin approval.";
             }

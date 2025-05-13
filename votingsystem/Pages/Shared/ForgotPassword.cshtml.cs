@@ -14,12 +14,12 @@ namespace votingsystem.Pages.Shared
             // validate email
             if (string.IsNullOrWhiteSpace(email)) return BadRequest("Invalid email address.");
 
-            if (!Database_Helper.DbHelper.CheckIfEmailExist(email))
+            if (!Database_Helper.DbHelper.CheckIfEmailExist(email)) //DbHelper #6
                 return BadRequest("Email not found.");
 
             // generate token and save
             string token = Guid.NewGuid().ToString();
-            Database_Helper.DbHelper.SaveResetToken(email, token);
+            Database_Helper.DbHelper.SaveResetToken(email, token); //DbHelper #7
 
             // send reset link
             string resetLink = Url.Page("/ResetPassword", null, new { token }, Request.Scheme);
@@ -39,7 +39,7 @@ namespace votingsystem.Pages.Shared
             }
 
             // check if the email exists in the database
-            bool userExists = Database_Helper.DbHelper.CheckIfEmailExist(Email);
+            bool userExists = Database_Helper.DbHelper.CheckIfEmailExist(Email); //DbHelper #6
             if (!userExists)
             {
                 Message = "Email not found. Please try again.";
@@ -55,7 +55,7 @@ namespace votingsystem.Pages.Shared
             // save the reset token
             try
             {
-                Database_Helper.DbHelper.SaveResetToken(Email, resetToken);
+                Database_Helper.DbHelper.SaveResetToken(Email, resetToken); //DbHelper #7
             }
             catch (Exception ex)
             {

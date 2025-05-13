@@ -71,40 +71,34 @@
             </form>
         </div>
     </nav>
+
     <div class="container">
-        <header>
-            <h1>Vote Receipt</h1>
-            <p><strong>Election:</strong> @Model.ElectionTitle</p>
-        </header>
+        <h1>Vote Receipt</h1>
+        <p><strong>Election:</strong> @Model.ElectionTitle</p>
 
-        <section class="vote-summary">
-            <div id="voted-container">
-                @if (Model.VotedCandidates != null && Model.VotedCandidates.Any())
+        <div class="vote-summary">
+            @if (Model.VotedCandidates != null && Model.VotedCandidates.Any())
+            {
+                var groupedCandidates = Model.VotedCandidates.GroupBy(c => c.Position);
+
+                @foreach (var group in groupedCandidates)
                 {
-                    var groupedCandidates = Model.VotedCandidates.GroupBy(c => c.Position);
-
-                    foreach (var group in groupedCandidates)
-                    {
-                        <div class="position-group">
-                            <h3>Position: @group.Key</h3>
-                            <ul>
-                                @foreach (var candidate in group)
-                                {
-                                    <li>@candidate.Name (@candidate.PartyList)</li>
-                                }
-                            </ul>
-                        </div>
-                    }
+                    <p><strong>Position: @group.Key</strong></p>
+                    <ul>
+                        @foreach (var candidate in group)
+                        {
+                            <li>@candidate.Name (@candidate.PartyList)</li>
+                        }
+                    </ul>
                 }
-                else
-                {
-                    <p>No ballot records found for this election.</p>
-                }
-            </div>
-        </section>
-
+            }
+            else
+            {
+                <p>No ballot records found for this election.</p>
+            }
+        </div>
         <form method="post" asp-page-handler="RedirectToVotesRecord">
-            <button type="submit" class="return-button">Back to Votes Record</button>
+            <button type="submit" class="return-button">Return to list</button>
         </form>
     </div>
 </body>

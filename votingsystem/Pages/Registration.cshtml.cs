@@ -78,6 +78,12 @@ namespace votingsystem.Pages
 
         public IActionResult OnPostRegisterUser(User user, IFormFile photoFile)
         {
+            if (Database_Helper.DbHelper.IsUsernameTaken(user.UserName)) //DbHelper #17
+            {
+                TempData["Message"] = "Username already exists.";
+                return Page();
+            }
+
             Console.WriteLine($"Form submitted: FirstName={user.FirstName}, LastName={user.LastName}, Email={user.Email} Department={user.Department}");
 
             int monthNumber = GetMonthNumber(Input.Month);
@@ -89,7 +95,7 @@ namespace votingsystem.Pages
             if (age < 18)
             {
                 TempData["Message"] = "You must be at least 18 years old to register.";
-                Console.WriteLine("User is underaged. Registration blocked.");
+                Console.WriteLine("User underaged. Registration blocked.");
                 return Page();
             }
 
@@ -139,10 +145,10 @@ namespace votingsystem.Pages
             user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(user.PasswordHash);
             Console.WriteLine($"Hashed Password: {user.PasswordHash}");
 
-            // generate OTP
-            string otp = Database_Helper.DbHelper.GenerateOTP();
-            Database_Helper.DbHelper.StoreOTP(user.Email, otp);
-            Database_Helper.DbHelper.SendEmailOTP(user.Email, otp);
+            // OTP function
+            string otp = Database_Helper.DbHelper.CreateOTP(); //DbHelper #48
+            Database_Helper.DbHelper.SaveOTP(user.Email, otp); //DbHelper #50
+            Database_Helper.DbHelper.SendOTP(user.Email, otp); //DbHelper #49
 
             // store user data in tempdata for OTP confirmation
             TempData["User"] = JsonSerializer.Serialize(user);
@@ -150,10 +156,8 @@ namespace votingsystem.Pages
 
             Console.WriteLine($"OTP sent to {user.Email}");
 
-            return RedirectToPage("/Shared/OTPPage"); // OTP input page
+            return RedirectToPage("/Shared/OTPPage");
         }
-
-
 
 
         private int GetMonthNumber(string month)
@@ -161,6 +165,7 @@ namespace votingsystem.Pages
             return DateTime.ParseExact(month, "MMMM", System.Globalization.CultureInfo.InvariantCulture).Month;
         }
 
+        //will calculate the age based on the birthdate
         private int CalculateAge(DateTime birthDate)
         {
             DateTime today = DateTime.Today;

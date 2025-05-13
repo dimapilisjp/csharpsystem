@@ -79,10 +79,6 @@
     width: 100%;
 }
 
-    .logout-button:hover {
-        background-color: #c9302c;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    }
 
 .main-content {
     margin-left: 250px;
@@ -120,11 +116,6 @@ header {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-    .create-election-section:hover,
-    .election-list-section:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 6px 10px rgba(0, 0, 0, 0.5);
-    }
 
     .create-election-section h2,
     .election-list-section h2 {
@@ -173,10 +164,6 @@ textarea {
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-    .primary-button:hover {
-        background-color: #4a3b68;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    }
 
 table {
     width: 100%;
@@ -237,19 +224,10 @@ tr:hover {
     margin-right: 5px;
 }
 
-    .edit-button:hover {
-        background-color: #4a3b68;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    }
-
 .delete-button {
     background-color: #d9534f;
 }
 
-    .delete-button:hover {
-        background-color: #c9302c;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    }
 
 .alert {
     background-color: #ffdd57;

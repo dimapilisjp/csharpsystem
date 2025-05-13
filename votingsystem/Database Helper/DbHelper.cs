@@ -43,8 +43,9 @@ namespace votingsystem.Database_Helper
             return new MySqlConnection(GetConnectionString());
         }
 
-        // registration page, add creating an account
-        public static bool RegisterUser(User user)
+
+        // registration page, add an account
+        public static bool RegisterUser(User user) //1
         {
             using (var con = GetConnection())
             {
@@ -89,8 +90,8 @@ namespace votingsystem.Database_Helper
             }
         }
 
-        //admin side, approve the user in order to get access
-        public static bool ApproveVoter(int voterId)
+        //admin, approve the user in order to get access
+        public static bool ApproveVoter(int voterId) //2
         {
             using (var con = GetConnection())
             {
@@ -105,8 +106,8 @@ namespace votingsystem.Database_Helper
             }
         }
 
-        //rejecting the user will delete the account
-        public static bool RejectVoter(int voterId)
+        //admin, rejecting the user will delete the account
+        public static bool RejectVoter(int voterId) //3
         {
             using (var con = GetConnection())
             {
@@ -121,8 +122,8 @@ namespace votingsystem.Database_Helper
             }
         }
 
-        // verify user info
-        public static bool VerifyUser(string UserName, string Password)
+        //admin, verify user info
+        public static bool VerifyUser(string UserName, string Password) //4
         {
             using (var con = GetConnection())
             {
@@ -179,7 +180,7 @@ namespace votingsystem.Database_Helper
         }
 
         //will check if the user loggin in is approved
-        public static bool IsUserApproved(string UserName)
+        public static bool IsUserApproved(string UserName) //5
         {
             using (var con = GetConnection())
             {
@@ -213,7 +214,7 @@ namespace votingsystem.Database_Helper
         }
 
         // in order to prevent email duplication in registration
-        public static bool CheckIfEmailExist(string email)
+        public static bool CheckIfEmailExist(string email) //6
         {
             using (var con = GetConnection())
             {
@@ -228,7 +229,7 @@ namespace votingsystem.Database_Helper
         }
 
         // the reset token when using the forgot password
-        public static void SaveResetToken(string email, string token)
+        public static void SaveResetToken(string email, string token) //7
         {
             using (var con = GetConnection())
             {
@@ -245,7 +246,7 @@ namespace votingsystem.Database_Helper
         }
 
         //will check if the token is valid
-        public static bool ValidateResetToken(string token)
+        public static bool ValidateResetToken(string token) //8
         {
             using (var con = GetConnection())
             {
@@ -260,7 +261,7 @@ namespace votingsystem.Database_Helper
         }
 
         //will set the new passwordhash for the user
-        public static bool ResetPassword(string token, string password)
+        public static bool ResetPassword(string token, string password) //9
         {
             using (var con = GetConnection())
             {
@@ -276,7 +277,7 @@ namespace votingsystem.Database_Helper
         }
 
         // will check the role of the user in the log in, admin dashboard if admin and userpage if user
-        public static string GetUserRole(string userName)
+        public static string GetUserRole(string userName) //10
         {
             using (var con = GetConnection())
             {
@@ -302,7 +303,7 @@ namespace votingsystem.Database_Helper
         }
 
         //will fetch all the info of the voters to be able to be displayed in the manage voters page
-        public static List<Voter> GetVoters()
+        public static List<Voter> GetVoters() //11
         {
             var voters = new List<Voter>();
 
@@ -345,20 +346,30 @@ namespace votingsystem.Database_Helper
         }
 
         //will remove the user from the system
-        public static bool DeleteVoter(int id)
+        public static bool DeleteVoter(int id) //12
         {
             using (var con = GetConnection())
             {
-                string query = "DELETE FROM Users WHERE Id = @Id";
-
-                using (var cmd = new MySqlCommand(query, con))
+                con.Open();
+                string checkVotesQuery = "SELECT COUNT(*) FROM Votes WHERE UserId = @Id";
+                using (var checkVotesCmd = new MySqlCommand(checkVotesQuery, con))
                 {
-                    cmd.Parameters.AddWithValue("@Id", id);
+                    checkVotesCmd.Parameters.AddWithValue("@Id", id);
+                    int voteCount = Convert.ToInt32(checkVotesCmd.ExecuteScalar());
+
+                    if (voteCount > 0)
+                    {
+                        return false; 
+                    }
+                }
+                string deleteUserQuery = "DELETE FROM Users WHERE Id = @Id";
+                using (var deleteUserCmd = new MySqlCommand(deleteUserQuery, con))
+                {
+                    deleteUserCmd.Parameters.AddWithValue("@Id", id);
 
                     try
                     {
-                        con.Open();
-                        cmd.ExecuteNonQuery();
+                        deleteUserCmd.ExecuteNonQuery();
                         return true;
                     }
                     catch (MySqlException ex)
@@ -366,16 +377,13 @@ namespace votingsystem.Database_Helper
                         Console.WriteLine($"MySQL Error: {ex.Message}");
                         return false;
                     }
-                    finally
-                    {
-                        con.Close();
-                    }
                 }
             }
         }
 
+
         //will get the percentage of the voters who voted
-        public static List<VoterStats> GetVoterTurnout(int electionId)
+        public static List<VoterStats> GetVoterTurnout(int electionId) //13
         {
             var result = new List<VoterStats>();
             using (var conn = GetConnection())
@@ -416,7 +424,7 @@ namespace votingsystem.Database_Helper
         }
 
         //for the distribution of votes per candidate in the election
-        public static List<VoteDistribution> GetVoteDistribution(int electionId)
+        public static List<VoteDistribution> GetVoteDistribution(int electionId) //14
         {
             var result = new List<VoteDistribution>();
             using (var conn = GetConnection())
@@ -473,7 +481,7 @@ namespace votingsystem.Database_Helper
         }
 
         //fetches the record of the votes of the users
-        public static List<VoteHistory> GetVoteHistories()
+        public static List<VoteHistory> GetVoteHistories() //15
         {
             var histories = new List<VoteHistory>();
 
@@ -513,7 +521,7 @@ namespace votingsystem.Database_Helper
         }
 
         //will fetch the ballot of the user, will show the candidates he voted for
-        public static VoteDetails GetVoteDetails(int userId, int electionId)
+        public static VoteDetails GetVoteDetails(int userId, int electionId) //16
         {
             var voteDetails = new VoteDetails();
 
@@ -566,7 +574,7 @@ namespace votingsystem.Database_Helper
 
 
         //will fetch the ballot of the user, will show the candidates he voted for
-        public static VoteDetails GetVoteDetails(int voteId)
+        public static VoteDetails GetVoteDetails(int voteId) //17
         {
             var details = new VoteDetails { Selections = new List<VoteSelection>() };
 
@@ -599,9 +607,9 @@ namespace votingsystem.Database_Helper
                         {
                             details.Selections.Add(new VoteSelection
                             {
-                                CandidateName = reader.GetString("PresidentName"), 
-                                Position = "President" 
-                            });                           
+                                CandidateName = reader.GetString("PresidentName"),
+                                Position = "President"
+                            });
                         }
                     }
                 }
@@ -610,8 +618,28 @@ namespace votingsystem.Database_Helper
             return details;
         }
 
+        //checks if username already exists
+        public static bool IsUsernameTaken(string username) //17
+        {
+            using (var con = GetConnection())
+            {
+                string query = "SELECT COUNT(*) FROM Users WHERE UserName = @UserName";
+
+                using (var cmd = new MySqlCommand(query, con))
+                {
+                    cmd.Parameters.AddWithValue("@UserName", username);
+                    con.Open();
+
+                    int count = Convert.ToInt32(cmd.ExecuteScalar());
+                    return count > 0; 
+                }
+            }
+        }
+
+
+
         //creates an election
-        public static void CreateElection(Election election)
+        public static void CreateElection(Election election) //18
         {
             using (var con = GetConnection())
             {
@@ -646,7 +674,7 @@ namespace votingsystem.Database_Helper
         }
 
         //fetches the elections, in order to display the list 
-        public static List<Election> GetElections()
+        public static List<Election> GetElections() //19
         {
             var elections = new List<Election>();
 
@@ -691,7 +719,7 @@ namespace votingsystem.Database_Helper
         }
 
         //checks the title of created elections to prevent duplicatioin
-        public static bool IsElectionTitleRegistered(string title)
+        public static bool IsElectionTitleRegistered(string title) //20
         {
             using (var con = GetConnection())
             {
@@ -721,7 +749,7 @@ namespace votingsystem.Database_Helper
         }
 
         // fetches the details of the election, will be displayed in the manage elections page
-        public static Election GetElectionById(int id)
+        public static Election GetElectionById(int id) //21
         {
             Election election = null;
 
@@ -764,7 +792,7 @@ namespace votingsystem.Database_Helper
         }
 
         //will update the details of the election if edited
-        public static bool UpdateElection(Election election)
+        public static bool UpdateElection(Election election) //22
         {
             using (var con = GetConnection())
             {
@@ -814,7 +842,7 @@ namespace votingsystem.Database_Helper
         }
 
         //deletes the election
-        public static bool DeleteElection(int id)
+        public static bool DeleteElection(int id) //23
         {
             using (var con = GetConnection())
             {
@@ -844,7 +872,7 @@ namespace votingsystem.Database_Helper
         }
 
         //will fetch the candidates, in order to display list in the manage candidates page
-        public static List<Candidate> GetCandidates()
+        public static List<Candidate> GetCandidates() //24
         {
             var candidates = new List<Candidate>();
 
@@ -893,7 +921,7 @@ namespace votingsystem.Database_Helper
         }
 
         //creates a candidate
-        public static bool CreateCandidate(Candidate candidate)
+        public static bool CreateCandidate(Candidate candidate) //25
         {
             using (var con = GetConnection())
             {
@@ -935,7 +963,7 @@ namespace votingsystem.Database_Helper
         }
 
         //checks if a candidate is already registered to avoid duplication
-        public static bool IsCandidateNameRegistered(string name)
+        public static bool IsCandidateNameRegistered(string name) //26
         {
             using (var con = GetConnection())
             {
@@ -952,7 +980,7 @@ namespace votingsystem.Database_Helper
         }
 
         //deletes a candidate
-        public static bool DeleteCandidate(int id)
+        public static bool DeleteCandidate(int id) //27
         {
             using (var con = GetConnection())
             {
@@ -985,7 +1013,7 @@ namespace votingsystem.Database_Helper
         }
 
         //gets the total number of elections
-        public static int GetTotalElections()
+        public static int GetTotalElections() //28
         {
             using (var con = GetConnection())
             {
@@ -1012,7 +1040,7 @@ namespace votingsystem.Database_Helper
         }
 
         //gets the total number of voters
-        public static int GetTotalVoters()
+        public static int GetTotalVoters() //29
         {
             using (var con = GetConnection())
             {
@@ -1043,7 +1071,7 @@ namespace votingsystem.Database_Helper
         }
 
         //gets the total number of votes 
-        public static int GetTotalVotes()
+        public static int GetTotalVotes() //30
         {
             using (var con = GetConnection())
             {
@@ -1070,7 +1098,7 @@ namespace votingsystem.Database_Helper
         }
 
         //gets the number of users who are waiting for approval
-        public static int GetPendingRegistrations()
+        public static int GetPendingRegistrations() //31
         {
             int pendingCount = 0;
 
@@ -1091,7 +1119,7 @@ namespace votingsystem.Database_Helper
 
 
         // in order to fetch the id,department, and program of the user for log in
-        public static User GetUserDetailsByUsername(string username)
+        public static User GetUserDetailsByUsername(string username) //32
         {
             using (var con = GetConnection())
             {
@@ -1136,7 +1164,7 @@ namespace votingsystem.Database_Helper
         }
 
         //fetches all the available elections
-        public static List<Election> GetAvailableElections(string department, string program)
+        public static List<Election> GetAvailableElections(string department, string program) //33
         {
             var elections = new List<Election>();
 
@@ -1154,7 +1182,6 @@ namespace votingsystem.Database_Helper
 
                     using (var cmd = new MySqlCommand(query, con))
                     {
-                        // Add parameters for filtering by department and program
                         cmd.Parameters.AddWithValue("@department", department);
                         cmd.Parameters.AddWithValue("@program", program);
 
@@ -1190,8 +1217,8 @@ namespace votingsystem.Database_Helper
             return elections;
         }
 
-        //fetches all the available elections
-        public static List<Election> GetAvailableElections()
+        //fetches all the available elections, for the ADElectionsData page
+        public static List<Election> GetAvailableElectionsAdmin() //34
         {
             var elections = new List<Election>();
 
@@ -1241,7 +1268,7 @@ namespace votingsystem.Database_Helper
 
 
         //fetches all the upcoming elections
-        public static List<Election> GetUpcomingElections()
+        public static List<Election> GetUpcomingElections() //35
         {
             var elections = new List<Election>();
 
@@ -1285,7 +1312,7 @@ namespace votingsystem.Database_Helper
         }
 
         //fetches all upcoming elections that has department and program as arguments
-        public static List<Election> GetUpcomingElectionsByUser(string department, string program)
+        public static List<Election> GetUpcomingElectionsByUser(string department, string program) //36
         {
             var elections = new List<Election>();
 
@@ -1340,7 +1367,7 @@ namespace votingsystem.Database_Helper
 
 
         //fetches the candidates of an election
-        public static List<Candidate> GetCandidatesByElectionId(int electionId)
+        public static List<Candidate> GetCandidatesByElectionId(int electionId) //37
         {
             var candidates = new List<Candidate>();
 
@@ -1374,7 +1401,7 @@ namespace votingsystem.Database_Helper
         }
 
         //checks if the user casted a vote already
-        public static bool HasUserVoted(int userId, int electionId)
+        public static bool HasUserVoted(int userId, int electionId) //38
         {
             using (var con = GetConnection())
             {
@@ -1392,7 +1419,7 @@ namespace votingsystem.Database_Helper
         }
 
         //records the data of the vote of the user
-        public static void RecordVote(Vote vote)
+        public static void RecordVote(Vote vote) //39
         {
             try
             {
@@ -1434,39 +1461,39 @@ namespace votingsystem.Database_Helper
             }
         }
 
-        //validates if the details of the user is available in the database
-        public static int ValidateUser(string username, string password)
-        {
-            using (var con = GetConnection())
-            {
-                string query = "SELECT Id, PasswordHash FROM Users WHERE UserName = @Username";
-                using (var cmd = new MySqlCommand(query, con))
-                {
-                    cmd.Parameters.AddWithValue("@Username", username);
+        ////validates if the details of the user is available in the database
+        //public static int ValidateUser(string username, string password) //40
+        //{
+        //    using (var con = GetConnection())
+        //    {
+        //        string query = "SELECT Id, PasswordHash FROM Users WHERE UserName = @Username";
+        //        using (var cmd = new MySqlCommand(query, con))
+        //        {
+        //            cmd.Parameters.AddWithValue("@Username", username);
 
-                    con.Open();
-                    using (var reader = cmd.ExecuteReader())
-                    {
-                        if (reader.Read())
-                        {
-                            int userId = Convert.ToInt32(reader["Id"]);
-                            string storedPasswordHash = reader["PasswordHash"].ToString();
+        //            con.Open();
+        //            using (var reader = cmd.ExecuteReader())
+        //            {
+        //                if (reader.Read())
+        //                {
+        //                    int userId = Convert.ToInt32(reader["Id"]);
+        //                    string storedPasswordHash = reader["PasswordHash"].ToString();
 
-                            // Verify the provided password against the stored hash
-                            if (BCrypt.Net.BCrypt.Verify(password, storedPasswordHash))
-                            {
-                                return userId; 
-                            }
-                        }
-                    }
-                }
-            }
+        //                    // Verify the provided password against the stored hash
+        //                    if (BCrypt.Net.BCrypt.Verify(password, storedPasswordHash))
+        //                    {
+        //                        return userId;
+        //                    }
+        //                }
+        //            }
+        //        }
+        //    }
 
-            return 0; 
-        }
+        //    return 0;
+        //}
 
         //fetches the details of the user
-        public static int GetUserIdByUsername(string username)
+        public static int GetUserIdByUsername(string username) //41
         {
             using (var con = GetConnection())
             {
@@ -1483,7 +1510,7 @@ namespace votingsystem.Database_Helper
         }
 
         //fetches the title of the election
-        public static string GetElectionTitle(int electionId)
+        public static string GetElectionTitle(int electionId) //42
         {
             using (var con = GetConnection())
             {
@@ -1499,7 +1526,7 @@ namespace votingsystem.Database_Helper
         }
 
         //fetches the voted candidates of the user to be able to show the voting receipt
-        public static List<Candidate> GetUserVotedCandidates(int userId, int electionId)
+        public static List<Candidate> GetUserVotedCandidates(int userId, int electionId) //43
         {
             var candidates = new List<Candidate>();
 
@@ -1598,7 +1625,7 @@ namespace votingsystem.Database_Helper
         }
 
         //fetches the elections that the user has already voted
-        public static List<Election> GetUserVotedElections(int userId)
+        public static List<Election> GetUserVotedElections(int userId) //44
         {
             var elections = new List<Election>();
 
@@ -1633,85 +1660,9 @@ namespace votingsystem.Database_Helper
             return elections;
         }
 
-        //fetches the results of an election
-        public static List<ElectionResult> GetElectionResults()
-        {
-            var results = new List<ElectionResult>();
-
-            try
-            {
-                using (var con = GetConnection())
-                {
-                    string query = @"SELECT C.Id AS CandidateId, C.Name AS CandidateName, C.Position,  -- This column exists in your table!COUNT(*) AS VoteCount
-                        FROM Votes V
-                        LEFT JOIN Candidates C ON C.Id IN 
-                             (V.PresidentCandidateId, V.VicePresidentCandidateId, 
-                             V.SecretaryCandidateId, V.TreasurerCandidateId, 
-                             V.AuditorCandidateId, V.PROCandidateId)
-                        GROUP BY C.Id, C.Name, C.Position
-                        ORDER BY C.Position, VoteCount DESC;";
-                    using (var cmd = new MySqlCommand(query, con))
-                    {
-                        con.Open();
-                        using (var reader = cmd.ExecuteReader())
-                        {
-                            while (reader.Read())
-                            {
-                                results.Add(new ElectionResult
-                                {
-                                    ElectionId = reader.GetInt32("ElectionId"),
-                                    CandidateId = reader.GetInt32("CandidateId"),
-                                    CandidateName = reader.GetString("CandidateName"),
-                                    VoteCount = reader.GetInt32("VoteCount")
-                                });
-                            }
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error in GetElectionResults: {ex.Message}");
-            }
-
-            return results;
-        }
-
-
-        //fetches the candidate the user voted 
-        public static List<VoteReceipt> GetVoteReceipt(int userId, int electionId)
-        {
-            var receipt = new List<VoteReceipt>();
-            using (var con = GetConnection())
-            {
-                string query = @"SELECT Candidates.Name AS CandidateName, Votes.Position
-                       FROM Votes
-                       JOIN Candidates ON Votes.CandidateId = Candidates.Id
-                       WHERE Votes.UserId = @UserId AND Votes.ElectionId = @ElectionId";
-                using (var cmd = new MySqlCommand(query, con))
-                {
-                    cmd.Parameters.AddWithValue("@UserId", userId);
-                    cmd.Parameters.AddWithValue("@ElectionId", electionId);
-
-                    con.Open();
-                    using (var reader = cmd.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            receipt.Add(new VoteReceipt
-                            {
-                                CandidateName = reader.GetString("CandidateName"),
-                                Position = reader.GetString("Position")
-                            });
-                        }
-                    }
-                }
-            }
-            return receipt;
-        }
 
         //fetches all the elections
-        public static List<Election> GetAllElections()
+        public static List<Election> GetAllElections() //45
         {
             var elections = new List<Election>();
 
@@ -1739,7 +1690,7 @@ namespace votingsystem.Database_Helper
         }
 
         //fetches the results of the election, for the admin side
-        public static List<ElectionResult> GetLiveElectionAdminResults(int electionId)
+        public static List<ElectionResult> GetLiveElectionAdminResults(int electionId) //46
         {
             var results = new List<ElectionResult>();
 
@@ -1782,7 +1733,7 @@ namespace votingsystem.Database_Helper
         }
 
         //fetches the results of the election
-        public static List<ElectionResult> GetLiveElectionResults(int electionId)
+        public static List<ElectionResult> GetLiveElectionResults(int electionId) //47
         {
             var results = new List<ElectionResult>();
 
@@ -1824,13 +1775,14 @@ namespace votingsystem.Database_Helper
             return results;
         }
 
-        public static string GenerateOTP()
+        //queries for the OTP function
+        public static string CreateOTP() //48
         {
             Random rnd = new Random();
             return rnd.Next(100000, 999999).ToString();
         }
 
-        public static void SendEmailOTP(string email, string otp)
+        public static void SendOTP(string email, string otp) //49
         {
             var smtpClient = new SmtpClient("smtp.gmail.com")
             {
@@ -1848,7 +1800,7 @@ namespace votingsystem.Database_Helper
             smtpClient.Send(message);
         }
 
-        public static void StoreOTP(string email, string otp)
+        public static void SaveOTP(string email, string otp) //50
         {
             using (var con = GetConnection())
             {
@@ -1863,7 +1815,7 @@ namespace votingsystem.Database_Helper
             }
         }
 
-        public static bool ValidateOTP(string email, string enteredOtp)
+        public static bool ValidateOTP(string email, string enteredOtp) //51
         {
             using (var con = GetConnection())
             {
@@ -1893,8 +1845,21 @@ namespace votingsystem.Database_Helper
             }
         }
 
+        public static string GetUserName(string email)
+        {
+            using (var con = GetConnection())
+            {
+                string query = "SELECT UserName FROM Users WHERE Email = @Email";
 
+                using (var cmd = new MySqlCommand(query, con))
+                {
+                    cmd.Parameters.AddWithValue("@Email", email);
+                    con.Open();
 
+                    return cmd.ExecuteScalar()?.ToString();
+                }
+            }
+        }
 
     }
 }

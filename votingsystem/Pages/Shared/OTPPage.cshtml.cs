@@ -38,17 +38,17 @@ namespace votingsystem.Pages.Shared
             Email = TempData["Email"] as string;
             var userJson = TempData["User"] as string;
 
-            if (votingsystem.Database_Helper.DbHelper.ValidateOTP(Email, OtpCode))
+            if (votingsystem.Database_Helper.DbHelper.ValidateOTP(Email, OtpCode)) //DbHelper #51
             {
                 // deserialize user info from tempdata
                 if (!string.IsNullOrEmpty(userJson))
                 {
                     UserInfo = JsonSerializer.Deserialize<User>(userJson);
 
-                    // register the user after OTP verify
+                    // will only register the user after OTP is verified
                     if (UserInfo != null)
                     {
-                        Database_Helper.DbHelper.RegisterUser(UserInfo);
+                        Database_Helper.DbHelper.RegisterUser(UserInfo); //DbHelper #1
 
                         TempData["Message"] = "Account created successfully. Please wait for admin approval.";
                         return RedirectToPage("/Registration");
@@ -68,15 +68,5 @@ namespace votingsystem.Pages.Shared
                 return Page();
             }
         }
-
-
-
-        //public IActionResult OnPostResend()
-        //{
-        //    string newOtp = votingsystem.Database_Helper.DbHelper.GenerateOTP();
-        //    votingsystem.Database_Helper.DbHelper.StoreOTP(Email, newOtp);
-        //    votingsystem.Database_Helper.DbHelper.SendEmailOTP(Email, newOtp);
-        //    return Page();
-        //}
     }
 }

@@ -92,18 +92,28 @@
 }
 
 .container {
-    max-width: 900px;
-    margin: 40px auto;
+    max-width: 600px;
+    margin: 20px auto;
     background: #ffffff;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
-    border-radius: 10px;
+    border: none; 
+    border-radius: 8px;
     padding: 20px;
+    box-shadow: none;
 }
+
+.vote-summary {
+    margin-top: 20px;
+    text-align: left;
+}
+
 
 header {
     text-align: center;
     padding: 20px 0;
-    border-bottom: 3px solid #5e4b82;
+    border: none;
+    box-shadow: none;
+    background: transparent;
+    padding-top: 0;
 }
 
     header h1 {

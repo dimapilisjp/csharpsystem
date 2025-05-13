@@ -51,12 +51,13 @@ namespace votingsystem.Pages.Shared
             return RedirectToPage("/Index");
         }
 
+        //fetches the list of the candidates the user has voted
         public void OnGet(int userId, int electionId)
         {
             Console.WriteLine($"Loading vote receipt for User ID: {userId}, Election ID: {electionId}");
 
-            VotedCandidates = Database_Helper.DbHelper.GetUserVotedCandidates(userId, electionId);
-            ElectionTitle = Database_Helper.DbHelper.GetElectionTitle(electionId);
+            VotedCandidates = Database_Helper.DbHelper.GetUserVotedCandidates(userId, electionId); //DbHelper #43
+            ElectionTitle = Database_Helper.DbHelper.GetElectionTitle(electionId); //DbHelper #42
         }
 
     }

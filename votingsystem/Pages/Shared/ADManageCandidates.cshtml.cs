@@ -65,8 +65,16 @@ namespace votingsystem.Pages.Shared
             return RedirectToPage("/Index");
         }
 
+        //create a candidate
         public IActionResult OnPostCreateCandidate(Candidate candidate, IFormFile candidateImage)
         {
+            if (Database_Helper.DbHelper.IsCandidateNameRegistered(candidate.Name)) //DbHelper #26
+            {
+                TempData["Message"] = "Candidate name is already registered.";
+                return Page();
+            }
+
+
             if (candidateImage != null)
             {
                 Console.WriteLine($"Image received: {candidateImage.FileName}, Size: {candidateImage.Length} bytes");
@@ -104,22 +112,24 @@ namespace votingsystem.Pages.Shared
             }
 
 
-            Database_Helper.DbHelper.CreateCandidate(candidate);
+            Database_Helper.DbHelper.CreateCandidate(candidate); //DbHelper #25
 
             TempData["Message"] = "Candidate successfully registered.";
             return RedirectToPage("/Shared/ADManageCandidates");
         }
 
+        //delete a candidate
         public IActionResult OnPostDeleteCandidate(int id)
         {
-            Database_Helper.DbHelper.DeleteCandidate(id);
+            Database_Helper.DbHelper.DeleteCandidate(id); //DbHelper #27
             return RedirectToPage("/Shared/ADManageCandidates");
         }
 
+        //fetches the candidates and the upcoming elections so the candidates can be assigned to an election
         public void OnGet()
         {
-            Candidates = Database_Helper.DbHelper.GetCandidates();
-            UpcomingElections = Database_Helper.DbHelper.GetUpcomingElections();
+            Candidates = Database_Helper.DbHelper.GetCandidates(); //DbHelper #24
+            UpcomingElections = Database_Helper.DbHelper.GetUpcomingElections(); //DbHelper #35
         }
     }
 }

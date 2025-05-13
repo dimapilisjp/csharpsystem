@@ -79,7 +79,7 @@ namespace votingsystem.Pages.Shared
         public void OnGet()
         {
             //will display the available elections
-            AvailableElections = Database_Helper.DbHelper.GetAvailableElections();
+            AvailableElections = Database_Helper.DbHelper.GetAvailableElectionsAdmin(); //DbHelper #34
         }
 
 
@@ -87,10 +87,10 @@ namespace votingsystem.Pages.Shared
         public IActionResult OnGetElectionData(int electionId)
         {
             // fetch the voter turnout by department/program
-            var voterStats = Database_Helper.DbHelper.GetVoterTurnout(electionId);
+            var voterStats = Database_Helper.DbHelper.GetVoterTurnout(electionId); //DbHelper #13
 
             // fetch the vote count and percentage for candidates
-            var voteCompare = Database_Helper.DbHelper.GetVoteDistribution(electionId);
+            var voteCompare = Database_Helper.DbHelper.GetVoteDistribution(electionId); //DbHelper #14
 
             return new JsonResult(new { voterStatistics = voterStats, voteCompare = voteCompare });
         }

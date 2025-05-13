@@ -56,12 +56,13 @@ namespace votingsystem.Pages.Shared
             return RedirectToPage("/Index");
         }
 
+        //will fetch the electionid based on the details of the user, like the department and program
         public void OnGet(int electionId)
         {
             Console.WriteLine($"ElectionId: {electionId}");
             Console.WriteLine("User.Identity.Name: " + User.Identity.Name);
-            Election = Database_Helper.DbHelper.GetElectionById(electionId);
-            Candidates = Database_Helper.DbHelper.GetCandidatesByElectionId(electionId);
+            Election = Database_Helper.DbHelper.GetElectionById(electionId); //DbHelper #21
+            Candidates = Database_Helper.DbHelper.GetCandidatesByElectionId(electionId); //DbHelper #37
 
             if (Candidates == null || !Candidates.Any())
             {
@@ -69,6 +70,7 @@ namespace votingsystem.Pages.Shared
             }
         }
 
+        //cast the vote
         public IActionResult OnPostCastVote(int electionId, Dictionary<string, int?> selectedCandidates)
         {
             Console.WriteLine($"[Debug] User.Identity.Name: {User.Identity.Name}");
@@ -82,7 +84,7 @@ namespace votingsystem.Pages.Shared
                     return RedirectToPage("/Account/Login");
                 }
 
-                var userId = Database_Helper.DbHelper.GetUserIdByUsername(User.Identity.Name);
+                var userId = Database_Helper.DbHelper.GetUserIdByUsername(User.Identity.Name); //DbHelper #41
                 Console.WriteLine($"[Debug] Fetched UserId: {userId}");
 
                 if (userId <= 0)
@@ -100,13 +102,14 @@ namespace votingsystem.Pages.Shared
                     return RedirectToPage("/Shared/ADResults");
                 }
 
-                if (Database_Helper.DbHelper.HasUserVoted(userId, electionId))
+                if (Database_Helper.DbHelper.HasUserVoted(userId, electionId)) //DbHelper #38
                 {
                     Console.WriteLine($"User {userId} has already voted for ElectionId {electionId}.");
                     TempData["Error"] = "You have already cast your vote for this election.";
                     return RedirectToPage("/Shared/UPDoneVoting", new { electionId });
                 }
 
+                //in order to allow null votes
                 var vote = new Vote
                 {
                     UserId = userId,
@@ -122,8 +125,10 @@ namespace votingsystem.Pages.Shared
                 try
                 {
                     Console.WriteLine($"Recording vote: {vote.UserId}, ElectionId={vote.ElectionId}");
-                    Database_Helper.DbHelper.RecordVote(vote);
+
+                    Database_Helper.DbHelper.RecordVote(vote); //DbHelper #39
                     TempData["Success"] = "Your votes have been successfully cast!";
+
                     Console.WriteLine($"Votes successfully recorded for UserId={userId}, ElectionId={electionId}");
                 }
                 catch (Exception ex)

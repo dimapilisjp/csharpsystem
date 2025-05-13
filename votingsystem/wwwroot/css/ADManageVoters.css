@@ -218,3 +218,17 @@ th {
     .delete-button:hover {
         background: #c0392b;
     }
+.alert {
+    padding: 12px 20px;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 20px;
+    background-color: #dc3545;
+    color: white;
+    border: 1px solid #b22234;
+}
+
+

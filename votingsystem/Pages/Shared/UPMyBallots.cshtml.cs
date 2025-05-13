@@ -30,14 +30,17 @@ namespace votingsystem.Pages.Shared
             return RedirectToPage("/Index");
         }
 
+        //fetches the details of the user and the candidates the user voted
         public void OnGet()
         {
-            int userId = Database_Helper.DbHelper.GetUserIdByUsername(User.Identity.Name);
-            var elections = Database_Helper.DbHelper.GetUserVotedElections(userId);
+            int userId = Database_Helper.DbHelper.GetUserIdByUsername(User.Identity.Name); //DbHelper #41
+            var elections = Database_Helper.DbHelper.GetUserVotedElections(userId); //DbHelper #44
 
-            VotedElections = elections ?? new List<Election>(); // Ensure it's never null
+            VotedElections = elections ?? new List<Election>();
         }
 
+
+        //will display the voted candidates
         public IActionResult OnPostShowBallot(int electionId)
         {
             return RedirectToPage("/Shared/UPDoneVoting", new { electionId });

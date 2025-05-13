@@ -40,7 +40,7 @@
     </header>
     <main class="main-content">
         <section class="receipt-section">
-            <h2>Voting Receipt</h2>
+            <h2>Voting Receipt for @(User.Identity.IsAuthenticated ? User.Identity.Name : "Guest")</h2>
             <p><strong>Election:</strong> @Model.ElectionTitle</p>
             <div id="voted-container">
                 @if (Model.VotedCandidates != null && Model.VotedCandidates.Any())
